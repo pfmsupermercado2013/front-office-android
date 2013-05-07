@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string-array name="categoria_array">
+	        <item>Aceites</item>
+	       	<item>Vinagres</item>
+	        <item>Bebidas</item>
+	        <item>Café/Cacaos</item>
+	        <item>Infusiones</item>
+	        <item>Charchutería</item>
+	        <item>Quesos</item>
+	        <item>Lacteos</item>
+	        <item>Chocolate/Dulces</item>
+	        <item>Concervas</item>
+	        <item>Galletas</item>
+	        <item>Cereales</item>
+	        <item>Harinas</item>
+	        <item>Panadería/Pastelería</item>
+	        <item>Pasta/Arroz</item>
+	        <item>Legumbres</item>
+	        <item>Platos preparados</item>
+	        <item>Productos Ahumados</item>
+	        <item>Pasta/Arroz</item>
+	        <item>Salsas/Condimentos/Tomate Frito</item>
+    </string-array>
+    
+            
+   <string-array name="productos_categoria_aceite_array">
+	        <item>Carbonel(oliva suave) 1L</item>
+	       	<item>La Masía(oliva suave) 1L</item>
+	        <item>IBarra(oliva suave) 1L</item>
+	        <item>Elosua(oliva suave) 1L</item>
+	        <item>Capicua (girasol) 1L</item>
+	        <item>Coosol (girasol) 1L</item>
+	        <item>Koipesol (girasol) 1L</item>
+	        <item>La Masía (girasol) 1L</item>
+    </string-array>
+    
+    <string-array name="productos_categoria_vinagres_array">
+	        <item>Borges(basámilco) 250ml</item>
+	       	<item>Prima(vinagreta) 250ml</item>
+	        <item>IBarra(módena) 500ml</item>
+	        <item>Ibarra(blanco) 1L</item>
+	        <item>Ibarra(Jeréz) 250ml</item>	        
+	        <item>Procer(blanco) 1L</item>
+	        <item>Coosol (girasol) 1L</item>
+	        <item>Procer(blanco) 1L</item>
+	        <item>Procer(blanco) 1L</item>
+    </string-array>
+    
+   <string-array name="productos_categoria_bebidas_array">
+	        <item>Fever Tree (tónica) 4x20cl</item>
+	       	<item>Cabreiroa (agua gas) 50 cl</item>
+	        <item>Solán de Cabras (agua) 1L</item>
+	        <item>Tropicana (zumo naranja) 1 L</item>
+	        <item>Coca-Cola 2L</item>	        
+	        <item>Pepsi-cola 2L</item>
+	        <item>Coca-Cola 33cl</item>
+	        <item>Pepsi-cola 33cl</item>
+	        <item>Fanta Naranja 33cl</item>
+	        <item>Fanta Limón 33cl</item>
+	        <item>Mahou 5 Estrellas (6x25cl)</item>
+	        <item>Allhambra (24x25cl)</item>
+	        <item>Cruzcampo (24x25cl)</item>
+	        <item>Alhambra 1925 6x33cl</item>
+	        <item>Budweiser (6x25cl)</item>
+	        <item>Heineken 33cl</item>
+	        <item>Carlberg 33cl</item>
+	        
+    </string-array>
+    
+         
+    
+</resources>

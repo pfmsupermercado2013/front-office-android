@@ -1,4 +1,10 @@
-package com.supermarkethelp;
+package com.supermarket_frontoffice;
+import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.R.id;
+import com.supermarket_frontoffice.R.layout;
+import com.supermarket_frontoffice.R.menu;
+import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
+import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -15,8 +21,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		findViewById(R.id.button4).setOnClickListener(new handleButton());
+		findViewById(R.id.btnCompraGuiada).setOnClickListener(new handleButton());		
+
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,5 +56,13 @@ public class MainActivity extends Activity {
 		return true;
 		
 	}
+	
+    public void onClickListaCompra(View v) {
+    	
+	    Intent intent = new Intent( MainActivity.this, ListaCompraActivity.class);
+	    startActivity(intent);	
+    }
+    
+
 
 }

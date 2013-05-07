@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Supermarket</string>
+    <string name="app_name">Supermarket FrontOffice</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_recorrido_optimo_main">RecorridoOptimoMainActivity</string>
+    <string name="title_activity_recorrido_optimo_main">Recorrido Optimo Main</string>
+    
+    <string name="title_activity_lista_compra">Lista de la Compra</string>
+    <string name="title_activity_catalogo_productos">Catálogo de Productos</string>
+    <string name="ListaCompra">Lista de la Compra</string>
+    <string name="PagarCompra">Pagar Compra Realizada</string>
+    <string name="Aparcamiento">Aparcamiento</string>
+    <string name="CompraGuiada">Compra Guiada</string>
+    <string name="title_activity_informacion_producto">Información del Producto</string>
+    <string name="title_activity_anyadir_carrito">Añadir al Carrito de la compra</string>
+    <string name="title_activity_geolocalizar_producto">Geolocalizar el Producto</string>
+    <string name="CatalogoProductos">Catalogo de Productos</string>
+    <string name="TitleCatalogoProductos">Catálogo de Productos</string>
+    <string name="TitleInformacionProducto">Información del Producto</string>
+    <string name="TitleAnyadirCarrito">Añadir Producto al Carrito</string>
+    <string name="TitleGeolocalizarProducto">Geolocalizar Producto</string>
+    <string name="LabelNombreProducto">Nombre del Producto</string>
+    <string name="LabelNombreCategoria">Categoría</string>
+    <string name="LabelDescripcion">Descripción</string>
+    <string name="LabelCodigoEAN">"Código EAN "</string>
+    <string name="LabelPrecio">Precio</string>
+    <string name="TitleListaCompra">Lista de la Compra</string>
+
+    <string name="LabelCantidad">Cantidad</string>
+    <string name="title_activity_buscar_producto">Búsqueda de Productos</string>
+    <string name="LabelBuscarProducto">Búsqueda de Productos</string>
+    <string name="title_activity_carrito_compra">Carrito de la Compra</string>
+    <string name="title_activity_leer_codigo_barras">Lectura del Código de Barras</string>
+    <string name="TitleCarritoCompra">Carrito de la Compra</string>
+    <string name="TitleLeerCodigoBarras">Lectura del Código de Barras</string>
+    
+    <color name="blue">#5d9dcf</color>
+    <color name="blue2">#90b9d9</color>
+    <color name="green">#33850f</color>
+    <color name="green2">#50d065</color>
+    <color name="grey">#828e89</color>
+    <color name="grey2">#cccfce</color>
 
 </resources>

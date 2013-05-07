@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="catalogo_productos_array">
+        <item>Bebidas Alcohólicas</item>
+        <item>Bollerias</item>
+        <item>Congelados</item>
+        <item>Frutas</item>
+        <item>Lacteos</item>
+        <item>Refrescos</item>
+        <item>Zumos</item>
+    </string-array>  
+</resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.supermarkethelp"
+    package="com.supermarket_frontoffice"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.supermarkethelp.MainActivity"
+            android:name="com.supermarket_frontoffice.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        
         <activity
-            android:name="com.supermarkethelp.RecorridoOptimoMainActivity"
+            android:name="com.supermarket_frontoffice.lista_compra.ListaCompraActivity"
+            android:label="@string/title_activity_lista_compra" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.CatalogoProductosActivity"
+            android:label="@string/title_activity_catalogo_productos" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.InformacionProductoActivity"
+            android:label="@string/title_activity_informacion_producto" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.AnyadirCarritoActivity"
+            android:label="@string/title_activity_anyadir_carrito" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.GeolocalizarProductoActivity"
+            android:label="@string/title_activity_geolocalizar_producto" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.BuscarProductoActivity"
+            android:label="@string/title_activity_buscar_producto" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.CarritoCompraActivity"
+            android:label="@string/title_activity_carrito_compra" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.lista_compra.LeerCodigoBarrasActivity"
+            android:label="@string/title_activity_leer_codigo_barras" >
+        </activity>
+        
+        <activity
+            android:name="com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity"
             android:label="@string/title_activity_recorrido_optimo_main" >
         </activity>
     </application>

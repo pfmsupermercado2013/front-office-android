@@ -1,6 +1,10 @@
-package com.supermarkethelp;
+package com.supermarket_frontoffice.recorrido_optimo;
 
-import com.supermarkethelp.MainActivity.handleButton;
+import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.R.id;
+import com.supermarket_frontoffice.R.layout;
+import com.supermarket_frontoffice.R.menu;
+//import com.supermarket_frontoffice.MainActivity.handleButton;
 
 import android.os.Bundle;
 import android.app.Activity;
