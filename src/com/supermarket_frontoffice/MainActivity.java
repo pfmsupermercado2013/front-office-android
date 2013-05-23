@@ -4,6 +4,7 @@ import com.supermarket_frontoffice.R.id;
 import com.supermarket_frontoffice.R.layout;
 import com.supermarket_frontoffice.R.menu;
 import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
+import com.supermarket_frontoffice.pago.PagoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 
 import android.os.Bundle;
@@ -21,7 +22,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		findViewById(R.id.btnCompraGuiada).setOnClickListener(new handleButton());		
+		findViewById(R.id.btnCompraGuiada).setOnClickListener(new handleButton());	//Para el boton del la compra guiada
+		findViewById(R.id.btnPagarCompra).setOnClickListener(new handleBtnPurchasePay());	//Para el boton del pago de la compra
 
 	}
 	
@@ -38,6 +40,16 @@ public class MainActivity extends Activity {
 			boolean bRequest = myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
 		    Intent intent = new Intent(MainActivity.this, RecorridoOptimoMainActivity.class);
 		    startActivity(intent);	
+		}
+    }
+	
+	//Evento de pulsar pago de compra
+	class handleBtnPurchasePay implements OnClickListener {		
+		public void onClick(View v) {
+
+		    Intent intent = new Intent(MainActivity.this, PagoMainActivity.class);
+		    startActivity(intent);	
+		    
 		}
     }
 	
