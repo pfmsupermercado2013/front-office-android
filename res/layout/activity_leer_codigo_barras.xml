@@ -98,7 +98,7 @@
                 android:layout_gravity="bottom|center" >
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/btnNFC"
                     android:layout_width="142dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

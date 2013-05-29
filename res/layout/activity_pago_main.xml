@@ -24,10 +24,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center_vertical|center_horizontal"                
                 android:layout_weight="1"
-                android:text="Confirmar Compra"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/sConfirmPurchase"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+
         </TableRow>
 
         <TableRow
@@ -43,9 +44,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center_vertical|center_horizontal" 
                 android:layout_weight="1"
-                android:text="Revisar Productos" />
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/sRevisarProductos" />
+
         </TableRow>
 
         <TableRow
@@ -61,9 +63,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center_vertical|center_horizontal" 
-                android:text="El importe total de la compra es:"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/sImportTotal"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </TableRow>
 
         <TableRow
@@ -80,7 +83,7 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="29,56€"
+                android:text="00,00€"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="@dimen/size_text_count_pay" />
 
@@ -101,7 +104,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Confirmar" />
+                android:text="@string/sConfirm" />
 
         </TableRow>
     </TableLayout>

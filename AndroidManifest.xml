@@ -18,14 +18,14 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-	        android:name="com.supermarket_frontoffice.SplashActivity"
-	        android:label="@string/app_name" >
-	        <intent-filter>
-	            <action android:name="android.intent.action.MAIN" />
-	
-	            <category android:name="android.intent.category.LAUNCHER" />
-	        </intent-filter>
-	    </activity>
+            android:name="com.supermarket_frontoffice.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.supermarket_frontoffice.lista_compra.ListaCompraActivity"
             android:label="@string/title_activity_lista_compra" >
@@ -69,6 +69,22 @@
         <activity
             android:name="com.supermarket_frontoffice.pago.PagoMainActivity"
             android:label="@string/title_activity_pago__main" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.pago.ModoPagoActivity"
+            android:label="@string/title_activity_modo_pago" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.pago.PagoNFCActivity"
+            android:label="@string/title_activity_pago_nfc" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.pago.PagoPayboxActivity"
+            android:label="@string/title_activity_pago_paybox" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.pago.FinalizarPagoActivity"
+            android:label="@string/title_activity_finalizar_pago" >
         </activity>
     </application>
 

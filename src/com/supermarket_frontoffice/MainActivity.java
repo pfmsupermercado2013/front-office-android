@@ -1,12 +1,9 @@
 package com.supermarket_frontoffice;
 import com.supermarket_frontoffice.R;
-import com.supermarket_frontoffice.R.id;
-import com.supermarket_frontoffice.R.layout;
-import com.supermarket_frontoffice.R.menu;
 import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
 import com.supermarket_frontoffice.pago.PagoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
-
+import com.supermarket_frontoffice.utils.Utils;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +15,9 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
+	//private Activity oThisActivity = this;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,8 +37,9 @@ public class MainActivity extends Activity {
 	
 	class handleButton implements OnClickListener {		
 		public void onClick(View v) {
-			boolean bRequest = myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
-		    Intent intent = new Intent(MainActivity.this, RecorridoOptimoMainActivity.class);
+			//boolean bRequest = myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
+			Utils.myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada",MainActivity.this);
+			Intent intent = new Intent(MainActivity.this, RecorridoOptimoMainActivity.class);
 		    startActivity(intent);	
 		}
     }
@@ -54,6 +55,7 @@ public class MainActivity extends Activity {
     }
 	
 	public boolean myCustomAlert(String sCadena){
+
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 		alertDialog.setTitle("Titulo");
 		alertDialog.setMessage(sCadena);

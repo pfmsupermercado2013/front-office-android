@@ -33,7 +33,27 @@
     <string name="TitleCarritoCompra">Carrito de la Compra</string>
     <string name="TitleLeerCodigoBarras">Lectura del Código de Barras</string>
     <string name="TitlePurchasePay">Pago de compra realizada</string>
-
+    <string name="NFCDisable">NFC no está disponible en su terminal</string>
+	<string name="NotMoney">La cantidad total a pagar de la compra es cero</string>
+	<string name="title_activity_purchase_pay">Pagar compra</string>
+    <string name="title_activity_pago__main">Pago_MainActivity</string>
+    <string name="sImportTotal">El importe total de la compra es:</string>
+    <string name="sConfirmPurchase">Confirmar Compra</string>
+    <string name="sRevisarProductos">Revisar Productos</string>
+    <string name="sConfirm">Confirmar</string>
+    <string name="title_activity_modo_pago">ModoPagoActivity</string>
+    <string name="title_activity_pago_nfc">PagoNFCActivity</string>
+    <string name="title_activity_pago_paybox">PagoPayboxActivity</string>
+    <string name="title_activity_finalizar_pago">FinalizarPagoActivity</string>
+    <string name="NFC">NFC</string>
+    <string name="PayBox">PAYBOX</string>
+    <string name="SelectModePurchase">Selección Modo Pago</string>
+    <string name="PagoNFC">Pago por NFC</string>
+    <string name="PagoPaybox">Pago por Paybox</string>
+    <string name="DescriptionPagoNFC">Por favor, acerque su terminal al receptor</string>
+	<string name="EnterPassword">Introduzca la clave</string>
+    
+	
     <color name="blue">#5d9dcf</color>
     <color name="blue2">#90b9d9</color>
     <color name="green">#33850f</color>
@@ -41,7 +61,6 @@
     <color name="grey">#828e89</color>
     <color name="grey2">#cccfce</color>
 
-    <string name="title_activity_purchase_pay">Pagar compra</string>
-    <string name="title_activity_pago__main">Pago_MainActivity</string>
+
 
 </resources>

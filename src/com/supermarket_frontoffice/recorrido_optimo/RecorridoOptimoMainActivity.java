@@ -21,8 +21,8 @@ public class RecorridoOptimoMainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recorrido_optimo_main);
-		findViewById(R.id.button1).setOnClickListener(new handleButton1());
-		findViewById(R.id.button2).setOnClickListener(new handleButton2());
+		findViewById(R.id.btnNFC).setOnClickListener(new handleButton1());
+		findViewById(R.id.btnPaybox).setOnClickListener(new handleButton2());
 	}
 
 	@Override
