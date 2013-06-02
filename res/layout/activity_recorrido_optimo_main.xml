@@ -9,145 +9,163 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".RecorridoOptimoMainActivity" >
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical" >
+        
+        
+        <LinearLayout
+   	        android:layout_width="fill_parent"
+   	        android:layout_height="wrap_content"
+   	        android:layout_gravity="top|left|right"
+   	        android:layout_marginBottom="2dp"
+   	        android:layout_marginLeft="0dp"
+   	        android:layout_marginRight="0dp"
+   	        android:layout_marginTop="0dp"
+   	        android:background="@color/blue"
+   	        android:gravity="top|fill|clip_horizontal" >
 
-        <TableRow
-            android:id="@+id/tableRow1"
+   	        <TextView
+   	            android:layout_width="178dp"
+   	            android:layout_height="wrap_content"
+   	            android:layout_gravity="center_vertical"
+   	            android:gravity="center"
+   	            android:text="@string/title_activity_recorrido_optimo_main"
+   	            android:textSize="18dp"
+   	            android:textStyle="bold" />
+
+   	        <ImageView
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:layout_gravity="right|center_vertical"
+   	            android:layout_marginLeft="20dp"
+   	            android:src="@android:drawable/ic_menu_search" />
+
+   	        <ImageView
+   	            android:layout_width="wrap_content"
+   	            android:layout_height="wrap_content"
+   	            android:src="@drawable/ic_carrito_compra" />
+   	    </LinearLayout>
+
+
+   	    <!--   SUB-CABECERA DE LA PÁGINA-->
+
+   	    <LinearLayout
+   	        android:layout_width="fill_parent"
+   	        android:layout_height="34dp"
+   	        android:layout_gravity="top|left|right"
+   	        android:layout_marginBottom="0dp"
+   	        android:layout_marginLeft="0dp"
+   	        android:layout_marginRight="0dp"
+   	        android:layout_marginTop="0dp"
+   	        android:background="@color/blue2"
+   	        android:gravity="top|fill|clip_horizontal" >
+
+   	        <TextView
+   	            android:layout_width="178dp"
+   	            android:layout_height="wrap_content"
+   	            android:layout_gravity="center"
+   	            android:gravity="center"
+   	            android:textSize="18dp"
+   	            android:textStyle="bold" />
+
+   	        <ImageView
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:layout_gravity="right|center_vertical"
+   	            android:layout_marginLeft="30dp"
+   	            android:src="@android:drawable/ic_menu_view" />
+
+   	        <ImageView
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:layout_marginLeft="0dp"
+   	            android:src="@android:drawable/ic_menu_info_details" />
+
+   	    </LinearLayout>
+
+   	    <LinearLayout
+   	        android:id="@+id/layoutBtnMap"
+   	        android:layout_width="match_parent"
+   	        android:layout_height="wrap_content"
+   	        android:layout_marginTop="2dp" >
+
+
+   	        <Button
+   	            android:id="@+id/btnMap2d"
+   	            style="?android:attr/buttonStyleSmall"
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:onClick="onClickMap2d"
+   	            android:text="2D" />
+   	        
+   	        <Button
+   	            android:id="@+id/btnMap3d"
+   	            style="?android:attr/buttonStyleSmall"
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:onClick="onClickMap3d"
+   	            android:text="3D" />
+
+
+   	        <ImageButton
+   	            android:id="@+id/btnMapRotation"
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:onClick="onClickRotation"
+   	            android:src="@android:drawable/ic_menu_rotate" />
+   	        
+   	       <ImageButton
+   	           android:id="@+id/btnMapTranslation"
+   	           android:layout_width="32dp"
+   	           android:layout_height="32dp"
+   	           android:onClick="onClickTranslation"
+   	           android:src="@android:drawable/ic_menu_directions" />
+   	           	           	        
+   	    </LinearLayout>
+        
+        <FrameLayout
+            android:id="@+id/layoutButtonsMaps"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:gravity="top"
-            android:scrollbars="horizontal" >
+            android:layout_height="274dp"
+            android:layout_gravity="fill_vertical|fill_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" >
 
-            <ScrollView
-                android:id="@+id/scrollView1"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent" >
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:gravity="fill_horizontal"
-                    android:orientation="vertical" >
+        </FrameLayout>
 
-                    <ImageView
-                        android:id="@+id/imgNFC"
-                        android:layout_width="290dp"
-                        android:layout_height="563dp"
-                        android:layout_gravity="center"
-                        android:scrollbarStyle="insideOverlay"
-                        android:scrollbars="horizontal"
-                        android:src="@drawable/plano_built" />
-
-                </LinearLayout>
-            </ScrollView>
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TableLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent" >
-
-                <TableRow
-                    android:id="@+id/tableRow4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:id="@+id/txtPagoNFC"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="CocaCola"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="6ud"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                    <TextView
-                        android:id="@+id/txtDescriptionPagoNFC"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="4,25€"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Pasillo 1"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Estante 4"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Altura media"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
-                </TableRow>
-
-            </TableLayout>
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="306dp"
-            android:layout_gravity="top" >
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:gravity="top|bottom|center_horizontal" >
 
             <Button
-                android:id="@+id/btnPaybox"
+                android:id="@+id/btnOk"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:text="OK" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnNuevo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Nuevo Producto" />
 
             <Button
-                android:id="@+id/btnNFC"
+                android:id="@+id/btnSiguiente"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:text="Saltar a siguiente" />
-        </TableRow>
+        </LinearLayout>
 
-    </TableLayout>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 	class handleButton implements OnClickListener {		
 		public void onClick(View v) {
 			//boolean bRequest = myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
-			Utils.myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada",MainActivity.this);
+			//Utils.myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada",MainActivity.this);
 			Intent intent = new Intent(MainActivity.this, RecorridoOptimoMainActivity.class);
 		    startActivity(intent);	
 		}
