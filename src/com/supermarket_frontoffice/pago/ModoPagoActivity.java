@@ -19,7 +19,7 @@ public class ModoPagoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_modo_pago);
+		setContentView(R.layout.activity_pago_modo);
 		findViewById(R.id.btnNFC).setOnClickListener(new handleBtnNFC());
 		findViewById(R.id.btnPaybox).setOnClickListener(new handleBtnPaybox());	
 
