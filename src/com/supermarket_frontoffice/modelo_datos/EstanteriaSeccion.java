@@ -1,4 +1,4 @@
-package com.supermarket_frontoffice.recorrido_optimo.supermarket_map;
+package com.supermarket_frontoffice.modelo_datos;
 
 import java.util.ArrayList;
 
@@ -14,20 +14,32 @@ public class EstanteriaSeccion
 {
 	
 	
-	public enum TTipoEstanteSeccion {
-		
-		SeccionSimple,
-		SeccionDoble
-	};
+//	public enum TTipoEstanteSeccion {
+//		
+//		SeccionSimple,
+//		SeccionDoble
+//	};
 	
 	
 	private short 				m_Id; 						///< Indentificador de la seccion
-	private TTipoEstanteSeccion m_TipoSeccion; 				///< Tipo de Sección de la estantería.
+	//private TTipoEstanteSeccion m_TipoSeccion; 				///< Tipo de Sección de la estantería.
 	private float 				m_Alto;  					///< Longitud de la sección
 	private float 				m_Largo;  					///< Longitud de la sección
 	private float 				m_AnchoBase; 				///< Ancho de la Base de la sección
 	
 	private ArrayList< EstanteriaEstante > m_ListaEstantes;
+	
+	
+	/** Constructor por defecto
+	 * 
+	 */
+	public EstanteriaSeccion( )
+	{
+	
+		this( (short)0, 0.f, 0.f, 0.f );
+		
+	} // EstanteriaSeccion
+	
 	
 	
 	/** Constructor
@@ -40,13 +52,13 @@ public class EstanteriaSeccion
 	 * @param a_AnchoBase		Anchura de la Base de la Sección
 	 */
 	public EstanteriaSeccion( 	short a_Id, 
-								TTipoEstanteSeccion a_TipoSeccion,
+								//TTipoEstanteSeccion a_TipoSeccion,
 								float a_Alto,
 								float a_Largo,
 								float a_AchoBase )
 	{
 	
-		this( a_Id, a_TipoSeccion, a_Alto, a_Largo, a_AchoBase, new ArrayList< EstanteriaEstante >() );
+		this( a_Id, a_Alto, a_Largo, a_AchoBase, new ArrayList< EstanteriaEstante >() );
 		
 	} // EstanteriaSeccion
 	
@@ -62,7 +74,7 @@ public class EstanteriaSeccion
 	 * @param a_ListaEstantes	Lista de Estantes que contiene la sección
 	 */
 	public EstanteriaSeccion( 	short a_Id, 
-								TTipoEstanteSeccion a_TipoSeccion,
+								//TTipoEstanteSeccion a_TipoSeccion,
 								float a_Alto,
 								float a_Largo,
 								float a_AchoBase,
@@ -70,7 +82,7 @@ public class EstanteriaSeccion
 	{
 		
 		m_Id= a_Id;
-		m_TipoSeccion= a_TipoSeccion;
+		//m_TipoSeccion= a_TipoSeccion;
 		m_Alto= a_Alto;
 		m_Largo= a_Largo;
 		m_AnchoBase= a_AchoBase;	///  Corresponde al ancho del Estante 1 de la Sección
@@ -98,22 +110,22 @@ public class EstanteriaSeccion
 	} // setId
 	
 	
-	/**
-	 * @return the m_TipoSeccion
-	 */
-	public TTipoEstanteSeccion getTipoSeccion( ) 
-	{
-		return m_TipoSeccion;
-	}
-
-
-	/**
-	 * @param m_TipoSeccion the m_TipoSeccion to set
-	 */
-	public void setTipoSeccion( TTipoEstanteSeccion a_TipoSeccion ) 
-	{
-		this.m_TipoSeccion= a_TipoSeccion;
-	}
+//	/**
+//	 * @return the m_TipoSeccion
+//	 */
+//	public TTipoEstanteSeccion getTipoSeccion( ) 
+//	{
+//		return m_TipoSeccion;
+//	}
+//
+//
+//	/**
+//	 * @param m_TipoSeccion the m_TipoSeccion to set
+//	 */
+//	public void setTipoSeccion( TTipoEstanteSeccion a_TipoSeccion ) 
+//	{
+//		this.m_TipoSeccion= a_TipoSeccion;
+//	}
 
 	
 	/**
@@ -196,6 +208,30 @@ public class EstanteriaSeccion
 	{
 		this.m_ListaEstantes.add( a_EstanteriaEstante );
 	}
+	
+	
+	/** Devuelve un String con toda la información de la clase
+	 * 
+	 */
+	public String toString( )
+	{
+		
+		
+		String strOut= new String( "[[Seccion Id=" + this.m_Id + "] Alto= " +  this.m_Alto + "; Largo= " + this.m_Largo + "; m_AnchoBase= " + this.m_AnchoBase + " ]" );
+	
+		if ( !m_ListaEstantes.isEmpty() ) {
+			
+			for ( EstanteriaEstante estante: m_ListaEstantes ) {
+				
+				strOut +=  "\n\t" + estante.toString();
+			}
+			
+		} // end if
+
+		
+		return strOut;
+	
+	} // toString
 	
 	
 } // EstanteriaSeccion

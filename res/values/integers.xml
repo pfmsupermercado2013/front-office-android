@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="SeekBar_MaxValue">50</integer>
+    <integer name="SeekBar_InitValue">10</integer>
+</resources>

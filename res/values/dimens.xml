@@ -4,5 +4,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="size_text_count_pay">40dp</dimen>
+    <dimen name="supermarket_activity_horizontal_margin">2dp</dimen>
+    <dimen name="supermarket_activity_vertical_margin">2dp</dimen>
 
 </resources>

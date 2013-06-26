@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="0.43"
-        android:paddingTop="30dp"
+        android:layout_weight="0.73"
+        android:paddingTop="90dp"
         android:src="@drawable/app_icon" />
 
     <TableLayout
@@ -27,7 +27,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center" >
             
-
             <TextView
                 android:id="@+id/txtPagoNFC"
                 android:layout_width="fill_parent"
@@ -35,7 +34,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:paddingTop="30dp"
+                android:paddingTop="50dp"
                 android:text="SUPER UPSAM"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="@dimen/size_text_count_pay" />

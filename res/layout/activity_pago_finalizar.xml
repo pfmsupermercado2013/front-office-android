@@ -6,12 +6,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PagoNFCActivity" >
+    tools:context=".FinalizarPagoActivity" >
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true" >
+        android:layout_height="match_parent" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -20,13 +19,10 @@
             android:layout_weight="1" >
 
             <TextView
-                android:id="@+id/txtPagoNFC"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/PagoNFC"
+                android:id="@+id/txtPayComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PayComplete"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </TableRow>
 
@@ -37,13 +33,10 @@
             android:layout_weight="1" >
 
             <TextView
-                android:id="@+id/txtDescriptionPagoNFC"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="@string/DescriptionPagoNFC"
+                android:id="@+id/txtPayCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PayCorrect"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
 
@@ -51,17 +44,14 @@
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_gravity="center_horizontal"
             android:layout_weight="1" >
 
             <ImageView
-                android:id="@+id/imgNFC"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal"
-                android:src="@drawable/nfc" />
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/check3" />
+
         </TableRow>
 
         <TableRow
@@ -69,6 +59,12 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/btnConfirmPaybox"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/Return" />
         </TableRow>
     </TableLayout>
 

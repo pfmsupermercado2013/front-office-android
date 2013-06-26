@@ -1,17 +1,16 @@
-package com.supermarket_frontoffice.recorrido_optimo.supermarket_map;
+package com.supermarket_frontoffice.recorrido_optimo.gl;
 
-import java.util.ArrayList;
-import java.util.Vector;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 
 public class GLSupermarketMapSurfaceView extends GLSurfaceView 
 {
+	
+	
+	private static final String TAG= "GLSupermarketMapSurfaceView";
 
 	private GLSupermarketMapRenderer 	m_MapRenderer;
 	
@@ -24,15 +23,17 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	private boolean 					m_ActivateRotation;
 	private boolean 					m_ActivateView2d;
 	
+	//private int							m_ProcessZoom;
+	
 	/** Constructor
 	 * 
 	 * @param a_Context
 	 */
-	public GLSupermarketMapSurfaceView( Context a_Context, ArrayList< Estanteria > a_ListaEstanteria ) 
+	public GLSupermarketMapSurfaceView( Context a_Context, float a_ProcessZoom ) 
 	{
 		super( a_Context );
 		
-		m_MapRenderer= new GLSupermarketMapRenderer( a_ListaEstanteria );
+		m_MapRenderer= new GLSupermarketMapRenderer( a_Context, a_ProcessZoom );
 		super.setRenderer( m_MapRenderer );
 		
 		m_XMotionDown= 0.f;
@@ -43,6 +44,8 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 		
 		m_ActivateRotation= false;
 		m_ActivateView2d= false;
+		
+		//m_ProcessZoom= 50;
 		
 	} // GLSupermarketMapSurfaceView
 	
@@ -74,8 +77,9 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 				public void run() {
 					
 					if ( m_ActivateRotation ) {
-							
-						m_MapRenderer.rotatePosicionXZ( ( ( ( m_YMotionUp > m_YMotionDown )? 15.f: -15.f ) / 1.f ) /* % 360.f*/ );
+						
+
+						m_MapRenderer.rotatePosicionXZ((( ( m_YMotionUp > m_YMotionDown )? 90.f: -90.f ) / 1.f ) /* % 360.f*/ );
 						
 					}
 					else {
@@ -123,6 +127,13 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 		m_MapRenderer.setActivateView2d( a_ActivateView2d );
 	} // setActivateView2d
 	
+	
+	public void setProcessZoom( int a_ProcessZoom )
+	{
+		
+		//m_ProcessZoom= a_ProcessZoom;
+		m_MapRenderer.setProcessZoom( a_ProcessZoom );
+	}
 	
 
 } // End Class GLSupermarketMapSurfaceView

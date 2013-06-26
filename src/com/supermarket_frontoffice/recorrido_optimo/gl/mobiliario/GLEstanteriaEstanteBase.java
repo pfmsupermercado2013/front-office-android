@@ -1,6 +1,6 @@
-package com.supermarket_frontoffice.recorrido_optimo.supermarket_map;
+package com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario;
 
-import javax.microedition.khronos.opengles.GL10;
+import com.supermarket_frontoffice.modelo_datos.EstanteriaEstante;
 
 
 /** @class GLEstanteriaEstanteBase

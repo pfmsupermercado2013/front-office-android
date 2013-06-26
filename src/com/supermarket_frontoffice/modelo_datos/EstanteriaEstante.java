@@ -1,4 +1,4 @@
-package com.supermarket_frontoffice.recorrido_optimo.supermarket_map;
+package com.supermarket_frontoffice.modelo_datos;
 
 /** @class EstanteriaEstante
  * 
@@ -14,6 +14,16 @@ public class EstanteriaEstante
 	private float	m_Alto;		///< Altura del estante. 
 	private float	m_Ancho;	///< Ancho de Estante. Puede ser superior al acho de la sección.
 	private float	m_Largo;	///< Longitud del Estante. No puede ser superior a la longitud de la seccion.
+
+	
+	/** Contructor por defecto
+	 * 
+	 */
+	public EstanteriaEstante(  )
+	{
+		this( (short) 0, 0.f, 0.f, 0.f );		
+	} // EstanteriaEstante
+	
 	
 	
 	/** Contructor
@@ -106,6 +116,18 @@ public class EstanteriaEstante
 	{
 		this.m_Largo = a_Largo;
 	}
+	
+	
+	
+	/** Devuelve un String con toda la información de la clase
+	 * 
+	 */
+	public String toString( )
+	{
+		
+		return new String( "[[Estante Id=" + this.m_Id + "] Alto= " +  this.m_Alto + "; Largo= " + this.m_Largo + "; m_AnchoBase= " + this.m_Ancho + " ]" );
+	
+	} // toString
 
 
 

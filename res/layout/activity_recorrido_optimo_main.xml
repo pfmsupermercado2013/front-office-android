@@ -2,30 +2,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center"
+    android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+    android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+    android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+    android:paddingTop="@dimen/supermarket_activity_vertical_margin"
     tools:context=".RecorridoOptimoMainActivity" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
         
-        
         <LinearLayout
-   	        android:layout_width="fill_parent"
-   	        android:layout_height="wrap_content"
-   	        android:layout_gravity="top|left|right"
-   	        android:layout_marginBottom="2dp"
-   	        android:layout_marginLeft="0dp"
-   	        android:layout_marginRight="0dp"
-   	        android:layout_marginTop="0dp"
-   	        android:background="@color/blue"
-   	        android:gravity="top|fill|clip_horizontal" >
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="top|left|right"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/blue"
+            android:gravity="top|fill|clip_horizontal" >
 
    	        <TextView
    	            android:layout_width="178dp"
@@ -33,138 +31,128 @@
    	            android:layout_gravity="center_vertical"
    	            android:gravity="center"
    	            android:text="@string/title_activity_recorrido_optimo_main"
-   	            android:textSize="18dp"
+   	            android:textSize="12dp"
    	            android:textStyle="bold" />
 
    	        <ImageView
    	            android:layout_width="32dp"
    	            android:layout_height="32dp"
-   	            android:layout_gravity="right|center_vertical"
+   	            android:layout_gravity="center"
+   	            android:layout_marginLeft="0dp"
+   	            android:src="@android:drawable/ic_menu_info_details" />
+
+   	        <ImageView
+   	            android:layout_width="32dp"
+   	            android:layout_height="32dp"
+   	            android:layout_gravity="center"
    	            android:layout_marginLeft="20dp"
    	            android:src="@android:drawable/ic_menu_search" />
 
    	        <ImageView
    	            android:layout_width="wrap_content"
    	            android:layout_height="wrap_content"
+   	            android:layout_gravity="center"
    	            android:src="@drawable/ic_carrito_compra" />
+
    	    </LinearLayout>
 
 
    	    <!--   SUB-CABECERA DE LA PÁGINA-->
 
-   	    <LinearLayout
-   	        android:layout_width="fill_parent"
-   	        android:layout_height="34dp"
-   	        android:layout_gravity="top|left|right"
-   	        android:layout_marginBottom="0dp"
-   	        android:layout_marginLeft="0dp"
-   	        android:layout_marginRight="0dp"
-   	        android:layout_marginTop="0dp"
-   	        android:background="@color/blue2"
-   	        android:gravity="top|fill|clip_horizontal" >
-
-   	        <TextView
-   	            android:layout_width="178dp"
-   	            android:layout_height="wrap_content"
-   	            android:layout_gravity="center"
-   	            android:gravity="center"
-   	            android:textSize="18dp"
-   	            android:textStyle="bold" />
-
-   	        <ImageView
-   	            android:layout_width="32dp"
-   	            android:layout_height="32dp"
-   	            android:layout_gravity="right|center_vertical"
-   	            android:layout_marginLeft="30dp"
-   	            android:src="@android:drawable/ic_menu_view" />
-
-   	        <ImageView
-   	            android:layout_width="32dp"
-   	            android:layout_height="32dp"
-   	            android:layout_marginLeft="0dp"
-   	            android:src="@android:drawable/ic_menu_info_details" />
-
-   	    </LinearLayout>
-
-   	    <LinearLayout
-   	        android:id="@+id/layoutBtnMap"
-   	        android:layout_width="match_parent"
-   	        android:layout_height="wrap_content"
-   	        android:layout_marginTop="2dp" >
-
-
-   	        <Button
-   	            android:id="@+id/btnMap2d"
-   	            style="?android:attr/buttonStyleSmall"
-   	            android:layout_width="32dp"
-   	            android:layout_height="32dp"
-   	            android:onClick="onClickMap2d"
-   	            android:text="2D" />
-   	        
-   	        <Button
-   	            android:id="@+id/btnMap3d"
-   	            style="?android:attr/buttonStyleSmall"
-   	            android:layout_width="32dp"
-   	            android:layout_height="32dp"
-   	            android:onClick="onClickMap3d"
-   	            android:text="3D" />
-
-
-   	        <ImageButton
-   	            android:id="@+id/btnMapRotation"
-   	            android:layout_width="32dp"
-   	            android:layout_height="32dp"
-   	            android:onClick="onClickRotation"
-   	            android:src="@android:drawable/ic_menu_rotate" />
-   	        
-   	       <ImageButton
-   	           android:id="@+id/btnMapTranslation"
-   	           android:layout_width="32dp"
-   	           android:layout_height="32dp"
-   	           android:onClick="onClickTranslation"
-   	           android:src="@android:drawable/ic_menu_directions" />
-   	           	           	        
-   	    </LinearLayout>
-        
         <FrameLayout
             android:id="@+id/layoutButtonsMaps"
-            android:layout_width="match_parent"
-            android:layout_height="274dp"
-            android:layout_gravity="fill_vertical|fill_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="fill_vertical|fill_horizontal|center"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp" >
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_gravity="top|left|center_vertical|clip_vertical"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="35dp"
+                android:background="@color/grey_transparent"
+                android:gravity="top|left|fill|clip_vertical"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnMapRotation"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:onClick="onClickRotation"
+                    android:src="@android:drawable/ic_menu_rotate" />
+
+                <ImageButton
+                    android:id="@+id/btnMapTranslation"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:onClick="onClickTranslation"
+                    android:src="@android:drawable/ic_menu_directions" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="156dp"
+                android:layout_gravity="top|right|center_vertical|clip_vertical"
+                android:layout_marginTop="35dp"
+                android:background="@color/grey_transparent"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/btnMap2d"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:onClick="onClickMap2d"
+                    android:text="2D" />
+
+                <android.widget.VerticalSeekBar
+                    android:id="@+id/seekBarZoom"
+                    android:layout_width="20dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="center_vertical|center|clip_vertical"
+                    android:max="@integer/SeekBar_MaxValue"
+                    android:progress="@integer/SeekBar_InitValue"
+                    android:scrollbars="none" />
+
+                <Button
+                    android:id="@+id/btnMap3d"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:onClick="onClickMap3d"
+                    android:text="3D" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="top|left|right"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:background="@color/blue_transparent"
+                android:gravity="top|fill|clip_horizontal"
+                android:tag="@color/blue_transparent" >
+	
+	   	        <TextView
+	   	            android:layout_width="match_parent"
+	   	            android:layout_height="wrap_content"
+	   	            android:layout_gravity="center"
+	   	            android:gravity="center"
+	   	            android:textSize="18dp"
+	   	            android:textStyle="bold" />
+
+   	    	</LinearLayout>
 
         </FrameLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:gravity="top|bottom|center_horizontal" >
-
-            <Button
-                android:id="@+id/btnOk"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="OK" />
-
-            <Button
-                android:id="@+id/btnNuevo"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Nuevo Producto" />
-
-            <Button
-                android:id="@+id/btnSiguiente"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="Saltar a siguiente" />
-        </LinearLayout>
 
     </LinearLayout>
 

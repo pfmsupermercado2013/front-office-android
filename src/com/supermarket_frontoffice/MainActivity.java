@@ -3,12 +3,14 @@ import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
 import com.supermarket_frontoffice.pago.PagoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
+import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceMobiliario;
 import com.supermarket_frontoffice.utils.Utils;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,12 +33,18 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
+		
+		Log.d("Main", "Inicializando la aplicación");
 		getMenuInflater().inflate(R.menu.main, menu);
+		
+
 		return true;
 	}
 	
 	class handleButton implements OnClickListener {		
 		public void onClick(View v) {
+			
+				
 			//boolean bRequest = myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
 			//Utils.myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada",MainActivity.this);
 			Intent intent = new Intent(MainActivity.this, RecorridoOptimoMainActivity.class);
@@ -72,6 +80,9 @@ public class MainActivity extends Activity {
 	}
 	
     public void onClickListaCompra(View v) {
+    	
+    	
+	
     	
 	    Intent intent = new Intent( MainActivity.this, ListaCompraActivity.class);
 	    startActivity(intent);	

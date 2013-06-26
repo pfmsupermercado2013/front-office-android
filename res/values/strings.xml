@@ -52,7 +52,11 @@
     <string name="PagoPaybox">Pago por Paybox</string>
     <string name="DescriptionPagoNFC">Por favor, acerque su terminal al receptor</string>
 	<string name="EnterPassword">Introduzca la clave</string>
-    
+    <string name="PayComplete">Pago Completado</string>
+    <string name="PayCorrect">La transferencia se realizó correctamente</string>
+    <string name="Return">Volver</string>
+	
+	
 	
     <color name="blue">#5d9dcf</color>
     <color name="blue2">#90b9d9</color>
@@ -60,6 +64,10 @@
     <color name="green2">#50d065</color>
     <color name="grey">#828e89</color>
     <color name="grey2">#cccfce</color>
+    <color name="transparent">#00000000</color>
+    <color name="blue_transparent">#8090b9d9</color>
+    <color name="grey_transparent">#80828e89</color>
+    
 
 
 

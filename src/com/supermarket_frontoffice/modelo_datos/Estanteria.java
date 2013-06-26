@@ -1,4 +1,4 @@
-package com.supermarket_frontoffice.recorrido_optimo.supermarket_map;
+package com.supermarket_frontoffice.modelo_datos;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -24,18 +24,26 @@ public class Estanteria
 		EstanteriaDoble,
 		FrigorificoAltoSimple,
 		FrigorificoBajoSimple,
-		FrigorificoBajoDoble		
+		FrigorificoBajoDoble,
+		EstanteriaDesconocido
 	};
 	
 
-	private short 			m_Id;
-	private TTipoEstanteria m_TipoEstanteria;
-	private float 			m_PosicionX;
-	private float 			m_PosicionY;
-	private float 			m_RotacionXY;
-	private ArrayList< EstanteriaSeccion > m_ListaSecciones;
+	private short 							m_Id;
+	private TTipoEstanteria 				m_TipoEstanteria;
+	private float 							m_PosicionX;
+	private float 							m_PosicionY;
+	private float 							m_RotacionXY;
+	private ArrayList< EstanteriaSeccion > 	m_ListaSecciones;
 
 	
+	/** Constructor por defecto
+	 *  
+	 */
+	public Estanteria( ) 
+	{
+		this( (short)0, TTipoEstanteria.EstanteriaDesconocido, 0.f, 0.f, 0.f );
+	}; // Estanteria
 	
 	
 	/** Constructor
@@ -123,6 +131,43 @@ public class Estanteria
 	}
 	
 	
+	/** Devuelve un string con el tipo de estantería
+	 * 
+	 * @return
+	 */
+	public String getStrTipoEstanteria(  )
+	{
+		
+		return Estanteria.getStrTipoEstanteria( m_TipoEstanteria );
+	
+	} // getStrTipoEstanteria
+	
+	
+	/** 
+	 * 
+	 * @param a_TipoEstanteria
+	 * @return
+	 */
+	public static String getStrTipoEstanteria( TTipoEstanteria a_TipoEstanteria )
+	{
+		
+		
+		switch ( a_TipoEstanteria ) {
+		
+			case EstanteriaSimple:		return new String( "EstanteriaSimple" );
+			case EstanteriaDoble:		return new String( "EstanteriaDoble" );
+			case FrigorificoAltoSimple:	return new String( "FrigorificoAltoSimple" );
+			case FrigorificoBajoSimple: return new String( "FrigorificoBajoSimple" );
+			case FrigorificoBajoDoble:	return new String( "FrigorificoBajoDoble" );
+			case EstanteriaDesconocido:	
+			default:
+				break;
+		}
+		return new String( "EstanteriaDesconocido" );
+		
+	} // getStrTipoEstanteria
+	
+	
 	/**
 	 * @return the m_PosicionX
 	 */
@@ -203,6 +248,29 @@ public class Estanteria
 		this.m_ListaSecciones.add( a_Estante );
 	}
 
+	
+
+	/** Devuelve un String con toda la información de la clase
+	 * 
+	 */
+	public String toString( )
+	{
+		
+		String strOut= new String( "[[Estantería Id=" + this.m_Id + "] TipoEstanteria= " +  this.getStrTipoEstanteria() + "; " +
+									"Posicion ( " + this.m_PosicionX + ", " + this.m_PosicionY + "); RotacionXY= " + this.m_RotacionXY + "]" );
+	
+		if ( !m_ListaSecciones.isEmpty() ) {
+			
+			for ( EstanteriaSeccion seccion: m_ListaSecciones ) {
+				
+				strOut += "\n\t" + seccion.toString();
+				
+				
+			}
+		}
+		return strOut;
+	
+	} // toString
 	
 		 
 	

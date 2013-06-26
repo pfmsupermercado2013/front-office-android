@@ -1,4 +1,6 @@
-package com.supermarket_frontoffice.recorrido_optimo.supermarket_map;
+package com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario;
+
+import com.supermarket_frontoffice.modelo_datos.EstanteriaEstante;
 
 public class GLEstanteriaEstanteNormal extends GLEstanteriaEstante
 {
@@ -34,18 +36,18 @@ public class GLEstanteriaEstanteNormal extends GLEstanteriaEstante
 				-0.8294f, 				/*30.3087f*/ a_Estante.getAlto() - 0.5333f, -1.7187f,
 				-0.8294f, 				/*25.5990f*/ a_Estante.getAlto() - 5.243f, -1.7187f,
 				a_Estante.getLargo(), 	/*25.5990f*/ a_Estante.getAlto() - 5.243f, -1.7187f,
-				-0.8294f, 				/*28.5753f*/ a_Estante.getAlto() - 2.2667f, /*-20.0604f*/ -a_Estante.getAncho() - 14.5442f,
-				a_Estante.getLargo(), 	/*28.5753f*/ a_Estante.getAlto() - 2.2667f, /*-20.0604f*/ -a_Estante.getAncho() - 14.5442f,
-				-0.8294f, 				/*28.5930f*/ a_Estante.getAlto() - 2.249f, /*-34.4284f */ -a_Estante.getAncho() - 0.1762f,
-				a_Estante.getLargo(),	/*28.5930f*/ a_Estante.getAlto() - 2.249f, /*-34.4284f */ -a_Estante.getAncho() - 0.1762f,
+				-0.8294f, 				/*28.5753f*/ a_Estante.getAlto() - 2.2667f, /*-20.0604f*/ -a_Estante.getAncho() + 14.5442f,
+				a_Estante.getLargo(), 	/*28.5753f*/ a_Estante.getAlto() - 2.2667f, /*-20.0604f*/ -a_Estante.getAncho() + 14.5442f,
+				-0.8294f, 				/*28.5930f*/ a_Estante.getAlto() - 2.249f, /*-34.4284f */ -a_Estante.getAncho() + 0.1762f,
+				a_Estante.getLargo(),	/*28.5930f*/ a_Estante.getAlto() - 2.249f, /*-34.4284f */ -a_Estante.getAncho() + 0.1762f,
 				-0.8294f, 				/*28.5930f*/ a_Estante.getAlto() - 2.249f, /*-34.6046f */ -a_Estante.getAncho(),
 				a_Estante.getLargo(), 	/*28.5930f*/ a_Estante.getAlto() - 2.249f, /*-34.6046f*/ -a_Estante.getAncho(),
-				-0.8294f, 				/*30.8420f*/ a_Estante.getAlto()		 , /*-34.0172f*/ -a_Estante.getAncho() - 0.5874f,
-				a_Estante.getLargo(), 	/*30.8420f*/ a_Estante.getAlto()		 , /*-34.0172f*/ -a_Estante.getAncho() - 0.5874f,
-				-0.8294f, 				/*30.8420f*/ a_Estante.getAlto()		 , /*-33.8214f*/ -a_Estante.getAncho() - 0.7832f,
-				a_Estante.getLargo(), 	/*30.8420f*/ a_Estante.getAlto()		 , /*-33.8214f*/ -a_Estante.getAncho() - 0.7832f,
-				-0.8294f, 				/*30.3133f*/ a_Estante.getAlto() - 0.5287f, /*-34.0524f*/ -a_Estante.getAncho() - 0.5522f,
-				a_Estante.getLargo(), 	/*30.3133f*/ a_Estante.getAlto() - 0.5287f, /*-34.0524f*/ -a_Estante.getAncho() - 0.5522f,
+				-0.8294f, 				/*30.8420f*/ a_Estante.getAlto()		 , /*-34.0172f*/ -a_Estante.getAncho() + 0.5874f,
+				a_Estante.getLargo(), 	/*30.8420f*/ a_Estante.getAlto()		 , /*-34.0172f*/ -a_Estante.getAncho() + 0.5874f,
+				-0.8294f, 				/*30.8420f*/ a_Estante.getAlto()		 , /*-33.8214f*/ -a_Estante.getAncho() + 0.7832f,
+				a_Estante.getLargo(), 	/*30.8420f*/ a_Estante.getAlto()		 , /*-33.8214f*/ -a_Estante.getAncho() + 0.7832f,
+				-0.8294f, 				/*30.3133f*/ a_Estante.getAlto() - 0.5287f, /*-34.0524f*/ -a_Estante.getAncho() + 0.5522f,
+				a_Estante.getLargo(), 	/*30.3133f*/ a_Estante.getAlto() - 0.5287f, /*-34.0524f*/ -a_Estante.getAncho() + 0.5522f,
 				},
 								
 				new float[] {  /* 12 Normales */
