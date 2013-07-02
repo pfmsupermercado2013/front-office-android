@@ -30,7 +30,7 @@ public class GLEstanteriaEstanteBase extends GLEstanteriaEstante
 					-0.1315f, 5.8002f,  -1.5626f, 
 				},
 								
-				new float[] {
+				new float[] { /// Normal
 				
 					0.0000f, 1.0000f, -0.0000f
 				},

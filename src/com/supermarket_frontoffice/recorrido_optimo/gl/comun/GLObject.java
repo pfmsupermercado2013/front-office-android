@@ -1,47 +1,32 @@
 package com.supermarket_frontoffice.recorrido_optimo.gl.comun;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
 
 /** @class GLObject
- *  @brief Clase abstracta que almacena los datos necesarios para dibujar un objeto en la escena
+ * 	Clase que dibuja un objeto cualquiera en OpenGL
+ * 
  * 
  * @author fjvegaf
  *
  */
-public abstract class GLObject 
+public class GLObject extends GLBaseObject
 {
 	
 	
+	private static final String TAG= "GLObject";
+	
 
-	protected float 		m_AspectRatio;
 	
-	protected float 		m_Vertices[];
-	protected float 		m_Normales[];
-	protected short 		m_Caras[];
-	protected float			m_CoordTextura[];
-	protected float 		m_Colores[];
-	
-	protected FloatBuffer 	m_VertexBuffer;
-	protected FloatBuffer 	m_NormalsBuffer;	 
-	protected FloatBuffer 	m_TexCoordsBuffer;	
-	protected FloatBuffer 	m_ColorBuffer;	 
-	protected ShortBuffer 	m_FacesBuffer;  /// caras 
-	
-	
-	
-	/** Constructor por defecto
+	/** Constructor
 	 * 
 	 */
-	public GLObject( ) 
+	public GLObject()
 	{
-		this( null, null, null, null, null );
+		super();
 	} // GLObject
+	
 	
 	/** Constructor
 	 * 
@@ -55,7 +40,7 @@ public abstract class GLObject
 						float a_Normales[],
 						short a_Caras[] ) 
 	{
-		this( a_Vertices, a_Normales, a_Caras, null, null );
+		super( a_Vertices, a_Normales, a_Caras );
 	} // GLObject
 	
 	
@@ -74,104 +59,86 @@ public abstract class GLObject
 						float a_Colores[] ) 
 	{
 		
-		m_AspectRatio= 100.f;
-		
-		if ( a_Vertices != null ) {
-			
-			m_Vertices= a_Vertices;
-			for ( int i= 0; i < m_Vertices.length; ++i ) {
-				
-				m_Vertices[i] /= m_AspectRatio;
-			}
-					
-			// un float es de 4 bytes, por lo que multiplicaremos el numero de vertices por 4 
-			ByteBuffer vbb= ByteBuffer.allocateDirect( m_Vertices.length * 4 );
-			 
-			vbb.order(ByteOrder.nativeOrder());	 
-			m_VertexBuffer = vbb.asFloatBuffer();	 
-			m_VertexBuffer.put( m_Vertices );	 
-			m_VertexBuffer.position(0);
-		}
-		else {
-			
-			m_Vertices= null;
-		}
-		
-	
-		if ( a_Normales != null ) {
-		
-			m_Normales= a_Normales;
-			
-			// un float es de 4 bytes, por lo que multiplicaremos el numero de vertices por 4 
-			ByteBuffer ibb = ByteBuffer.allocateDirect( m_Normales.length * 4 );
-			 
-			ibb.order(ByteOrder.nativeOrder());	 
-			m_NormalsBuffer = ibb.asFloatBuffer();	 
-			m_NormalsBuffer.put( m_Normales );	 
-			m_NormalsBuffer.position(0);
-		}
-		else {
-			
-			m_Normales= null;
-			m_NormalsBuffer= null;
-		}
-		
-		if ( a_Caras != null ) {
-			
-			m_Caras= a_Caras;
-			
-			// un short es de 2 bytes, por lo que multiplicaremos el numero de vertices por 2 
-			ByteBuffer ibb2 = ByteBuffer.allocateDirect( m_Caras.length * 2);
-			 
-			ibb2.order(ByteOrder.nativeOrder());	 
-			m_FacesBuffer = ibb2.asShortBuffer();	 
-			m_FacesBuffer.put( m_Caras );	 
-			m_FacesBuffer.position(0);
-		}
-		else {
-			m_Caras= null;
-			m_FacesBuffer= null;
-		}
-		
-		if ( a_CoordTextura != null ) {
-		
-			m_CoordTextura= a_CoordTextura;
-			
-			ByteBuffer cbb = ByteBuffer.allocateDirect( m_CoordTextura.length * 4);	 
-			cbb.order( ByteOrder.nativeOrder() );	 
-			m_TexCoordsBuffer = cbb.asFloatBuffer();	 
-			m_TexCoordsBuffer.put( m_CoordTextura );		 
-			m_TexCoordsBuffer.position(0);
-		}
-		else {
-			
-			m_CoordTextura= null;
-			m_TexCoordsBuffer= null;
-		}
-		
-		if ( a_Colores != null ) {
-			
-			m_Colores= a_Colores;
-			ByteBuffer colorbb = ByteBuffer.allocateDirect( m_Colores.length * 4);	 
-			colorbb.order( ByteOrder.nativeOrder() );	 
-			m_ColorBuffer = colorbb.asFloatBuffer();	 
-			m_ColorBuffer.put( m_Colores );		 
-			m_ColorBuffer.position(0);
-		}
-		else {
-			
-			m_Colores= null;
-			m_ColorBuffer= null;
-		}
-		
+		super( a_Vertices, a_Normales, a_Caras, a_CoordTextura, a_Colores );
+
 	} // GLObject
+	
 	
 	
 	/** Método abstracto que debe redefinir las clases que lo hereran
 	 * 
 	 * @param a_Gl
 	 */
-	public abstract void draw( GL10 a_Gl );
+	public void draw( GL10 a_Gl )
+	{
+		
+
+		if ( ( m_VertexBuffer == null ) || ( m_FacesBuffer == null ) ) {
+			
+			
+			Log.e( TAG, "No se ha especificado vertices o caras para el objeto OpenGL" );
+			return;
+		}
+		
+		
+		// Contra las agujas del reloj		 
+		a_Gl.glFrontFace(GL10.GL_CCW);
+		 
+//		// Habilitar el sacrificio de caras a ocultar		 
+//		a_Gl.glEnable(GL10.GL_CULL_FACE);
+//		 
+//		// Aca se indica que cara se sacrificara, en este caso, la de atras		 
+//		a_Gl.glCullFace(GL10.GL_BACK);
+		
+
+		 
+		// Especifica la localizacion y el formato de los datos de un array de vertices a utilizar para el renderizado
+		a_Gl.glEnableClientState( GL10.GL_VERTEX_ARRAY );
+		
+		a_Gl.glVertexPointer(3, GL10.GL_FLOAT, 0, m_VertexBuffer );
+		
+		
+		if ( m_NormalsBuffer != null ) {
+				
+			a_Gl.glNormalPointer( GL10.GL_FLOAT, 0, m_NormalsBuffer );
+		}
+		//a_Gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, m_TexCoordsBuffer );
+
+
+		if ( m_ColorBuffer != null ) {
+			
+			// Habilita el buffer para el color del grafico		 
+			a_Gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
+		 
+			// Señala donde se encuentra el buffer del color		 
+			a_Gl.glColorPointer(4, GL10.GL_FLOAT, 0, m_ColorBuffer );
+			
+		}
+		else {
+			
+			a_Gl.glColor4f( super.m_DefaultColor.getRed() / 255.f, super.m_DefaultColor.getGreen() / 255.f, super.m_DefaultColor.getBlue() / 255.f, 1.f );
+		}
+		
+		//Dibujamos las superficies		 
+		a_Gl.glDrawElements( GL10.GL_TRIANGLES, m_Caras.length, GL10.GL_UNSIGNED_SHORT, m_FacesBuffer );
+				
+		
+//		if ( m_ColorBuffer != null ) {
+//			// Desactiva el buffer de los vertices		 
+//			a_Gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+//		}
+		
+		a_Gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+		
+		// Desahilita el buffer del color		 
+		a_Gl.glDisableClientState( GL10.GL_COLOR_ARRAY );  
+		
+		//Desactiva la caracteristica de sacrificios de las caras		 
+		a_Gl.glDisable(GL10.GL_CULL_FACE);
+		 
+
+		
 	
-	
-} // end class GLObject
+	} // draw 
+
+} // GLObject

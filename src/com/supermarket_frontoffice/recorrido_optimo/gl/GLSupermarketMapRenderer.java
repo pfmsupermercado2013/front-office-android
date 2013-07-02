@@ -1,16 +1,15 @@
 package com.supermarket_frontoffice.recorrido_optimo.gl;
 
+
 import java.util.ArrayList;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import com.supermarket_frontoffice.R;
-import com.supermarket_frontoffice.modelo_datos.Estanteria;
-import com.supermarket_frontoffice.recorrido_optimo.gl.edificio.GLSueloEdificio;
+import com.supermarket_frontoffice.modelo_datos.ParedEdificio;
+import com.supermarket_frontoffice.modelo_datos.PuertaEdificio;
 import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLCarritoCompra;
-import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLEstanteria;
-import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLEstanteriaDoble;
-import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLEstanteriaSimple;
 import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceSupermercado;
 
 import android.content.Context;
@@ -28,10 +27,8 @@ public class GLSupermarketMapRenderer implements Renderer
 	
 	private static final String TAG= "GLSupermarketMapRenderer";
 	
-	
-	private XmlResourceSupermercado m_XmlResoursesSupermercado;		///< Clase que gestiona la lectura de los datos de los recursos Xml
-	
-	
+	Context 							m_Context;
+	private XmlResourceSupermercado 	m_XmlResoursesSupermercado;		///< Clase que gestiona la lectura de los datos de los recursos Xml
 	private GLSupermercado				m_GLSupermercado;			///< Objeto que dibuja todo el supermercado en OpenGL.
 	//private ArrayList< GLEstanteria > m_ListaEstanteria;
 	//private GLEstanteria m_Estanteria;
@@ -67,7 +64,7 @@ public class GLSupermarketMapRenderer implements Renderer
 	GLSupermarketMapRenderer( Context a_Context, float a_ProcessZoom ) 
 	{
 		
-		
+		m_Context= a_Context;
 		m_XmlResoursesSupermercado= new XmlResourceSupermercado( a_Context, R.xml.supermercado_edificio, R.xml.supermercado_mobiliario );
 		
 		m_GLSupermercado= null;
@@ -82,9 +79,33 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		
 		m_RotateAngle= 0.0f;
-		m_XPostInicial= -500.0f / 100.f;
-		m_YPostInicial= 0.0f;
-		m_ZPostInicial= 0.f;
+		
+		this.readXmlResources();
+		
+		///
+		/// Situa el carrito de la compra en la puerta principal
+		///
+		ArrayList<PuertaEdificio> listaPuertas= m_XmlResoursesSupermercado.getSupermercado().getEdificio().getListaPuertas();
+		
+		if ( listaPuertas.isEmpty() ) {
+			
+			m_XPostInicial= -720.0f / 100.f;
+			m_YPostInicial= 0.0f;
+			m_ZPostInicial= -350.0f / 100.f;
+		}
+		else {
+			
+			PuertaEdificio puerta= listaPuertas.get( 0 );
+			ParedEdificio paredPuerta= puerta.getPared();
+			m_XPostInicial= -( paredPuerta.getV1().getVertice().getX() + puerta.getXLeft() + ( puerta.getLargo() / 2.f ) )  / 100.f;
+			m_YPostInicial= 0.0f;
+			m_ZPostInicial= -( paredPuerta.getV1().getVertice().getY() + 200.f ) / 100.f;
+
+		}
+		
+//		m_XPostInicial= -720.0f / 100.f;
+//		m_YPostInicial= 0.0f;
+//		m_ZPostInicial= -350.0f / 100.f;
 		
 		m_ActivateRotation= false;
 		
@@ -96,7 +117,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		m_GlCarritoCompra= new GLCarritoCompra( a_Context );
 		
 		
-		this.readXmlResources();
+		//this.readXmlResources();
 		
 	} // GLSupermarketMapRenderer
 	
@@ -120,7 +141,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		m_XmlResoursesSupermercado.read();
 		
-		m_GLSupermercado= new GLSupermercado( m_XmlResoursesSupermercado.getSupermercado() );
+		m_GLSupermercado= new GLSupermercado( m_Context, m_XmlResoursesSupermercado.getSupermercado() );
 
 
 		return true;
@@ -141,7 +162,11 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		
 		// Establece el color de fondo (r,g,b,a)		 
-		a_Gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+		//a_Gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+		
+		//a_Gl.glClearColor(86.f/255.0f, 141.f/255.0f, 71.f/255.0f, 0.0f);
+		
+		a_Gl.glClearColor(186.f/255.0f, 141.f/255.0f, 71.f/255.0f, 0.0f);
 		 
 		// Habilita el sombreado suave		 
 		a_Gl.glShadeModel( GL10.GL_SMOOTH );
@@ -256,7 +281,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		//a_Gl.glTranslatef( 0, 50.f / 100.f, -50.f/ 100.f );	
 		//Log.d( "GLSupermarketMapRendered", "Dibujado el carrito de la compra" );
 		
-		a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial + 1.f );	
+		a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial );	
 		
 		
 		// Traslada 4 unidades en el eje Z		 

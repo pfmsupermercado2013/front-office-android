@@ -4,6 +4,8 @@ package com.supermarket_frontoffice.recorrido_optimo.gl.comun;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -14,8 +16,11 @@ import android.util.Log;
  * @author fjvegaf
  *
  */
-public abstract class GLResourcesObject extends GLObject
+public class GLResourceObject extends GLObject
 {
+	
+	
+	private static final String TAG= "GLResourceObject";
 	
 	
 	/** Constructor
@@ -27,7 +32,7 @@ public abstract class GLResourcesObject extends GLObject
 	 * @param a_IdResourceCoorTextura
 	 * @param a_IdResourceColores
 	 */
-	public GLResourcesObject( Context a_Context,
+	public GLResourceObject( Context a_Context,
 							  int a_IdResourceVertices,
 							  int a_IdResourceNormales,
 							  int a_IdResourceCaras,
@@ -41,9 +46,7 @@ public abstract class GLResourcesObject extends GLObject
 				getListaCoordTextura( a_Context, a_IdResourceCoorTextura ), 
 				getListaColores(a_Context, a_IdResourceColores )  );
 		
-		
-		//Log.d( "GLResourcesObject", "Constructor End" );
-	}
+	} // GLResourceObject
 
 	
 	/** Constructor
@@ -53,7 +56,7 @@ public abstract class GLResourcesObject extends GLObject
 	 * @param a_IdResourceNormales
 	 * @param a_IdResourceCaras
 	 */
-	public GLResourcesObject( Context a_Context,
+	public GLResourceObject( Context a_Context,
 							  int a_IdResourceVertices,
 							  int a_IdResourceNormales,
 							  int a_IdResourceCaras )
@@ -62,8 +65,7 @@ public abstract class GLResourcesObject extends GLObject
 				getListaNormales(a_Context,  a_IdResourceNormales ), 
 				getListaCaras( a_Context, a_IdResourceCaras ) );
 		
-		Log.d( "GLResourcesObject", "Constructor End" );
-	}
+	} // GLResourceObject
 	
 	
 	public static float[] getListaVertices( Context a_Context, int a_IdResource )
@@ -83,7 +85,6 @@ public abstract class GLResourcesObject extends GLObject
 		
 		ArrayList< Float > listfloatVertices= new ArrayList< Float >();
 		for ( String strVertice: listVertices ) {
-			
 			
 			String[] strListVertices= strVertice.split( "," );
 			
@@ -118,9 +119,6 @@ public abstract class GLResourcesObject extends GLObject
 			return null;
 		}
 		
-		//Log.d("GLResourcesObject", "Lectura del vertices del recurso " + a_StrListaNormales );
-		
-		//ArrayList< String >  listNormales= new ArrayList< String >( Arrays.asList( a_Context.getResources().getStringArray(R.array.gl_carrito_compra_normales ) ) );
 		ArrayList< String >  listNormales= new ArrayList< String >( Arrays.asList( a_Context.getResources().getStringArray( a_IdResource ) ) );
 		
 		Log.d( "GLResourcesObject", "Encontrado " + listNormales.size() + " normales." );
@@ -159,32 +157,24 @@ public abstract class GLResourcesObject extends GLObject
 		if ( a_IdResource == 0 ) {
 			
 			return null;
-		}
-		
-		//Log.d("GLResourcesObject", "Lectura del vertices del recurso " + a_StrListaCaras );
+		}		
 		
 		ArrayList< String >  listCaras= new ArrayList< String >( Arrays.asList( a_Context.getResources().getStringArray( a_IdResource ) ) );
-		//ArrayList< String >  listCaras= new ArrayList< String >( Arrays.asList( a_Context.getResources().getStringArray(R.array.gl_carrito_compra_caras ) ) );
     	
 		Log.d( "GLResourcesObject", "Encontrado " + listCaras.size() + " caras." );
 		
 		ArrayList< Short > listShortCaras= new ArrayList< Short >();
 		for ( String strCaras: listCaras ) {
 			
-			//Log.d( "GLResourcesObject", "StrCaras ( " + strCaras + " )" );
 			String[] strListCaras= strCaras.split( "," );		
 
 			listShortCaras.add(  Short.valueOf( strListCaras[0].trim() ));
 			listShortCaras.add(  Short.valueOf( strListCaras[1].trim() ));
 			listShortCaras.add(  Short.valueOf( strListCaras[2].trim() ));
-			
-			
-//			Log.d( "GLResourcesObject", "Float Caras ( " + Short.valueOf( strListCaras[0].trim()) + ", " + 
-//							Short.valueOf( strListCaras[1].trim()) + ", " + Short.valueOf( strListCaras[2].trim()) + " )" );
-//			
+		
 		}
 				
-		short[] listCarasOut= new short[ listShortCaras.size() ]; //(float[]) listfloatVertices.toArray();
+		short[] listCarasOut= new short[ listShortCaras.size() ]; 
 		
 		for ( int i= 0; i < listShortCaras.size(); ++i ) {
 		
@@ -251,11 +241,42 @@ public abstract class GLResourcesObject extends GLObject
 			return null;
 		}
 		
-		float[] listVertices2= new float[10];
 		
-		return listVertices2;
 		
-	} // getListaCoordTextura
+		ArrayList< String >  listColores= new ArrayList< String >( Arrays.asList( a_Context.getResources().getStringArray( a_IdResource ) ) );
+		
+		Log.d( "GLResourcesObject", "Encontrado " + listColores.size() + " colores." );
+		
+		ArrayList< Float > listFloatColores= new ArrayList< Float >();
+		for ( String strColores: listColores ) {
+			
+			String[] strListColores= strColores.split( "," );
+			
+			listFloatColores.add( Float.parseFloat( strListColores[0] ) / 255.f );
+			listFloatColores.add( Float.parseFloat( strListColores[1] ) / 255.f );
+			listFloatColores.add( Float.parseFloat( strListColores[2] ) / 255.f );
+			
+			Log.d( "GLResourcesObject", "StrNormales ( " + strColores + " )" );
+			Log.d( "GLResourcesObject", "Float Normales ( " + Float.parseFloat( strListColores[0]) + ", " + 
+									Float.parseFloat( strListColores[1]) + ", " + Float.parseFloat( strListColores[2]) + " )" );
+			
+		}
+				
+		float[] listColoresOut= new float[ listFloatColores.size() ]; //(float[]) listfloatVertices.toArray();
+		
+		for ( int i= 0; i < listFloatColores.size(); ++i ) {
+		
+			listColoresOut[i]= listFloatColores.get( i );
+		}
+		
+		
+		
+		return listColoresOut;
+		
+	} // getListaColores
+	
+
+	
 	
 
 } // end class GLFileObject

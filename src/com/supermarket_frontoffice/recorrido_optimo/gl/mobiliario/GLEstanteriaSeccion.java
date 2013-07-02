@@ -10,7 +10,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.supermarket_frontoffice.modelo_datos.EstanteriaEstante;
 import com.supermarket_frontoffice.modelo_datos.EstanteriaSeccion;
-import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLObject;
+import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLBaseObject;
 
 
 /** @class GLEstanteriaSeccion
@@ -22,7 +22,7 @@ import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLObject;
  * @author fjvegaf
  *
  */
-public abstract class GLEstanteriaSeccion extends GLObject
+public abstract class GLEstanteriaSeccion extends GLBaseObject
 { 
 	
 

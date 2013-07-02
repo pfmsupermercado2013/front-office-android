@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<resources>
+  <string-array name="gl_mueble_caja_soporte_izquierdo_trasero_vertices">
+    <item>29.8543, 48.871, -13.9461</item>
+    <item>29.6014, 48.871, -44.2825</item>
+    <item>66.9374, 48.871, -44.8128</item>
+    <item>67.0516, 48.871, -14.4386</item>
+    <item>67.2968, 48.871, -44.446</item>
+    <item>30.154, -1.0451, -13.6402</item>
+    <item>29.8543, -1.0451, -13.9461</item>
+    <item>29.5915, -1.0451, -14.2949</item>
+    <item>29.6014, -1.0451, -44.2825</item>
+    <item>29.8683, -1.0451, -44.6368</item>
+    <item>66.9374, -1.0451, -44.8128</item>
+    <item>67.2968, -1.0451, -44.446</item>
+    <item>67.612, -1.0451, -44.0276</item>
+    <item>67.0516, -1.0451, -14.4386</item>
+  </string-array>
+  <string-array name="gl_mueble_caja_soporte_izquierdo_trasero_normales">
+    <item>0, -1, -0</item>
+    <item>0.6594, 0, -0.7518</item>
+    <item>0.7519, 0, -0.6593</item>
+    <item>1, -0.0055, 0.0004</item>
+    <item>1, 0, -0.0097</item>
+    <item>0.7518, 0, 0.6594</item>
+    <item>0.0041, 0, 1</item>
+    <item>0.0122, -0.0063, 0.9999</item>
+    <item>-0.6594, 0, 0.7518</item>
+    <item>-0.7518, 0, 0.6594</item>
+    <item>-1, 0, -0.0095</item>
+    <item>-0.9997, -0.0068, -0.022</item>
+    <item>-0.0186, -0.0056, -0.9998</item>
+    <item>-0.0114, 0, -0.9999</item>
+  </string-array>
+  <string-array name="gl_mueble_caja_soporte_izquierdo_trasero_caras">
+    <item>0, 2, 1</item>
+    <item>3, 2, 0</item>
+    <item>4, 2, 3</item>
+    <item>0, 6, 5</item>
+    <item>7, 6, 0</item>
+    <item>0, 8, 7</item>
+    <item>8, 0, 1</item>
+    <item>9, 8, 1</item>
+    <item>9, 2, 10</item>
+    <item>2, 9, 1</item>
+    <item>4, 10, 2</item>
+    <item>10, 4, 11</item>
+    <item>12, 11, 4</item>
+    <item>13, 4, 3</item>
+    <item>4, 13, 12</item>
+    <item>13, 0, 5</item>
+    <item>0, 13, 3</item>
+  </string-array>
+</resources>

@@ -2,10 +2,11 @@ package com.supermarket_frontoffice.recorrido_optimo.gl;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.supermarket_frontoffice.modelo_datos.Supermercado;
-import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLObject;
+import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLBaseObject;
 import com.supermarket_frontoffice.recorrido_optimo.gl.edificio.GLEdificio;
 import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLMobiliario;
 
@@ -17,7 +18,7 @@ import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLMobiliario;
  * @author fjvegaf
  *
  */
-public class GLSupermercado extends GLObject
+public class GLSupermercado extends GLBaseObject
 {
 
 	private static final String TAG= "GLSupermercado";
@@ -30,22 +31,22 @@ public class GLSupermercado extends GLObject
 	/**
 	 *  Constructor por defecto
 	 */
-	public GLSupermercado( )
+	public GLSupermercado( Context a_Context )
 	{
-		this( null );
+		this( a_Context, null );
 	} // GLSupermercado
 	
 	/**
 	 *  Constructor por defecto
 	 */
-	public GLSupermercado( Supermercado  a_Supermercado )
+	public GLSupermercado( Context a_Context, Supermercado  a_Supermercado )
 	{
 		
 		super();
 		m_Supermercado= a_Supermercado;
 		
 		m_GLEdificio= new GLEdificio( a_Supermercado.getEdificio() );
-		m_GLMobiliario= new GLMobiliario( a_Supermercado.getMobiliario() );	
+		m_GLMobiliario= new GLMobiliario( a_Context, a_Supermercado.getMobiliario() );	
 		
 	} // GLSupermercado
 	

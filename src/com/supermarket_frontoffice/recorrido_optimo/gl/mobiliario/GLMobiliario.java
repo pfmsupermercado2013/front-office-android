@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.supermarket_frontoffice.modelo_datos.Estanteria;
 import com.supermarket_frontoffice.modelo_datos.Mobiliario;
-import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLObject;
+import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLBaseObject;
 
 
 /** @class GLMobiliario
@@ -16,13 +17,15 @@ import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLObject;
  * @author fjvegaf
  *
  */
-public class GLMobiliario extends GLObject
+public class GLMobiliario extends GLBaseObject
 {
 	
 	private static final String TAG= "GLMobiliario";
 
 	Mobiliario 					m_Mobiliario;			///< Datos de todo el mobiliario del supermercado
 	ArrayList< GLEstanteria > 	m_GLEstanterias;		///< Objetos OpenGL de las estanterias
+	
+	GLMuebleCajaSupermercado    m_GLMuebleCajaSupermercado;  ///< Mueble de la caja del supermercado
 	
 //	/** Constructor copia
 //	 * 
@@ -38,12 +41,14 @@ public class GLMobiliario extends GLObject
 	 * 
 	 * @param a_GLMobiliario
 	 */
-	public GLMobiliario( Mobiliario a_Mobiliario )
+	public GLMobiliario( Context a_Context, Mobiliario a_Mobiliario )
 	{
 		super();
 		
 		m_Mobiliario= a_Mobiliario;
 		m_GLEstanterias= new ArrayList< GLEstanteria >();
+		
+		m_GLMuebleCajaSupermercado= new GLMuebleCajaSupermercado( a_Context );
 		
 		this.createGLObject();
 		
@@ -103,6 +108,13 @@ public class GLMobiliario extends GLObject
 			//Log.d( "GLSupermarketMapRendered", "Estanteria " + contEstanteria++ );
 			estanteria.draw( a_Gl );
 		}
+		
+		a_Gl.glTranslatef( 800.f / 100.f, 0, -500.f / 100.f );
+		//a_Gl.glRotatef( 0.f, 0, 1, 0 ); //
+		
+		/// Dibuja la caja del supermercado
+		m_GLMuebleCajaSupermercado.draw( a_Gl );
+		
 		
 		//m_Seccion.draw( a_Gl );
 	} // draw

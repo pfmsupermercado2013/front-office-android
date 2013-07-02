@@ -1,5 +1,9 @@
 package com.supermarket_frontoffice.recorrido_optimo.gl.comun;
 
+import com.supermarket_frontoffice.modelo_datos.EsquinaEdificio;
+import com.supermarket_frontoffice.modelo_datos.ParedEdificio;
+import com.supermarket_frontoffice.modelo_datos.PuertaEdificio;
+
 
 /** @class GLVertice
  *  
@@ -103,5 +107,17 @@ public class GLVertice
 	{
 		this.m_Z = a_Z;
 	}
+	
+	
+	/** Devuelve un String con toda la información de la clase
+	 * 
+	 */
+	public String toString( )
+	{
+
+		
+		return new String( "(" + m_X + ", " + m_Y + ", " + m_Z + ")" );
+	
+	} // toString
 	
 } // GLVertice

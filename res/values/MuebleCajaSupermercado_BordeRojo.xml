@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<resources>
+  <string-array name="gl_mueble_caja_borde_rojo_vertices">
+    <item>177.22, 63.3145, 42.7056</item>
+    <item>127.515, 63.3145, 41.6877</item>
+    <item>127.515, 58.264, 41.6877</item>
+    <item>177.22, 58.264, 42.7056</item>
+    <item>177.22, 52.3519, 42.7056</item>
+    <item>127.515, 52.3519, 41.6877</item>
+    <item>127.515, 47.5988, 41.6877</item>
+    <item>177.22, 47.5988, 42.7056</item>
+    <item>122.414, 58.264, -3.5229</item>
+    <item>122.414, 47.5988, -3.5229</item>
+    <item>122.414, 63.3145, -3.5229</item>
+    <item>28.9618, 63.3145, -5.6609</item>
+    <item>122.414, 52.3519, -3.5229</item>
+    <item>117.979, 52.3519, -5.6609</item>
+    <item>117.979, 47.5988, -5.6609</item>
+    <item>28.9618, 58.264, -5.6609</item>
+    <item>6.7515, 63.3145, -5.6609</item>
+    <item>6.7515, 58.264, -5.6609</item>
+    <item>6.7515, 52.3519, -5.6609</item>
+    <item>6.7515, 47.5988, -5.6609</item>
+    <item>0.6262, 63.3145, -26.9821</item>
+    <item>0.6262, 58.264, -26.9821</item>
+    <item>0.6262, 52.3519, -26.9821</item>
+    <item>0.6262, 47.5988, -26.9821</item>
+    <item>6.7515, 58.264, -57.3631</item>
+    <item>6.7515, 47.5988, -57.3631</item>
+    <item>6.7515, 63.3145, -57.3631</item>
+    <item>6.7515, 52.3519, -57.3631</item>
+    <item>167.239, 63.3145, -57.363</item>
+    <item>167.239, 47.5988, -57.363</item>
+    <item>177.854, 63.3145, -57.363</item>
+    <item>177.854, 47.5988, -57.363</item>
+  </string-array>
+  <string-array name="gl_mueble_caja_borde_rojo_normales">
+    <item>-0.0176, 0, 0.9998</item>
+    <item>-0.9915, 0, 0.1302</item>
+    <item>-0.0197, 0, 0.9998</item>
+    <item>-0.3827, 0, 0.9239</item>
+    <item>-0, 0, 1</item>
+    <item>-0.9484, 0, 0.3171</item>
+    <item>-0.9736, 0, -0.2285</item>
+    <item>0, 0, -1</item>
+  </string-array>
+  <string-array name="gl_mueble_caja_borde_rojo_caras">
+    <item>0, 2, 1</item>
+    <item>2, 0, 3</item>
+    <item>4, 6, 5</item>
+    <item>6, 4, 7</item>
+    <item>2, 8, 1</item>
+    <item>6, 9, 5</item>
+    <item>10, 8, 11</item>
+    <item>8, 10, 1</item>
+    <item>12, 5, 9</item>
+    <item>12, 14, 13</item>
+    <item>14, 12, 9</item>
+    <item>15, 11, 8</item>
+    <item>15, 16, 11</item>
+    <item>17, 16, 15</item>
+    <item>13, 19, 18</item>
+    <item>19, 13, 14</item>
+    <item>17, 20, 16</item>
+    <item>20, 17, 21</item>
+    <item>19, 22, 18</item>
+    <item>22, 19, 23</item>
+    <item>21, 24, 20</item>
+    <item>23, 25, 22</item>
+    <item>26, 20, 24</item>
+    <item>27, 22, 25</item>
+    <item>24, 28, 26</item>
+    <item>27, 28, 24</item>
+    <item>27, 29, 28</item>
+    <item>27, 25, 29</item>
+    <item>28, 31, 30</item>
+    <item>31, 28, 29</item>
+  </string-array>
+</resources>

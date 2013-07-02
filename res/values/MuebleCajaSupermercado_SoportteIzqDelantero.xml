@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<resources>
+  <string-array name="gl_mueble_caja_soporte_izquierdo_frontal_vertices">
+    <item>28.9618, 63.3145, -5.6609</item>
+    <item>30.6448, 63.3145, 40.6816</item>
+    <item>66.4827, 63.3145, 41.482</item>
+    <item>66.9564, 63.3145, 40.9985</item>
+    <item>68.3672, 63.3145, -5.6609</item>
+    <item>68.3672, 58.264, -5.6609</item>
+    <item>28.9618, 58.264, -5.6609</item>
+    <item>66.9564, -1.0451, 40.9985</item>
+    <item>31.2099, 63.3145, 41.2585</item>
+    <item>68.3672, -1.0451, -5.6609</item>
+    <item>68.3672, 52.3519, -5.6609</item>
+    <item>30.6448, -1.0451, 40.6816</item>
+    <item>28.9618, 52.3519, -5.6609</item>
+    <item>28.9618, -1.0451, -5.6609</item>
+    <item>31.2099, -1.0451, 41.2585</item>
+  </string-array>
+  <string-array name="gl_mueble_caja_soporte_izquierdo_frontal_normales">
+    <item>0, 1, -0</item>
+    <item>0, 0, -1</item>
+    <item>0.0062, 0, 1</item>
+    <item>0.9994, 0, 0.0352</item>
+    <item>-0.9991, 0, 0.0422</item>
+    <item>-0.6594, 0, 0.7518</item>
+  </string-array>
+  <string-array name="gl_mueble_caja_soporte_izquierdo_frontal_caras">
+    <item>0, 2, 1</item>
+    <item>0, 3, 2</item>
+    <item>4, 3, 0</item>
+    <item>0, 5, 4</item>
+    <item>5, 0, 6</item>
+    <item>7, 8, 3</item>
+    <item>3, 9, 7</item>
+    <item>3, 10, 9</item>
+    <item>4, 10, 3</item>
+    <item>11, 0, 1</item>
+    <item>11, 12, 0</item>
+    <item>11, 13, 12</item>
+    <item>8, 11, 1</item>
+    <item>11, 8, 14</item>
+    <item>8, 7, 14</item>
+    <item>12, 9, 10</item>
+    <item>9, 12, 13</item>
+  </string-array>
+  
+  
+   <string-array name="gl_mueble_caja_soporte_izquierdo_frontal_colores">
+    <item>178, 178, 178</item>
+    <item>178, 178, 178</item>
+    <item>179, 179, 179</item>
+    <item>179, 179, 179</item>
+    <item>180, 180, 180</item>
+    <item>181, 181, 181</item>
+    <item>184, 184, 184</item>
+    <item>185, 185, 185</item>
+    <item>185, 185, 185</item>
+    <item>200, 200, 200</item>
+    <item>210, 210, 210</item>
+    <item>210, 210, 210</item>
+    <item>220, 220, 220</item>
+     <item>220, 220, 220</item>
+    <item>220, 220, 220</item>
+    <item>229, 229, 229</item>
+    <item>229, 229, 229</item>
+  </string-array>
+</resources>

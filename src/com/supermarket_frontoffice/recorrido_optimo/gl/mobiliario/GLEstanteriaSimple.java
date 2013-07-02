@@ -34,8 +34,8 @@ public class GLEstanteriaSimple extends GLEstanteria
 	public void draw( GL10 a_Gl )
 	{
 		
-		a_Gl.glTranslatef( m_CoordenadaX, 0, m_CoordenadaY );
-		a_Gl.glRotatef( m_RotacionXY, 0, 1, 0 ); //
+		a_Gl.glTranslatef( super.m_CoordenadaX, 0, super.m_CoordenadaY );
+		a_Gl.glRotatef( super.m_RotacionXY, 0, 1, 0 ); //
 		
 		float largoSeccion= 0.f;
 		for ( GLEstanteriaSeccion glSeccion: m_ListaGLEstanteriaSeccion ) {
