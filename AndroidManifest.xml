@@ -3,14 +3,17 @@
     package="com.supermarket_frontoffice"
     android:versionCode="1"
     android:versionName="1.0" >
-	
+
     <uses-permission android:name="android.permission.NFC" />
-	<uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="10" />
-    
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -86,6 +89,13 @@
         <activity
             android:name="com.supermarket_frontoffice.pago.PagoNFCActivity"
             android:label="@string/title_activity_pago_nfc" >
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <data android:mimeType="application/vnd.facebook.places" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.supermarket_frontoffice.pago.PagoPayboxActivity"
@@ -94,6 +104,10 @@
         <activity
             android:name="com.supermarket_frontoffice.pago.FinalizarPagoActivity"
             android:label="@string/title_activity_finalizar_pago" >
+        </activity>
+        <activity
+            android:name="com.supermarket_frontoffice.pago.PagoQRActivity"
+            android:label="@string/title_activity_activity_pago_qr" >
         </activity>
     </application>
 
