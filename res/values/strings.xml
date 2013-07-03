@@ -34,8 +34,8 @@
     <string name="TitleLeerCodigoBarras">Lectura del Código de Barras</string>
     <string name="TitlePurchasePay">Pago de compra realizada</string>
     <string name="NFCDisable">NFC no está disponible en su terminal</string>
-	<string name="NotMoney">La cantidad total a pagar de la compra es cero</string>
-	<string name="title_activity_purchase_pay">Pagar compra</string>
+    <string name="NotMoney">La cantidad total a pagar de la compra es cero</string>
+    <string name="title_activity_purchase_pay">Pagar compra</string>
     <string name="title_activity_pago__main">Pago_MainActivity</string>
     <string name="sImportTotal">El importe total de la compra es:</string>
     <string name="sConfirmPurchase">Confirmar Compra</string>
@@ -51,13 +51,11 @@
     <string name="PagoNFC">Pago por NFC</string>
     <string name="PagoPaybox">Pago por Paybox</string>
     <string name="DescriptionPagoNFC">Por favor, acerque su terminal al receptor</string>
-	<string name="EnterPassword">Introduzca la clave</string>
+    <string name="EnterPassword">Introduzca la clave</string>
     <string name="PayComplete">Pago Completado</string>
     <string name="PayCorrect">La transferencia se realizó correctamente</string>
     <string name="Return">Volver</string>
-	
-	
-	
+
     <color name="blue">#5d9dcf</color>
     <color name="blue2">#90b9d9</color>
     <color name="green">#33850f</color>
@@ -69,6 +67,6 @@
     <color name="grey_transparent">#80828e89</color>
     
 
-
+    <string name="title_activity_activity_pago_qr">activity_pago_qr</string>
 
 </resources>

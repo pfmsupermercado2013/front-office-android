@@ -32,7 +32,7 @@ public class PagoPayboxActivity extends Activity {
 		public void onClick(View v) {	
 			
 			if(confirmPaybox()){
-				Intent intent = new Intent(PagoPayboxActivity.this, FinalizarPagoActivity.class);
+				Intent intent = new Intent(PagoPayboxActivity.this, PagoQRActivity.class);
 				startActivity(intent);
 			}
 			
@@ -44,7 +44,6 @@ public class PagoPayboxActivity extends Activity {
 		if(sendPaybox()){		
 			
 			return true;
-			
 		}
 		else{
 			
