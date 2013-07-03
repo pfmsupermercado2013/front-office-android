@@ -119,7 +119,7 @@
                     android:max="@integer/SeekBar_MaxValue"
                     android:progress="@integer/SeekBar_InitValue"
                     android:scrollbars="none" />
-
+     
                 <Button
                     android:id="@+id/btnMap3d"
                     style="?android:attr/buttonStyleSmall"

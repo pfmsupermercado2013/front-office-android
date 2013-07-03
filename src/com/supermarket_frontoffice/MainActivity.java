@@ -1,6 +1,9 @@
 package com.supermarket_frontoffice;
 import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
+import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
+import com.supermarket_frontoffice.modelo_datos.LocalizacionProducto;
+import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.pago.PagoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceMobiliario;
@@ -15,9 +18,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity {
-
-	//private Activity oThisActivity = this;
+public class MainActivity extends Activity 
+{
 	
 	
 	@Override
@@ -31,7 +33,8 @@ public class MainActivity extends Activity {
 	
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		
 		Log.d("Main", "Inicializando la aplicación");
@@ -41,14 +44,35 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	class handleButton implements OnClickListener {		
+	class handleButton implements OnClickListener 
+	{		
+		
 		public void onClick(View v) {
 			
-				
-			//boolean bRequest = myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
-			//Utils.myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada",MainActivity.this);
-			Intent intent = new Intent(MainActivity.this, RecorridoOptimoMainActivity.class);
-		    startActivity(intent);	
+			Intent intent = new Intent( MainActivity.this, RecorridoOptimoMainActivity.class );
+		
+			///
+			/// Lectura de la Base de Datos del Carrito de la Compra
+			/// TODO: Pendiente de hacer el método que devuelve la clase Carrito de la Compra
+			///
+			
+			///
+			/// Ejemplo de Carrito de la Compra
+			///
+			CarritoCompra carrito= new CarritoCompra( (short)187 );
+			Producto producto1= new Producto( (short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234", 0.44f, new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
+			Producto producto2= new Producto( (short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812", .40f, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ) );
+			Producto producto3= new Producto( (short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ) );
+			carrito.addProducto( producto1 );
+			carrito.addProducto( producto2 );
+			carrito.addProducto( producto3 );
+			
+			///
+			/// Se pasa el objeto CarritoCompra al activity que se abre.
+			///
+			intent.putExtra("carrito_compra", carrito );
+			
+		    startActivity( intent );	
 		}
     }
 	
@@ -67,7 +91,8 @@ public class MainActivity extends Activity {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 		alertDialog.setTitle("Titulo");
 		alertDialog.setMessage(sCadena);
-		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+		alertDialog.setButton("OK", new DialogInterface.OnClickListener() 
+		{
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel(); //Cierra la ventana
 			}
@@ -79,11 +104,15 @@ public class MainActivity extends Activity {
 		
 	}
 	
-    public void onClickListaCompra(View v) {
-    	
-    	
 	
+	/**
+	 * 
+	 * @param v
+	 */
+    public void onClickListaCompra( View a_View ) 
+    {
     	
+    
 	    Intent intent = new Intent( MainActivity.this, ListaCompraActivity.class);
 	    startActivity(intent);	
     }

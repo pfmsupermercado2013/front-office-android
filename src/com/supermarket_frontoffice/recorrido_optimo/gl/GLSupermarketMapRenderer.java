@@ -7,7 +7,9 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.ParedEdificio;
+import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.modelo_datos.PuertaEdificio;
 import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLCarritoCompra;
 import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceSupermercado;
@@ -27,31 +29,25 @@ public class GLSupermarketMapRenderer implements Renderer
 	
 	private static final String TAG= "GLSupermarketMapRenderer";
 	
-	Context 							m_Context;
-	private XmlResourceSupermercado 	m_XmlResoursesSupermercado;		///< Clase que gestiona la lectura de los datos de los recursos Xml
-	private GLSupermercado				m_GLSupermercado;			///< Objeto que dibuja todo el supermercado en OpenGL.
-	//private ArrayList< GLEstanteria > m_ListaEstanteria;
-	//private GLEstanteria m_Estanteria;
+	private Context 				m_Context;
+	private XmlResourceSupermercado m_XmlResoursesSupermercado;		///< Clase que gestiona la lectura de los datos de los recursos Xml
+	private GLSupermercado			m_GLSupermercado;				///< Objeto que dibuja todo el supermercado en OpenGL.
 	
-//	private float 		m_AnchoSupermercado;
-//	private float 		m_LargoSupermercado;
+	private CarritoCompra 			m_CarritoCompra;				///< Lista de productos del carrito de la compra que se debe localizar.
+	private Producto				m_Producto;						///< Datos del producto concreto que se desea localizar.
+		
+	private float 					m_AspectRatio;					///< Ratio de escalado para la represeentación en OpenGL.
 	
-	private float 		m_AspectRatio;								///< Ratio de escalado para la represeentación en OpenGL.
+	private float 					m_RotateAngle;
+	private float 					m_XPostInicial;
+	private float 					m_YPostInicial;
+	private float 					m_ZPostInicial;
 	
-//	private float 		m_NearPosition;
-//	private float 		m_FarPosition;
+	private boolean 				m_ActivateRotation;
+	private boolean 				m_ActivateView2d;
+	private float					m_ProcessZoom;
 	
-	private float 		m_RotateAngle;
-	private float 		m_XPostInicial;
-	private float 		m_YPostInicial;
-	private float 		m_ZPostInicial;
-	
-	private boolean 	m_ActivateRotation;
-	private boolean 	m_ActivateView2d;
-	private float		m_ProcessZoom;
-	
-	//GLSueloEdificio		m_BuildingGround;
-	GLCarritoCompra 	m_GlCarritoCompra;
+	GLCarritoCompra 				m_GlCarritoCompra;
 	
 	
 	
@@ -68,16 +64,37 @@ public class GLSupermarketMapRenderer implements Renderer
 		m_XmlResoursesSupermercado= new XmlResourceSupermercado( a_Context, R.xml.supermercado_edificio, R.xml.supermercado_mobiliario );
 		
 		m_GLSupermercado= null;
-		//m_ListaEstanteria= new ArrayList< GLEstanteria >();	
-					
-//		m_AnchoSupermercado= 1000.f;
-//		m_LargoSupermercado= 5000.f;
-	
+		
+		m_CarritoCompra= null;
+		m_Producto= null;	
+		
 		m_AspectRatio= 0.f;
-//		m_NearPosition= 0.1f;
-//		m_FarPosition= 100.0f;
+		m_RotateAngle= 0.0f;
+		
+		m_ActivateRotation= false;
+		
+		m_ActivateView2d= false;
+		m_ProcessZoom= a_ProcessZoom;
+		
+		m_GlCarritoCompra= new GLCarritoCompra( a_Context );
 		
 		
+		//this.readXmlResources();
+		
+	} // GLSupermarketMapRenderer
+	
+	
+	/** Inicializa el mapa
+	 * 
+	 * @return
+	 */
+	public void initialize()
+	{
+
+		
+		m_GLSupermercado= null;
+	
+		m_AspectRatio= 0.f;		
 		m_RotateAngle= 0.0f;
 		
 		this.readXmlResources();
@@ -103,23 +120,8 @@ public class GLSupermarketMapRenderer implements Renderer
 
 		}
 		
-//		m_XPostInicial= -720.0f / 100.f;
-//		m_YPostInicial= 0.0f;
-//		m_ZPostInicial= -350.0f / 100.f;
 		
-		m_ActivateRotation= false;
-		
-		m_ActivateView2d= false;
-		m_ProcessZoom= a_ProcessZoom;
-		
-				
-		//m_BuildingGround= new GLSueloEdificio( 28000.f, 28000.f, 30.f );
-		m_GlCarritoCompra= new GLCarritoCompra( a_Context );
-		
-		
-		//this.readXmlResources();
-		
-	} // GLSupermarketMapRenderer
+	} // initialize
 	
 	
 	/** Lee de los Xml Resources los datos del Supermercado.
@@ -237,89 +239,44 @@ public class GLSupermarketMapRenderer implements Renderer
 	
 			a_Gl.glRotatef( 180.f, 1, 0, 0 ); //
 			a_Gl.glRotatef( -90.f, 0, 1, 0 ); //
-//			a_Gl.glTranslatef( 0, 0, 0 );
-			
+//			a_Gl.glTranslatef( 0, 0, 0 );		
 			//a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial );
 		}
 		else  {
 			
 	        // Set GL_MODELVIEW transformation mode
-				a_Gl.glMatrixMode( GL10.GL_MODELVIEW );
+			a_Gl.glMatrixMode( GL10.GL_MODELVIEW );
+			
+			// Reemplaza la matriz actual con la matriz identidad		 
+			a_Gl.glLoadIdentity();
+			
+			GLU.gluLookAt( a_Gl, 0.f, (float )m_ProcessZoom * 1.f /10.f, 0.8f,
+					 		0.f, 0.9f, 0.f / 100.f,
+							0.f, 1.0f, 0.0f );
 				
-				// Reemplaza la matriz actual con la matriz identidad		 
-				a_Gl.glLoadIdentity();
-				//Log.d( TAG, " Actual valor del Zoom= " + m_ProcessZoom );
-				GLU.gluLookAt( a_Gl, 0.f, (float )m_ProcessZoom * 1.f /10.f, 0.8f,
-						 		0.f, 0.9f, 0.f / 100.f,
-								0.f, 1.0f, 0.0f );
-				
-//				GLU.gluLookAt( a_Gl, 0.f, 1.0f, 0.5f,
-//				 		0.f, 0.9f, 0.f / 100.f,
-//						0.f, 1.0f, 0.0f );
-				
-				
+	
 		}
 		
 		
-        // When using GL_MODELVIEW, you must set the camera view
-        //GLU.gluLookAt( a_Gl, 0, 0, -5, 0f, 0f, 0f, 0f, 1.0f, 0.0f );
-//		GLU.gluLookAt( a_Gl, 0.f /*m_XPostInicial*/, 2.f /*m_YPostInicial*/, -7.f /*m_ZPostInicial*/,
-//				 		0.f, 0.f, 0.f,
-//						0.f, 1.0f, 0.0f );
-//		
-//		GLU.gluLookAt( a_Gl, m_XPostInicial, m_YPostInicial, m_ZPostInicial,
-//		 		0.f, 0.f, 0.f,
-//				0.f, 1.0f, 0.0f );
-		
-			//Log.d( "GLSupermarketMapRendered", "Dibujando el suelo" );
 				
 		a_Gl.glRotatef( m_RotateAngle, 0, 1, 0 ); 
 		
-		//Log.d( "GLSupermarketMapRendered", "Dibujando el carrito de la compra ... " );
 		
 		m_GlCarritoCompra.draw( a_Gl );
-		//a_Gl.glTranslatef( 0, 50.f / 100.f, -50.f/ 100.f );	
-		//Log.d( "GLSupermarketMapRendered", "Dibujado el carrito de la compra" );
+
 		
 		a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial );	
 		
 		
 		// Traslada 4 unidades en el eje Z		 
 		a_Gl.glRotatef( 2.f, 1, 0, 0 ); //
-		//a_Gl.glRotatef( 180.f, 0, 1, 0 ); //
-		
-		//a_Gl.glRotatef( 180.f, 0, 1, 0 ); //
-		//a_Gl.glRotatef( 15.f, 0, 1, 0 ); //
-		//a_Gl.glRotatef( 30.f, 0, 1, 0 ); //
-		
+		//a_Gl.glRotatef( 180.f, 0, 1, 0 ); 
 		//a_Gl.glTranslatef( -m_XPostInicial, -m_YPostInicial, -m_ZPostInicial );
-		
-		
-
-		//m_BuildingGround.draw( a_Gl );
 		
 		
 		m_GLSupermercado.draw( a_Gl );
 		
-//		// Dibuja nuestra piramide		 
-//		for ( GLEstanteria estanteria : m_ListaEstanteria ) {
-//			
-//			//Log.d( "GLSupermarketMapRendered", "Estanteria " + contEstanteria++ );
-//			estanteria.draw( a_Gl );
-//		}
-		
-//		for (Tweet tweet : tweets) {                
-//		    for(long forId : idFromArray){
-//		        long tweetId = tweet.getId();
-//		        if(forId != tweetId){
-//		            String twitterString = tweet.getText();
-//		            db.insertTwitter(twitterString, tweetId);
-//		        }
-//		    }
-//		}
-//		m_Estanteria.draw( a_Gl );
-		
-		//a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial );
+
 	}
 
 	/*
@@ -446,9 +403,27 @@ public class GLSupermarketMapRenderer implements Renderer
 		m_ProcessZoom= a_ProcessZoom;
 		//m_ProcessZoom= (float) a_ProcessZoom * 7.f / 10.f;
 		
-		// Log.d( TAG, " onClickSeekBarZoom=> Zoom Value= " + a_ProcessZoom + " ["+ m_ProcessZoom + "]");
-		
 	} // setProcessZoom
+	
+	
+	/**
+	 * 
+	 * @param a_CarritoCompra
+	 */
+	public void setCarritoCompra( CarritoCompra a_CarritoCompra ) 
+	{
+		m_CarritoCompra= a_CarritoCompra;
+	} // setCarritoCompra
+	
+	
+	/**
+	 * 
+	 * @param a_Producto
+	 */
+	public void setProducto( Producto a_Producto ) 
+	{
+		m_Producto= a_Producto;
+	} // setProducto
 	
 	
 	

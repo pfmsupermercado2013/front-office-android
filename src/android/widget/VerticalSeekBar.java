@@ -21,6 +21,20 @@ public class VerticalSeekBar extends SeekBar
         super(context, attrs);
     }
 
+    
+	/**
+	 * 
+	 */
+	public VerticalSeekBar( VerticalSeekBar a_VerticalSeekBar )
+	{
+		
+		super( a_VerticalSeekBar.getContext() );
+		
+		//this.setOnSeekBarChangeListener( this );
+		
+	} // SeekBarZoom
+    
+    
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(h, w, oldh, oldw);
     }

@@ -1,13 +1,16 @@
 
 package com.supermarket_frontoffice.modelo_datos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 
 /** @class Producto
  * 
  * @author fjvegaf
  *
  */
-public class Producto 
+public class Producto implements Parcelable
 {
 
 	private short 				m_Id; 					///< Identificador del producto
@@ -17,6 +20,15 @@ public class Producto
 	private String 				m_CodigoEAN;
 	private float				m_Precio;
 	private LocalizacionProducto m_Localizacion;
+	
+	
+	/**
+	 * 
+	 */
+	public Producto( )
+	{
+			this( (short)0, "", "", (short)0, "", 0.f, new LocalizacionProducto() );
+	} // Producto
 	
 	
 	/** Constructor
@@ -172,6 +184,71 @@ public class Producto
 	{
 		this.m_Localizacion= a_Localizacion;
 	}
+
+
+	@Override
+	public int describeContents( ) 
+	{
+		
+		return 0;
+	}
+
+
+	@Override
+	public void writeToParcel( Parcel a_ParcelOut, int a_Flags ) 
+	{
+		
+		a_ParcelOut.writeInt( (int) m_Id );
+		a_ParcelOut.writeString( m_NombreProducto );
+		a_ParcelOut.writeString( m_Marca );
+		a_ParcelOut.writeInt( (int) m_CategoriaId );
+		a_ParcelOut.writeString( m_CodigoEAN );
+		a_ParcelOut.writeFloat( m_Precio );
+		a_ParcelOut.writeParcelable( m_Localizacion, a_Flags );
+
+	}
+	
+	
+    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
+    public static final Parcelable.Creator< Producto > CREATOR = new Parcelable.Creator< Producto >() 
+    {
+        public Producto createFromParcel(Parcel in) 
+        {
+            return new Producto( in );
+        }
+
+        public Producto[] newArray(int size) 
+        {
+            return new Producto[ size ];
+        }
+    };
+
+	
+    // example constructor that takes a Parcel and gives you an object populated with it's values
+    private Producto( Parcel a_ParcelIn ) 
+    {
+    	m_Id= (short) a_ParcelIn.readInt();    	
+		m_NombreProducto= a_ParcelIn.readString();
+		m_Marca= a_ParcelIn.readString();
+		m_CategoriaId= (short) a_ParcelIn.readInt();	
+		m_CodigoEAN= a_ParcelIn.readString();
+		m_Precio= a_ParcelIn.readFloat();
+		m_Localizacion= a_ParcelIn.readParcelable( LocalizacionProducto.class.getClassLoader() );
+    } // CarritoCompra
+
+	
+	
+	/** Devuelve un String con toda la información de la clase
+	 * 
+	 */
+	public String toString( )
+	{
+		
+		return new String( "[Producto [ Id=" + this.m_Id + "][Nombre="+ this.m_NombreProducto + "]"+ "[Marca="+ this.m_Marca + "]" +
+							"[CategoriaId=" + this.m_CategoriaId + "][CodigoEAN=" + this.m_CodigoEAN + "][Precio=" + m_Precio + "]" +
+							"[" + this.m_Localizacion.toString()  + "]");
+		
+	} // toString
 
 	
 	

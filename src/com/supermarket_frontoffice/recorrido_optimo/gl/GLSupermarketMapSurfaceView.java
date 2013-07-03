@@ -1,11 +1,20 @@
 package com.supermarket_frontoffice.recorrido_optimo.gl;
 
 
+import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
+import com.supermarket_frontoffice.modelo_datos.Producto;
+
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
 
+
+/** @class GLSupermarketMapSurfaceView
+ * 
+ * @author fjvegaf
+ *
+ */
 public class GLSupermarketMapSurfaceView extends GLSurfaceView 
 {
 	
@@ -13,17 +22,15 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	private static final String TAG= "GLSupermarketMapSurfaceView";
 
 	private GLSupermarketMapRenderer 	m_MapRenderer;
-	
 	private float 						m_XMotionDown;
 	private float 						m_YMotionDown;
-	
 	private float 						m_XMotionUp;
 	private float 						m_YMotionUp;
-	
 	private boolean 					m_ActivateRotation;
 	private boolean 					m_ActivateView2d;
 	
-	//private int							m_ProcessZoom;
+	
+	
 	
 	/** Constructor
 	 * 
@@ -33,8 +40,8 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	{
 		super( a_Context );
 		
+			
 		m_MapRenderer= new GLSupermarketMapRenderer( a_Context, a_ProcessZoom );
-		super.setRenderer( m_MapRenderer );
 		
 		m_XMotionDown= 0.f;
 		m_YMotionDown= 0.f;
@@ -50,6 +57,31 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	} // GLSupermarketMapSurfaceView
 	
 	
+	/** Inicializa el mapa
+	 * 
+	 * @return
+	 */
+	public void setRenderer( )
+	{
+		//m_MapRenderer.initialize();
+		super.setRenderer( m_MapRenderer );
+		
+	} // initialize
+	
+	
+	
+	/** Inicializa el mapa
+	 * 
+	 * @return
+	 */
+	public void initialize()
+	{
+		m_MapRenderer.initialize();
+		super.setRenderer( m_MapRenderer );
+		
+	} // initialize
+	
+	
 	/**
 	 * 
 	 */
@@ -57,6 +89,10 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	{		
 	} // start
 	
+	
+	/**
+	 * 
+	 */
 	public boolean onTouchEvent( final MotionEvent a_Event )
 	{
 		
@@ -134,6 +170,27 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 		//m_ProcessZoom= a_ProcessZoom;
 		m_MapRenderer.setProcessZoom( a_ProcessZoom );
 	}
+	
+	
+	/**
+	 * 
+	 * @param a_CarritoCompra
+	 */
+	public void setCarritoCompra( CarritoCompra a_CarritoCompra ) 
+	{
+		m_MapRenderer.setCarritoCompra( a_CarritoCompra );
+	} // setCarritoCompra
+	
+	
+	/**
+	 * 
+	 * @param a_Producto
+	 */
+	public void setProducto( Producto a_Producto ) 
+	{
+		m_MapRenderer.setProducto( a_Producto );
+		
+	} // setProducto
 	
 
 } // End Class GLSupermarketMapSurfaceView
