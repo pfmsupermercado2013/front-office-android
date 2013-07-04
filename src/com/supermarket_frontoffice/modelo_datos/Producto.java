@@ -18,6 +18,7 @@ public class Producto implements Parcelable
 	private String 				m_Marca;
 	private short				m_CategoriaId;	
 	private String 				m_CodigoEAN;
+	private String				m_Descripcion;
 	private float				m_Precio;
 	private LocalizacionProducto m_Localizacion;
 	
@@ -27,7 +28,7 @@ public class Producto implements Parcelable
 	 */
 	public Producto( )
 	{
-			this( (short)0, "", "", (short)0, "", 0.f, new LocalizacionProducto() );
+			this( (short)0, "", "", (short)0, "","", 0.f, new LocalizacionProducto() );
 	} // Producto
 	
 	
@@ -45,6 +46,7 @@ public class Producto implements Parcelable
 						String 				a_Marca,
 						short				a_CategoriaId,	
 						String 				a_CodigoEAN,
+						String				a_Descripcion,
 						float				a_Precio,
 						LocalizacionProducto a_Localizacion )
 	{
@@ -54,6 +56,7 @@ public class Producto implements Parcelable
 		m_Marca= a_Marca;
 		m_CategoriaId= a_CategoriaId;	
 		m_CodigoEAN= a_CodigoEAN;
+		m_Descripcion = a_Descripcion;
 		m_Precio= a_Precio;
 		m_Localizacion= a_Localizacion;
 		
@@ -141,6 +144,17 @@ public class Producto implements Parcelable
 	}
 
 	
+	public void setDescripcion( String a_Descripcion ) 
+	{
+		this.m_Descripcion = a_Descripcion;
+	}
+	
+	public String getDescripcion( ) 
+	{
+		return m_Descripcion;
+	}
+
+	
 	/**
 	 * @param m_CodigoEAN the m_CodigoEAN to set
 	 */
@@ -203,6 +217,7 @@ public class Producto implements Parcelable
 		a_ParcelOut.writeString( m_Marca );
 		a_ParcelOut.writeInt( (int) m_CategoriaId );
 		a_ParcelOut.writeString( m_CodigoEAN );
+		a_ParcelOut.writeString( m_Descripcion );
 		a_ParcelOut.writeFloat( m_Precio );
 		a_ParcelOut.writeParcelable( m_Localizacion, a_Flags );
 
@@ -232,6 +247,7 @@ public class Producto implements Parcelable
 		m_Marca= a_ParcelIn.readString();
 		m_CategoriaId= (short) a_ParcelIn.readInt();	
 		m_CodigoEAN= a_ParcelIn.readString();
+		m_Descripcion= a_ParcelIn.readString();
 		m_Precio= a_ParcelIn.readFloat();
 		m_Localizacion= a_ParcelIn.readParcelable( LocalizacionProducto.class.getClassLoader() );
     } // CarritoCompra
@@ -245,8 +261,8 @@ public class Producto implements Parcelable
 	{
 		
 		return new String( "[Producto [ Id=" + this.m_Id + "][Nombre="+ this.m_NombreProducto + "]"+ "[Marca="+ this.m_Marca + "]" +
-							"[CategoriaId=" + this.m_CategoriaId + "][CodigoEAN=" + this.m_CodigoEAN + "][Precio=" + m_Precio + "]" +
-							"[" + this.m_Localizacion.toString()  + "]");
+							"[CategoriaId=" + this.m_CategoriaId + "][CodigoEAN=" + this.m_CodigoEAN + "][Precio=" + this.m_Precio + "]" +
+							"[Descripcion=" + this.m_Descripcion + "]" +"[" + this.m_Localizacion.toString()  + "]");
 		
 	} // toString
 

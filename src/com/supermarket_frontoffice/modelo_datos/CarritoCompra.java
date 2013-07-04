@@ -14,12 +14,9 @@ import android.util.Log;
  */
 public class CarritoCompra implements Parcelable
 {
-	
-	
 	private short 			m_Id;  			///< Identificador del carrito de la compra
 	ArrayList< Producto > 	m_ListaCompra;
-	
-	
+		
 	public CarritoCompra( short a_Id )
 	{
 		this( a_Id, new ArrayList< Producto >() );
@@ -29,16 +26,11 @@ public class CarritoCompra implements Parcelable
 	public CarritoCompra(   short a_Id,
 							ArrayList< Producto > 	a_ListaCompra )
 	{
-		
 		m_Id= a_Id;
 		m_ListaCompra= a_ListaCompra;
 		
 	} // CarritoCompra
-	
-	
 
-	
-	
 	/**
 	 * @return the m_Id
 	 */
