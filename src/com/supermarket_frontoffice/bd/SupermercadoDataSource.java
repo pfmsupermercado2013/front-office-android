@@ -48,6 +48,17 @@ public class SupermercadoDataSource {
         cursor.close();
         return productoByID;
     }
+    
+    public Producto getProductoByEAN(String EAN) {
+        
+        Cursor cursor = db.query("PRODUCTO", columnasPRODUCTO, "CodigoEAN='"+EAN+"'", null,
+                null, null, null,"1");
+    		
+        cursor.moveToFirst();
+        Producto productoByEAN = cursorToProducto(cursor);
+        cursor.close();
+        return productoByEAN;
+    }
  
     public ArrayList<Categoria> getAllCategorias() {
         ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();

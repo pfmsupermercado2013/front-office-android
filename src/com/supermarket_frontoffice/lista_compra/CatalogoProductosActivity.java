@@ -30,14 +30,18 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 //import android.widget.Spinner;
 import android.widget.TextView;
 
 
 public class CatalogoProductosActivity extends Activity 
 {
-
 	
+	private ExpandableListView lstView;
+	private ExpandableListAdapter adapter;
+	
+	//Todos los datos que se mostraran
 	private ArrayList<String> 			 	m_Categorias;
 	private ArrayList< ArrayList<String> >  m_ProductosCategorias;
 	
@@ -48,13 +52,11 @@ public class CatalogoProductosActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_catalogo_productos);
 		
-
-		ExpandableListView lstView= (ExpandableListView) findViewById( R.id.ExpandableListView01 );
+		lstView= (ExpandableListView) findViewById( R.id.ExpandableListView01 );
 		
 		cargarDatos( );
 		
-		ExpandableListAdapter adapter= new ExpandableListCategoryAdapter( this, m_Categorias, m_ProductosCategorias );
-	
+		adapter= new ExpandableListCategoryAdapter( this, m_Categorias, m_ProductosCategorias );
 		lstView.setAdapter( adapter );
 	}
 
@@ -69,21 +71,19 @@ public class CatalogoProductosActivity extends Activity
 	
 	
     public void onClickDetallarProducto(View v) {
-    	
-	    Intent intent= new Intent(CatalogoProductosActivity.this, InformacionProductoActivity.class);
+    	Log.d("Supermercado-Lista_Compra","Seleccionado: "+v.toString());
+
+    	Intent intent= new Intent(CatalogoProductosActivity.this, InformacionProductoActivity.class);
 	    startActivity(intent);	
     }
-	
     
     public void onClickAnyadirCarrito(View v) {
-    	
-	    Intent intent= new Intent(CatalogoProductosActivity.this, AnyadirCarritoActivity.class);
+    	Intent intent= new Intent(CatalogoProductosActivity.this, AnyadirCarritoActivity.class);
 	    startActivity(intent);	
     }
     
     public void onClickGeolocalizarProducto(View v) {
-    	
-	    Intent intent= new Intent(CatalogoProductosActivity.this, GeolocalizarProductoActivity.class);
+    	Intent intent= new Intent(CatalogoProductosActivity.this, GeolocalizarProductoActivity.class);
 	    startActivity(intent);	
     }
     

@@ -4,6 +4,7 @@ import com.supermarket_frontoffice.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 
 public class InformacionProductoActivity extends Activity {
@@ -12,6 +13,10 @@ public class InformacionProductoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_informacion_producto);
+		
+		Bundle bundle = getIntent().getExtras();
+		String CodigoEAN = bundle.getString("CodigoEAN");
+		Log.d("Supermercado-Informacion Producto", "Codigo EAN recibido: "+ CodigoEAN);
 	}
 
 	@Override
