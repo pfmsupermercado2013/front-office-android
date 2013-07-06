@@ -15,16 +15,16 @@ import android.util.Log;
 public class CarritoCompra implements Parcelable
 {
 	private short 			m_Id;  			///< Identificador del carrito de la compra
-	ArrayList< Producto > 	m_ListaCompra;
+	ArrayList< ProductoCarrito > 	m_ListaCompra;
 		
 	public CarritoCompra( short a_Id )
 	{
-		this( a_Id, new ArrayList< Producto >() );
+		this( a_Id, new ArrayList< ProductoCarrito >() );
 	
 	} // CarritoCompra
 	
 	public CarritoCompra(   short a_Id,
-							ArrayList< Producto > 	a_ListaCompra )
+							ArrayList< ProductoCarrito > 	a_ListaCompra )
 	{
 		m_Id= a_Id;
 		m_ListaCompra= a_ListaCompra;
@@ -49,7 +49,7 @@ public class CarritoCompra implements Parcelable
 	/**
 	 * @return the m_ListaCompra
 	 */
-	public ArrayList<Producto> getListaCompra( ) 
+	public ArrayList<ProductoCarrito> getListaCompra( ) 
 	{
 		return m_ListaCompra;
 	}
@@ -57,7 +57,7 @@ public class CarritoCompra implements Parcelable
 	/**
 	 * @param m_ListaCompra the m_ListaCompra to set
 	 */
-	public void setListaCompra( ArrayList<Producto> a_ListaCompra ) 
+	public void setListaCompra( ArrayList<ProductoCarrito> a_ListaCompra ) 
 	{
 		this.m_ListaCompra= a_ListaCompra;
 	} // setListaCompra
@@ -65,7 +65,7 @@ public class CarritoCompra implements Parcelable
 	/**
 	 * @param m_ListaCompra the m_ListaCompra to set
 	 */
-	public void addProducto( Producto a_Producto ) 
+	public void addProducto( ProductoCarrito a_Producto ) 
 	{
 		this.m_ListaCompra.add( a_Producto );
 		
@@ -111,7 +111,7 @@ public class CarritoCompra implements Parcelable
     {
     	
     	m_Id= (short) a_ParcelIn.readInt();    	
-    	m_ListaCompra= a_ParcelIn.readArrayList( Producto.class.getClassLoader() );
+    	m_ListaCompra= a_ParcelIn.readArrayList( ProductoCarrito.class.getClassLoader() );
     	
     	
     } // CarritoCompra
@@ -128,7 +128,7 @@ public class CarritoCompra implements Parcelable
 	
 		if ( !m_ListaCompra.isEmpty() ) {
 			
-			for ( Producto producto: m_ListaCompra ) {
+			for ( ProductoCarrito producto: m_ListaCompra ) {
 				
 				strOut += "\n\t" + producto.toString();
 				

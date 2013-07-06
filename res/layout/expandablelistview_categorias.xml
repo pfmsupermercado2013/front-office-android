@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+    android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+    android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+    android:paddingTop="@dimen/supermarket_activity_vertical_margin" >
 
     <!-- TextView
         android:id="@+id/textViewGrupo"
@@ -14,7 +18,11 @@
         android:layout_width="fill_parent"
         android:layout_height="35dp"
         android:background="@color/grey"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+        android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+        android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+        android:paddingTop="@dimen/supermarket_activity_vertical_margin" >
 
         <TextView
             android:id="@+id/textViewGrupo"

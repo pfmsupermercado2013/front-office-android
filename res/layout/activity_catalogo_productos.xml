@@ -15,7 +15,11 @@
 	    android:layout_alignParentLeft="true"
 	    android:layout_alignParentRight="true"
 	    android:layout_alignParentTop="true"
-	    android:orientation="vertical" >
+	    android:orientation="vertical"
+	    android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+	    android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+	    android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+	    android:paddingTop="@dimen/supermarket_activity_vertical_margin" >
 
 		<LinearLayout
 		    android:layout_width="fill_parent"
@@ -26,7 +30,11 @@
 		    android:layout_marginRight="0dp"
 		    android:layout_marginTop="0dp"
 		    android:background="@color/blue"
-		    android:gravity="top" >
+		    android:gravity="top"
+		    android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+		    android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+		    android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+		    android:paddingTop="@dimen/supermarket_activity_vertical_margin" >
 
 		    <TextView
 		        android:layout_width="178dp"
@@ -56,12 +64,21 @@
 	        android:id="@+id/linearLayout1"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:orientation="vertical" >
+	        android:orientation="vertical"
+	        android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+	        android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+	        android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+	        android:paddingTop="@dimen/supermarket_activity_vertical_margin" >
 
 	        <ExpandableListView
 	            android:id="@+id/ExpandableListView01"
 	            android:layout_width="290dp"
-	            android:layout_height="match_parent" >
+	            android:layout_height="match_parent"
+	            android:paddingBottom="@dimen/supermarket_activity_vertical_margin"
+	            android:paddingLeft="@dimen/supermarket_activity_horizontal_margin"
+	            android:paddingRight="@dimen/supermarket_activity_horizontal_margin"
+	            android:paddingTop="@dimen/supermarket_activity_vertical_margin" >
+
 	        </ExpandableListView>
 	    </LinearLayout>
 

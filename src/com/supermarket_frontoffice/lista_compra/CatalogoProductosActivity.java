@@ -6,12 +6,16 @@ import java.util.Collection;
 import java.util.List;
 
 import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.bd.SupermercadoDataSource;
+import com.supermarket_frontoffice.modelo_datos.Categoria;
+import com.supermarket_frontoffice.modelo_datos.Producto;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -108,16 +112,36 @@ public class CatalogoProductosActivity extends Activity
  
     private void cargarDatos( )
     {
-    	  	    
-    	m_Categorias= new ArrayList< String >( Arrays.asList( this.getResources().getStringArray(R.array.categoria_array ) ) );
     	
+    	SupermercadoDataSource bd = new SupermercadoDataSource(this);
+    	bd.open();
+    	
+    	m_Categorias= new ArrayList< String>();
     	m_ProductosCategorias= new ArrayList< ArrayList< String >>();
-    	
     	m_ProductosCategorias.add( new  ArrayList< String >() );	
-     	
-    	m_ProductosCategorias.add( 0, new ArrayList< String >( Arrays.asList( this.getResources().getStringArray(R.array.productos_categoria_aceite_array ) ) ) );
-    	m_ProductosCategorias.add( 1, new ArrayList< String >( Arrays.asList( this.getResources().getStringArray(R.array.productos_categoria_vinagres_array ) ) ) );
-    	m_ProductosCategorias.add( 2, new ArrayList< String >( Arrays.asList( this.getResources().getStringArray(R.array.productos_categoria_bebidas_array ) ) ) );
+    	
+    	List<Categoria> listacategorias = bd.getAllCategorias();
+    	
+    	for( int i = 0 ; i < listacategorias.size() ; i++ ){
+    		  
+    		  //Añadimos la Categoria
+    		  m_Categorias.add(listacategorias.get(i).getNombreCategoria());
+    		  Log.d("Supermercado-Lista_Compra", "Añadida Categoria al Listview: "+ listacategorias.get(i).toString());
+    		  
+    		  
+    		  //Añadimos los Productos a las Categorias
+    		  List<Producto> listaproductoscategoria = bd.getProductosByCategoriaID(listacategorias.get(i).getId());
+    		  ArrayList<String> nombreproductoscategoria = new ArrayList<String >();
+    		  for( int j = 0 ; j < listaproductoscategoria.size() ; j++ ){
+    			  nombreproductoscategoria.add(listaproductoscategoria.get(j).getNombreProducto());
+        		  Log.d("Supermercado-Lista_Compra", "Añadidos Productos a la Categoria: "+ listaproductoscategoria.get(j).toString());
+
+    		  }
+    		  m_ProductosCategorias.add( i, nombreproductoscategoria);
+			
+    	}
+        	
+    	bd.close();
     	
     }
 

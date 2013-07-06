@@ -4,6 +4,7 @@ import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
 import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.LocalizacionProducto;
 import com.supermarket_frontoffice.modelo_datos.Producto;
+import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
 import com.supermarket_frontoffice.pago.PagoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceMobiliario;
@@ -60,9 +61,9 @@ public class MainActivity extends Activity
 			/// Ejemplo de Carrito de la Compra
 			///
 			CarritoCompra carrito= new CarritoCompra( (short)187 );
-			Producto producto1= new Producto( (short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234", 0.44f, new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
-			Producto producto2= new Producto( (short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812", .40f, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ) );
-			Producto producto3= new Producto( (short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ) );
+			ProductoCarrito producto1= new ProductoCarrito( (short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234","Refresco", 0.44f,(short)1,false, new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
+			ProductoCarrito producto2= new ProductoCarrito( (short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812","Refresco", .40f,(short)2,false, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ) );
+			ProductoCarrito producto3= new ProductoCarrito( (short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f,(short)1,false, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ) );
 			carrito.addProducto( producto1 );
 			carrito.addProducto( producto2 );
 			carrito.addProducto( producto3 );
