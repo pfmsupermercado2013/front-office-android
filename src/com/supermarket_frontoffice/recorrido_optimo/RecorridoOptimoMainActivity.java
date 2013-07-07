@@ -221,8 +221,10 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     		
 			if (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) && ( m_CurrentProductoCarritoCompra >= 0 ) ){
 			
+
 				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
 				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
+
 				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
 				
 			}
