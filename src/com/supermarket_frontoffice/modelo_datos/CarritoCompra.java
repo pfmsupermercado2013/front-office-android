@@ -14,7 +14,7 @@ import android.util.Log;
  */
 public class CarritoCompra implements Parcelable
 {
-	private short 			m_Id;  			///< Identificador del carrito de la compra
+	private short 					m_Id;  			///< Identificador del carrito de la compra
 	ArrayList< ProductoCarrito > 	m_ListaCompra;
 		
 	public CarritoCompra( short a_Id )

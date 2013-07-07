@@ -9,6 +9,7 @@ import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.bd.SupermercadoDataSource;
 import com.supermarket_frontoffice.modelo_datos.Categoria;
 import com.supermarket_frontoffice.modelo_datos.Producto;
+import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -84,8 +85,14 @@ public class CatalogoProductosActivity extends Activity
     }
     
     public void onClickGeolocalizarProducto(View v) {
-    	Intent intent= new Intent(CatalogoProductosActivity.this, GeolocalizarProductoActivity.class);
-	    startActivity(intent);	
+    	//EJEMPLO DEL PRIMER PRODUCTO
+    	SupermercadoDataSource bd = new SupermercadoDataSource(this);
+    	bd.open();
+    	Producto producto = bd.getProductoByID((short)1);
+    	Log.d("Supermercado-Catalogo_Producto", "Se pulso geolocalizar");
+		Intent intent = new Intent( this, RecorridoOptimoMainActivity.class );
+		intent.putExtra("producto", producto );
+	    startActivity( intent );
     }
     
     public void onClickSeleccionarProducto(View a_View ) {

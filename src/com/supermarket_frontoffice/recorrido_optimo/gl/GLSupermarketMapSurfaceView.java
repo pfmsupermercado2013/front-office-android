@@ -3,6 +3,7 @@ package com.supermarket_frontoffice.recorrido_optimo.gl;
 
 import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.Producto;
+import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -186,9 +187,9 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	 * 
 	 * @param a_Producto
 	 */
-	public void setProducto( Producto a_Producto ) 
+	public void setProducto( Producto a_ProductoCarrito ) 
 	{
-		m_MapRenderer.setProducto( a_Producto );
+		m_MapRenderer.setProducto( a_ProductoCarrito );
 		
 	} // setProducto
 

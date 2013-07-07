@@ -53,7 +53,45 @@ public class GLVertice
 		m_Y= a_Y;
 		m_Z= a_Z;
 	} // GLVertice
+
 	
+	/** Comprueba que el vector  es menos que el vector pasado.
+	 * 
+	 * @param a_Vertice
+	 * @return Devuelve true si este vector es menor que el vector pasado y false en caso contrario
+	 */
+	public boolean isMinus( GLVertice a_Vertice )
+	{
+		
+		if ( this.isEqual( a_Vertice ) ) {
+			
+			return false;
+		}
+		
+		if ( ( m_X < a_Vertice.getX() ) ) {
+			
+		}
+		
+		return true;
+	} //
+	
+	
+	
+	/** Comprueba que el vector  es igual que el vector pasado.
+	 * 
+	 * @param a_Vertice
+	 * @return Devuelve true si este vector es igual que el vector pasado y false en caso contrario
+	 */
+	public boolean isEqual( GLVertice a_Vertice )
+	{
+		
+		if ( ( m_X < a_Vertice.getX() ) && ( m_Y < a_Vertice.getY() ) && ( m_Z < a_Vertice.getZ() )  ) {
+			
+			return true;
+		}
+		
+		return false;
+	} //
 	
 	/**
 	 * @return the m_X

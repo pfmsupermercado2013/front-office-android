@@ -128,13 +128,12 @@ public abstract class GLEstanteria
 			if ( glEstanteriaSeccion.getEstanteriaSeccion().getId() == a_SeccionId ) {
 				
 				
-				Log.d( TAG, "Localizado sección con el Id: " + glEstanteriaSeccion.getEstanteriaSeccion().getId() );
+				//Log.d( TAG, "Localizado sección con el Id: " + glEstanteriaSeccion.getEstanteriaSeccion().getId() );
 				glEstanteriaSeccion.setEstaSeleccionada( a_FlagSeleccion );
 				
 				glEstanteriaSeccion.setGLFlechaLocalizacionProducto( ( a_FlagSeleccion )? a_GLFlechaLocalizacion: null );
 	
 				if ( glEstanteriaSeccion.localizarProducto( a_EstanteId, a_FlagSeleccion ) ) {
-					
 					
 					return glEstanteriaSeccion.getCoordenadaRealSeccion();
 				}

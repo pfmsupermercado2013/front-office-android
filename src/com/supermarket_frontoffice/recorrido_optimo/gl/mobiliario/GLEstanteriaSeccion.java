@@ -61,6 +61,8 @@ public abstract class GLEstanteriaSeccion extends GLBaseObject
 		
 		this( a_EstanteriaSeccion, a_Vertices, a_Normales, a_Caras, a_CoordTextura, a_Colores, false );
 		
+		
+		
 		this.setColoresSeleccion( a_ColoresSeleccion );
 		
 	} /// GLEstanteriaSeccion
@@ -107,8 +109,13 @@ public abstract class GLEstanteriaSeccion extends GLBaseObject
 		m_EstaSeleccionada= a_EstaSeleccionada;
 		
 		m_CoordenadaRealSeccion= null;
+		
+		m_ColoresSeleccion= null;
+		m_ColorSeleccionBuffer= null;
+		
 		m_GLFlechaLocalizacionProducto= null;
 		
+	
 	} // GLEstanteriaSeccion
 	
 	
@@ -228,7 +235,7 @@ public abstract class GLEstanteriaSeccion extends GLBaseObject
 			
 			if ( glEstanteriaEstante.getEstante().getId() == a_EstanteId ) {
 				
-				Log.d( TAG, "Localizado estante con el Id: " + glEstanteriaEstante.getEstante().getId() );
+				//Log.d( TAG, "Localizado estante con el Id: " + glEstanteriaEstante.getEstante().getId() );
 				glEstanteriaEstante.setEstaSeleccionada( a_FlagSeleccion );
 				return true;
 			}
@@ -351,7 +358,7 @@ public abstract class GLEstanteriaSeccion extends GLBaseObject
 	 */
 	public void setCoordenadaRealSeccion( GLVertice a_CoordenadaRealSeccion ) 
 	{
-		this.m_CoordenadaRealSeccion= a_CoordenadaRealSeccion;
+		this.m_CoordenadaRealSeccion= a_CoordenadaRealSeccion; 
 	}
 	
 	/**

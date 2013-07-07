@@ -89,6 +89,7 @@ public class SplashActivity extends Activity {
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (9,7,'Fluor',3.3,'Licor del polo','343234555','Fluo',3,3,2)");
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (10,3,'Anacardos',1.3,'Hacendado','8480000340276','Frutos secos - Anacardos',4,1,1)");
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (11,6,'Chivas Regal',20.5,'Chivas Brothers Ltd','5000299212851','Whisky escoces',1,2,1)");
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (12,7,'Espuma',1.5,'Garnier','8480000440242','Espuma para el pelo',2,2,1)");
 
 
 

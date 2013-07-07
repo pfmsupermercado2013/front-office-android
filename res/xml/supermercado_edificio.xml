@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <supermercado>
 
+
     <edificio>
     	<lista-esquinas>
     		<esquina  id="1"  x="0" y="0" z="450" />
@@ -21,6 +22,27 @@
     	</lista-puertas>    
    	        
     </edificio>
+
+    <!-- edificio>
+    	<lista-esquinas>
+    		<esquina  id="1"  x="0" y="0" z="450" />
+    		<esquina  id="2"  x="1200" y="0" z="450" />
+    		<esquina  id="3"  x="1200" y="-1000" z="450" />
+    		<esquina  id="4"  x="0" y="-1000" z="450" />
+    	</lista-esquinas>
+    	
+    	<lista-paredes>
+    	    <pared id="1" id_esquina_a="1" id_esquina_b="2" ancho="15" />
+    	    <pared id="2" id_esquina_a="2" id_esquina_b="3" ancho="15" />
+    	    <pared id="3" id_esquina_a="3" id_esquina_b="4" ancho="15" />
+			<pared id="3" id_esquina_a="4" id_esquina_b="1" ancho="15" />
+    	</lista-paredes>
+    	
+    	<lista-puertas>
+    	    <puerta id="1" id_pared="1" x_left="900" alto="220" largo="250" modelo="" />
+    	</lista-puertas>    
+   	        
+    </edificio -->
     
 </supermercado>
     

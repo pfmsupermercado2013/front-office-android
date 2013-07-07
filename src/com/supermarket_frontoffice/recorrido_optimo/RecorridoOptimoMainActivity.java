@@ -3,11 +3,14 @@ package com.supermarket_frontoffice.recorrido_optimo;
 import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.Producto;
+import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
 import com.supermarket_frontoffice.recorrido_optimo.gl.GLSupermarketMapSurfaceView;
+import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLEstanteria;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -32,8 +35,8 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 	private VerticalSeekBar 			m_GLSeekBarZoom;
 		
 	private CarritoCompra				m_CarritoCompra;
-	
 	private Producto					m_Producto;
+	//private ProductoCarrito				m_ProductoCarrito;
 	
 	private TextView 					m_TextProducto;
 	private int							m_CurrentProductoCarritoCompra;
@@ -60,10 +63,17 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 		/// Puede recibir dos tipos de objetos. CarritoCompra y Producto
 		///
 		Intent intent= getIntent();
+		
+		Log.d( TAG, "Antes de leer el carrito_compra");
 		m_CarritoCompra= (CarritoCompra ) intent.getParcelableExtra( "carrito_compra" );
+		
+		Log.d( TAG, "Antes de leer el producto");
 		m_Producto= ( Producto ) intent.getParcelableExtra( "producto" );
 		
-		
+//		m_ProductoCarrito= ( ProductoCarrito ) intent.getParcelableExtra( "producto_carrito" );
+////		Log.d( TAG, "Despues de leer el producto "  );
+////		Log.d( TAG, "Producto =>" + m_Producto.toString() );
+
 		FrameLayout layout= (FrameLayout) findViewById( R.id.layoutButtonsMaps );
 		m_GLSeekBarZoom= (VerticalSeekBar) findViewById( R.id.seekBarZoom );
 		m_GLSeekBarZoom.setOnSeekBarChangeListener( this );
@@ -77,15 +87,22 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 			
 			if ( !m_CarritoCompra.getListaCompra().isEmpty() ) {
 			
-				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( 0 ).getNombreProducto() );
+				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( 0 ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
 				m_CurrentProductoCarritoCompra= 0;
 			}
 		}
 		else if ( m_Producto != null ) {
 			
+			Log.d( TAG, "Añadiendo producto al surfaceView" );
 			m_MapSurfaceView.setProducto( m_Producto );	
+			
+			Log.d( TAG, "Mostrando texto del producto" );
 			m_TextProducto.setText( m_Producto.getNombreProducto() );
 		}
+
+		
+		
+		
 		
 		m_MapSurfaceView.setActivateView2d( true );
 	    m_MapSurfaceView.initialize();
@@ -173,8 +190,8 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 			if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
 			     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
 			
-				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
-				
+				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
 				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
 			}
 			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
@@ -204,8 +221,8 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     		
 			if (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) && ( m_CurrentProductoCarritoCompra >= 0 ) ){
 			
-				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
-				
+				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
 				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
 				
 			}
@@ -220,8 +237,10 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 			
 		}
 	    
-    }
+    } //
     
+    
+
     
   
 
