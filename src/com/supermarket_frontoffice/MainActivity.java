@@ -10,6 +10,7 @@ import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceMobiliario;
 import com.supermarket_frontoffice.utils.Utils;
 
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -39,7 +40,7 @@ public class MainActivity extends Activity
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		
-		Log.d("Main", "Inicializando la aplicación");
+		Log.d("Main", "Inicializando la aplicación ...");
 		getMenuInflater().inflate(R.menu.main, menu);
 		
 
