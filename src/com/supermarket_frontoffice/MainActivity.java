@@ -27,9 +27,6 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		findViewById(R.id.btnCompraGuiada).setOnClickListener(new handleButton());	//Para el boton del la compra guiada
-		findViewById(R.id.btnPagarCompra).setOnClickListener(new handleBtnPurchasePay());	//Para el boton del pago de la compra
-
 	}
 	
 
@@ -44,52 +41,7 @@ public class MainActivity extends Activity
 
 		return true;
 	}
-	
-	class handleButton implements OnClickListener 
-	{		
-		
-		public void onClick(View v) {
-			
-			Intent intent = new Intent( MainActivity.this, RecorridoOptimoMainActivity.class );
-		
-			///
-			/// Lectura de la Base de Datos del Carrito de la Compra
-			/// TODO: Pendiente de hacer el método que devuelve la clase Carrito de la Compra
-			///
-			
-			///
-			/// Ejemplo de Carrito de la Compra
-			///
-			Producto p1 = new Producto((short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234","Refresco", 0.44f,new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
-			Producto p2 = new Producto((short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812","Refresco", .40f, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ));
-			Producto p3 = new Producto((short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ));
 
-			CarritoCompra carrito= new CarritoCompra( (short)187 );
-			ProductoCarrito producto1= new ProductoCarrito(p1, (short)1,0 );
-			ProductoCarrito producto2= new ProductoCarrito(p2, (short)2,0 );
-			ProductoCarrito producto3= new ProductoCarrito(p3, (short)1,0 );
-			carrito.addProducto( producto1 );
-			carrito.addProducto( producto2 );
-			carrito.addProducto( producto3 );
-			
-			///
-			/// Se pasa el objeto CarritoCompra al activity que se abre.
-			///
-			intent.putExtra("carrito_compra", carrito );
-			
-		    startActivity( intent );	
-		}
-    }
-	
-	//Evento de pulsar pago de compra
-	class handleBtnPurchasePay implements OnClickListener {		
-		public void onClick(View v) {
-
-		    Intent intent = new Intent(MainActivity.this, PagoMainActivity.class);
-		    startActivity(intent);	
-		    
-		}
-    }
 	
 	public boolean myCustomAlert(String sCadena){
 
@@ -114,12 +66,56 @@ public class MainActivity extends Activity
 	 * 
 	 * @param v
 	 */
-    public void onClickListaCompra( View a_View ) 
+    public void onClickPago( View a_View ) 
     {
     	
-    
-	    Intent intent = new Intent( MainActivity.this, ListaCompraActivity.class);
+    	Log.d("Supermercado-Main", "Se pulso pago");
+
+	    Intent intent = new Intent( MainActivity.this, PagoMainActivity.class);
 	    startActivity(intent);	
+    }
+    
+    public void onClickListaCompra(View a_View)
+    {
+    	Log.d("Supermercado-Main", "Se pulso lista compra");
+    	
+    	Intent intent = new Intent( MainActivity.this, ListaCompraActivity.class);
+	    startActivity(intent);	
+    }
+    
+    public void onClickRecorridoOptimo( View a_View ) 
+    {
+		///
+		/// Lectura de la Base de Datos del Carrito de la Compra
+		/// TODO: Pendiente de hacer el método que devuelve la clase Carrito de la Compra
+		///
+		
+		///
+		/// Ejemplo de Carrito de la Compra
+		///
+
+		Log.d("Supermercado-Main", "Se pulso recorrido optimo");
+
+		Producto p1 = new Producto((short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234","Refresco", 0.44f,new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
+		Producto p2 = new Producto((short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812","Refresco", .40f, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ));
+		Producto p3 = new Producto((short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ));
+
+		CarritoCompra carrito= new CarritoCompra( (short)187 );
+		ProductoCarrito producto1= new ProductoCarrito(p1, (short)1,0 );
+		ProductoCarrito producto2= new ProductoCarrito(p2, (short)2,0 );
+		ProductoCarrito producto3= new ProductoCarrito(p3, (short)1,0 );
+		carrito.addProducto( producto1 );
+		carrito.addProducto( producto2 );
+		carrito.addProducto( producto3 );
+		
+		///
+		/// Se pasa el objeto CarritoCompra al activity que se abre.
+		///
+		Intent intent = new Intent( MainActivity.this, RecorridoOptimoMainActivity.class );
+
+		intent.putExtra("carrito_compra", carrito );
+		
+	    startActivity( intent );
     }
     
 
