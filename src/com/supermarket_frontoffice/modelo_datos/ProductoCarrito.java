@@ -31,8 +31,7 @@ public class ProductoCarrito implements Parcelable
 						short				a_Cantidad,
 						int				a_Recogido)
 	{
-		
-		m_Producto = new Producto();
+		m_Producto = new Producto(a_producto.getId(),a_producto.getNombreProducto(),a_producto.getMarca(),a_producto.getCategoriaId(),a_producto.getCodigoEAN(),a_producto.getDescripcion(),a_producto.getPrecio(),a_producto.getLocalizacion());
 		m_Cantidad= a_Cantidad;
 		m_Recogido= a_Recogido;
 		
