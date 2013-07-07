@@ -78,12 +78,15 @@
    	            android:layout_height="32dp"
    	            android:layout_gravity="right|center_vertical"
    	            android:layout_marginLeft="20dp"
+   	            android:onClick="onClickGeolocalizarProducto"
    	            android:src="@android:drawable/ic_menu_view" />
 
    	        <ImageView
    	            android:layout_width="wrap_content"
    	            android:layout_height="wrap_content"
+   	            android:onClick="onClickAgregarProducto"
    	            android:src="@drawable/ic_add_carrito" />
+
    	    </LinearLayout>
 
    	    <LinearLayout
@@ -112,7 +115,7 @@
    	                android:textStyle="bold" />
 
    	            <TextView
-   	                android:id="@+id/textViewCategoriaProducto"
+   	                android:id="@+id/textViewCategoriaProductoCarrito"
    	                android:layout_width="fill_parent"
    	                android:layout_height="30dp"
    	                android:layout_below="@+id/textLabelNombreCategoria"
@@ -122,12 +125,12 @@
    	                android:id="@+id/textLabelNombreProducto"
    	                android:layout_width="fill_parent"
    	                android:layout_height="39dp"
-   	                android:layout_below="@+id/textViewCategoriaProducto"
+   	                android:layout_below="@+id/textViewCategoriaProductoCarrito"
    	                android:text="@string/LabelNombreProducto"
    	                android:textStyle="bold" />
 
    	            <TextView
-   	                android:id="@+id/textViewNombreProducto"
+   	                android:id="@+id/textViewNombreProductoCarrito"
    	                android:layout_width="fill_parent"
    	                android:layout_height="20dp" />
 

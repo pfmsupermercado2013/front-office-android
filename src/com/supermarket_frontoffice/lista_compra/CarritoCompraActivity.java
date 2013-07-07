@@ -56,7 +56,7 @@ public class CarritoCompraActivity extends Activity {
 			}		
 		);
 		
-		EditText editTextTotalPagar= ( EditText ) findViewById( R.id.editTextTotalPagar );
+		EditText editTextTotalPagar= ( EditText ) findViewById( R.id.editTextCantidadProductoCarrito );
 		
 		float totalPagar= (float)0.;
 		

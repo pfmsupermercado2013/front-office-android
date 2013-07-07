@@ -97,6 +97,7 @@ public class SplashActivity extends Activity {
 	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (3,6,0)");
 	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (2,1,0)");
 	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (1,2,0)");
+	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (11,1,0)");
 	  
 	  Log.e("Supermercado-BD", "Insertado correctamente filas en CARRITO");
 

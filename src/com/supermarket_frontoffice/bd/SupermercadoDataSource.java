@@ -21,7 +21,7 @@ public class SupermercadoDataSource {
     private String[] columnasPAYBOX = { "codigo" };
     private String[] columnasCATEGORIA = {"idcategoria" , "NombreCategoria" , "Descripcion"};
     private String[] columnasPRODUCTO = {"idproducto", "Categoria_Id_Categoria", "NombreProducto","Precio", "Marca","CodigoEAN", "Descripcion", "idEstanteria","idSeccion","idEstante"};
-    private String[] columnasCARRITO = {"idproducto", "cantidad", "NombreProducto","recogido"};
+    private String[] columnasCARRITO = {"idproducto", "cantidad", "recogido"};
 
 
      
@@ -148,11 +148,47 @@ public class SupermercadoDataSource {
         return listaProductosCarrito;
     }
     
+    public ProductoCarrito getProductoCarritoByID(short id) {
+        
+    	ProductoCarrito productocarrito;
+        Cursor cursor = db.query("CARRITO", columnasCARRITO, "idproducto='"+id+"'", null,
+                null, null, null,"1");
+                
+        if (cursor.getCount()==0)
+        {
+        	productocarrito=null;
+        }
+        else
+        {
+        	cursor.moveToFirst();
+        	productocarrito = cursorToProductoCarrito(cursor);
+            cursor.close();
+        }
+        
+        return productocarrito;
+    }
+    
     public CarritoCompra getCarrito() {
         CarritoCompra carrito = new CarritoCompra((short)0);
         carrito.setListaCompra(this.getAllProductosCarrito());
 
         return carrito;
+    }
+    
+    public void añadirProductoCarrito(short idproducto, short cantidad) {
+        ContentValues values = new ContentValues();
+        values.put(columnasCARRITO[0], idproducto);
+        values.put(columnasCARRITO[1], cantidad);
+        values.put(columnasCARRITO[2], false);
+        db.insert("CARRITO", null, values);
+    }
+    
+    public void añadirUnidadesProductoCarrito(short idproducto, short cantidad) {
+    	ProductoCarrito productocarrito = this.getProductoCarritoByID(idproducto);
+    	short total = (short) (cantidad + productocarrito.getCantidad());
+        ContentValues values = new ContentValues();
+        values.put(columnasCARRITO[1], total);
+        db.update("CARRITO", values, null, null);
     }
 
     private Categoria cursorToCategoria(Cursor cursor) {
