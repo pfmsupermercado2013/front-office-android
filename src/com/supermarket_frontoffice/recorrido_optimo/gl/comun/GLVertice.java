@@ -78,9 +78,9 @@ public class GLVertice
 	 * @param a_Vertice
 	 * @return
 	 */
-	public float module( GLVertice a_Vertice )
+	public double module( GLVertice a_Vertice )
 	{
-		
+		return Math.sqrt( Math.pow( a_Vertice.getX() - m_X, 2 ) + Math.pow( a_Vertice.getY() - m_Y, 2 ) + Math.pow( a_Vertice.getZ() - m_Z, 2 )  );
 	}
 	
 	

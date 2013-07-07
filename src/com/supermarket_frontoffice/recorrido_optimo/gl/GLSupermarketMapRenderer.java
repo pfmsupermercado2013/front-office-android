@@ -46,6 +46,7 @@ public class GLSupermarketMapRenderer implements Renderer
 	private float 					m_RotateAngle;
 	
 	private GLVertice				m_VectorInicial; 
+	private GLVertice				m_VectorPosicionCentroPuerta; 
 	private GLVertice				m_vectorInicialProducto; 
 
 	
@@ -77,6 +78,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		m_RotateAngle= 0.0f;
 		
 		m_VectorInicial= new GLVertice();
+		m_VectorPosicionCentroPuerta= null; //new GLVertice();
 		m_vectorInicialProducto= null;
 		
 		m_ActivateRotation= false;
@@ -127,8 +129,18 @@ public class GLSupermarketMapRenderer implements Renderer
 			m_VectorInicial.setX( -( paredPuerta.getV1().getVertice().getX() + puerta.getXLeft() + ( puerta.getLargo() / 2.f ) )  / 100.f ); 
 			m_VectorInicial.setY( 0.0f ); 
 			m_VectorInicial.setZ( -( paredPuerta.getV1().getVertice().getY() + 200.f ) / 100.f ); 
+			
 
+			
+			///
+			/// Calcula la posición inicial. El centro de la puerta
+			///
+			m_VectorPosicionCentroPuerta= new GLVertice( ( paredPuerta.getV1().getVertice().getX() + puerta.getXLeft() + ( puerta.getLargo() / 2.f ) )  / 100.f,
+														 0.f,
+														 (paredPuerta.getV1().getVertice().getY()) / 100.f );
 		}
+		
+
 		
 		
 	} // initialize
@@ -381,21 +393,27 @@ public class GLSupermarketMapRenderer implements Renderer
 			return false;
 		}
 		
+		///
+		/// Calcula la posición inicial. El centro de la puerta
+		///
+		GLVertice posicionInicial= ( m_VectorPosicionCentroPuerta == null )? new GLVertice(): m_VectorPosicionCentroPuerta;
+		
+		
 		ArrayList< ProductoCarrito > listaProductos= m_CarritoCompra.getListaCompra();
 		ArrayList< ProductoCarrito > listaOrdenadaProductos= new ArrayList< ProductoCarrito >();
 		 
 		GLVertice posVectorActual= null; 
 		GLVertice posVectorAnterior= null;
 		
-//		for ( ProductoCarrito producto: listaProductos ) {
-//			
-//			posVectorActual= m_GLSupermercado.getGLMobiliario().localizarProducto( producto.getLocalizacion(), false );
-//			
+////		for ( ProductoCarrito producto: listaProductos ) {
+////			
+////			posVectorActual= m_GLSupermercado.getGLMobiliario().localizarProducto( producto.getLocalizacion(), false );
+////			
 //			if ( ( posVectorAnterior == null ) || ( ) )  {
-//				
-//				listaOrdenadaProductos.
-//			}
-//		}
+////				
+////				listaOrdenadaProductos.
+////			}
+////		}
 		
 		
 		
