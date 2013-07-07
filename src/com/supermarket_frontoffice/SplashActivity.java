@@ -87,6 +87,9 @@ public class SplashActivity extends Activity {
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (6,6,'Coca Cola',1,'Coca Cola S.A','13131313','Refrescon con cafeina',3,2,2)");
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (7,7,'Pasta de Dientes',2.3,'Colgate','34234555','Dentrifico anti-caries',3,3,1)");
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (9,7,'Fluor',3.3,'Licor del polo','343234555','Fluo',3,3,2)");
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (10,3,'Anacardos',1.3,'Hacendado','8480000340276','Frutos secos - Anacardos',4,1,1)");
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (11,6,'Chivas Regal',20.5,'Chivas Brothers Ltd','5000299212851','Whisky escoces',1,2,1)");
+
 
 
 	  Log.e("Supermercado-BD", "Insertado correctamente filas en PRODUCTO");

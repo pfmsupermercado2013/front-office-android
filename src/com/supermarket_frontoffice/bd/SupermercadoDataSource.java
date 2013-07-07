@@ -54,10 +54,38 @@ public class SupermercadoDataSource {
         Cursor cursor = db.query("PRODUCTO", columnasPRODUCTO, "CodigoEAN='"+EAN+"'", null,
                 null, null, null,"1");
     		
-        cursor.moveToFirst();
-        Producto productoByEAN = cursorToProducto(cursor);
-        cursor.close();
+        Producto productoByEAN;
+        if (cursor.getCount()==0)
+        {
+        	productoByEAN=null;
+        }
+        else
+        {
+        	cursor.moveToFirst();
+            productoByEAN = cursorToProducto(cursor);
+            cursor.close();
+        }
         return productoByEAN;
+    }
+    
+    public Categoria getCategoriaByID(short id) {
+  
+        Cursor cursor = db.query("CATEGORIA", columnasCATEGORIA, "idcategoria='"+id+"'", null,
+                null, null, null,"1");
+       
+        Categoria categoriaByID;
+        if (cursor.getCount()==0)
+        {
+        	categoriaByID=null;
+        }
+        else
+        {
+        	cursor.moveToFirst();
+        	categoriaByID = cursorToCategoria(cursor);
+            cursor.close();
+        }
+        return categoriaByID;
+        
     }
  
     public ArrayList<Categoria> getAllCategorias() {

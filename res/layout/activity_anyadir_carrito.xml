@@ -116,7 +116,7 @@
    	            android:textStyle="bold" />
 
    	        <TextView
-   	            android:id="@+id/textViewNomBreProducto"
+   	            android:id="@+id/textViewNombreProducto"
    	            android:layout_width="fill_parent"
    	            android:layout_height="20dp"
    	            android:text="Coca-Cola (lata) 33cl" />

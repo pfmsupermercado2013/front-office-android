@@ -15,6 +15,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class LeerCodigoBarrasActivity extends Activity {
 
@@ -34,16 +35,34 @@ public class LeerCodigoBarrasActivity extends Activity {
 		  scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 		  if (scanResult != null) {
 			  Log.d("Supermercado-Codigo_Barras", "Lectura correcta: "+ scanResult.getContents());
-			  Intent intent2= new Intent(this, InformacionProductoActivity.class);
-			  intent2.putExtra("CodigoEAN", scanResult.getContents());
-
-			  startActivity(intent2);
+			  SupermercadoDataSource bd = new SupermercadoDataSource(this);
+			  bd.open();
+			  Producto productoencontrado = bd.getProductoByEAN(scanResult.getContents());
+			  if(productoencontrado !=null)
+			  {
+				  Log.d("Supermercado-Codigo_Barras", "Producto encontrado");
+				  Toast toast = Toast.makeText(getApplicationContext(), "EAN encontrado", Toast.LENGTH_SHORT);
+				  toast.show();
+				  Intent intent2= new Intent(this, InformacionProductoActivity.class);
+				  intent2.putExtra("idproducto", productoencontrado.getId());
+				  startActivity(intent2);
+			  }
+			  else
+			  {
+				  Log.d("Supermercado-Codigo_Barras", "Producto no encontrado");
+				  Toast toast2 = Toast.makeText(getApplicationContext(), "EAN no encontrado", Toast.LENGTH_SHORT);
+				  toast2.show();
+				  Intent intent3= new Intent(this, ListaCompraActivity.class);
+				  startActivity(intent3);
+			  }
 		  }
 		  else
 		  {
+			  Toast toast3 = Toast.makeText(getApplicationContext(), "Lectura EAN incorrecta", Toast.LENGTH_SHORT);
+			  toast3.show();
 			  Log.d("Supermercado-Codigo_Barras", "Lectura incorrecta");
-			  Intent intent3= new Intent(this, ListaCompraActivity.class);
-			  startActivity(intent3);
+			  Intent intent4= new Intent(this, ListaCompraActivity.class);
+			  startActivity(intent4);
 		  }
 		  
 		}
