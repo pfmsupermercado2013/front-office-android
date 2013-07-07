@@ -1,5 +1,4 @@
 package com.supermarket_frontoffice;
-import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.lista_compra.ListaCompraActivity;
 import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.LocalizacionProducto;
@@ -9,6 +8,8 @@ import com.supermarket_frontoffice.pago.PagoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceMobiliario;
 import com.supermarket_frontoffice.utils.Utils;
+
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -60,10 +61,14 @@ public class MainActivity extends Activity
 			///
 			/// Ejemplo de Carrito de la Compra
 			///
+			Producto p1 = new Producto((short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234","Refresco", 0.44f,new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
+			Producto p2 = new Producto((short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812","Refresco", .40f, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ));
+			Producto p3 = new Producto((short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ));
+
 			CarritoCompra carrito= new CarritoCompra( (short)187 );
-			ProductoCarrito producto1= new ProductoCarrito( (short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234","Refresco", 0.44f,(short)1,false, new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
-			ProductoCarrito producto2= new ProductoCarrito( (short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812","Refresco", .40f,(short)2,false, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ) );
-			ProductoCarrito producto3= new ProductoCarrito( (short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f,(short)1,false, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ) );
+			ProductoCarrito producto1= new ProductoCarrito(p1, (short)1,0 );
+			ProductoCarrito producto2= new ProductoCarrito(p2, (short)2,0 );
+			ProductoCarrito producto3= new ProductoCarrito(p3, (short)1,0 );
 			carrito.addProducto( producto1 );
 			carrito.addProducto( producto2 );
 			carrito.addProducto( producto3 );
@@ -72,6 +77,14 @@ public class MainActivity extends Activity
 			/// Se pasa el objeto CarritoCompra al activity que se abre.
 			///
 			intent.putExtra("carrito_compra", carrito );
+			
+//			
+//			///
+//			/// Para la localizacion de un producto se pasa sólo un producto
+//			///
+//			Producto producto5= new Producto( (short)4, "Coca-Cola 33cl", "Fanta-Cola", (short)1, "567623d812","Refresco", .40f, new LocalizacionProducto( (short)2,  (short)2,  (short)2 ) );
+//			
+//			intent.putExtra("producto", p1 );
 			
 		    startActivity( intent );	
 		}
