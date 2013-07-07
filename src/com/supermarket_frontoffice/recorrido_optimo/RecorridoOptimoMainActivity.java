@@ -77,7 +77,7 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 			
 			if ( !m_CarritoCompra.getListaCompra().isEmpty() ) {
 			
-				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( 0 ).getNombreProducto() );
+				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
 				m_CurrentProductoCarritoCompra= 0;
 			}
 		}
@@ -173,7 +173,7 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 			if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
 			     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
 			
-				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getNombreProducto() );
 				
 				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
 			}
@@ -204,7 +204,7 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     		
 			if (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) && ( m_CurrentProductoCarritoCompra >= 0 ) ){
 			
-				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getNombreProducto() );
 				
 				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
 				

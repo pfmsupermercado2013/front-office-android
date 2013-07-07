@@ -204,12 +204,12 @@ public class SupermercadoDataSource {
     
     private ProductoCarrito cursorToProductoCarrito(Cursor cursor) {
        Producto producto = this.getProductoByID(cursor.getShort(0));
-       boolean recogido=false;
+       int recogido=0;
        if(cursor.getShort(2)==1)
        {
-    	   recogido=true;
+    	   recogido=1;
        }  
-       ProductoCarrito productoCarrito = new ProductoCarrito(producto.getCategoriaId(),producto.getNombreProducto(),producto.getMarca(),producto.getCategoriaId(),producto.getCodigoEAN(),producto.getDescripcion(),producto.getPrecio(),cursor.getShort(1),recogido,producto.getLocalizacion());
+       ProductoCarrito productoCarrito = new ProductoCarrito(producto,cursor.getShort(1),recogido);
         return productoCarrito;
     }
 }

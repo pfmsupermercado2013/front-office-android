@@ -185,7 +185,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
 			
-			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getLocalizacion(), true );
+			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getLocalizacion(), true );
 			
 			if ( m_vectorInicialProducto != null ) {
 				
@@ -363,7 +363,7 @@ public class GLSupermarketMapRenderer implements Renderer
 	
 		
 		m_GLSupermercado.getGLMobiliario().deslocalizarTodosProducto();
-		m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( a_CurrentProductoCarritoCompra ).getLocalizacion(), true );
+		m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( a_CurrentProductoCarritoCompra ).getProducto().getLocalizacion(), true );
 		
 		
 		if ( m_vectorInicialProducto != null ) {
