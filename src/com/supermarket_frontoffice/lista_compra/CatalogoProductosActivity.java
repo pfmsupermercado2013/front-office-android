@@ -72,9 +72,14 @@ public class CatalogoProductosActivity extends Activity
 	
     public void onClickDetallarProducto(View v) {
     	Log.d("Supermercado-Lista_Compra","Seleccionado: "+v.toString());
+    	TextView nombreproducto = (TextView) v.findViewById(R.id.TextViewHijo01);
+    	Log.d("Supermercado-Lista_Compra","Pasamos");
 
+    	Toast toast = Toast.makeText(getApplicationContext(), nombreproducto.getText(), Toast.LENGTH_SHORT);
+				  toast.show();
+		/*
     	Intent intent= new Intent(CatalogoProductosActivity.this, InformacionProductoActivity.class);
-	    startActivity(intent);	
+	    startActivity(intent);*/	
     }
     
     public void onClickAnyadirCarrito(View v) {
