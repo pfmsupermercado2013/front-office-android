@@ -1,8 +1,5 @@
 package com.supermarket_frontoffice.recorrido_optimo.gl.comun;
 
-import com.supermarket_frontoffice.modelo_datos.EsquinaEdificio;
-import com.supermarket_frontoffice.modelo_datos.ParedEdificio;
-import com.supermarket_frontoffice.modelo_datos.PuertaEdificio;
 
 
 /** @class GLVertice
@@ -55,25 +52,36 @@ public class GLVertice
 	} // GLVertice
 
 	
-	/** Comprueba que el vector  es menos que el vector pasado.
+//	/** Comprueba que el vector  es menos que el vector pasado.
+//	 * 
+//	 * @param a_Vertice
+//	 * @return Devuelve true si este vector es menor que el vector pasado y false en caso contrario
+//	 */
+//	public boolean isMinus( GLVertice a_Vertice )
+//	{
+//		
+//		if ( this.isEqual( a_Vertice ) ) {
+//			
+//			return false;
+//		}
+//		
+//		if ( ( m_X < a_Vertice.getX() ) ) {
+//			
+//		}
+//		
+//		return true;
+//	} //
+	
+	
+	/** 
 	 * 
 	 * @param a_Vertice
-	 * @return Devuelve true si este vector es menor que el vector pasado y false en caso contrario
+	 * @return
 	 */
-	public boolean isMinus( GLVertice a_Vertice )
+	public float module( GLVertice a_Vertice )
 	{
 		
-		if ( this.isEqual( a_Vertice ) ) {
-			
-			return false;
-		}
-		
-		if ( ( m_X < a_Vertice.getX() ) ) {
-			
-		}
-		
-		return true;
-	} //
+	}
 	
 	
 	
@@ -100,6 +108,8 @@ public class GLVertice
 	{
 		return m_X;
 	}
+	
+	
 
 
 	/**
