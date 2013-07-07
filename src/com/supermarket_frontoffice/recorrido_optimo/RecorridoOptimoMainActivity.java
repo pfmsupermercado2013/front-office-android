@@ -2,21 +2,18 @@ package com.supermarket_frontoffice.recorrido_optimo;
 
 import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
-import com.supermarket_frontoffice.modelo_datos.LocalizacionProducto;
 import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.recorrido_optimo.gl.GLSupermarketMapSurfaceView;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 import android.widget.VerticalSeekBar;
 
 
@@ -34,25 +31,17 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 	private GLSupermarketMapSurfaceView m_MapSurfaceView;
 	private VerticalSeekBar 			m_GLSeekBarZoom;
 		
+	private CarritoCompra				m_CarritoCompra;
 	
 	private Producto					m_Producto;
+	
+	private TextView 					m_TextProducto;
+	private int							m_CurrentProductoCarritoCompra;
 //	
 //	ProgressDialog 						m_ProgressBar;
 //	private int 						m_ProgressBarStatus = 0;
 //	private Handler 					m_ProgressBarHandler = new Handler();
-	
-	
-//	public RecorridoOptimoMainActivity( )
-//	{
-//		super();
-//		
-//		Log.d( TAG, "Constructor RecorridoOptimoMainActivity" );
-//		
-//		m_MapSurfaceView= null; // new GLSupermarketMapSurfaceView( this, m_GLSeekBarZoom.getProgress() );
-//		m_GLSeekBarZoom= null;
-//		
-//		
-//	} // RecorridoOptimoMainActivity
+
 	
 	/** 
 	 * 
@@ -71,29 +60,34 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 		/// Puede recibir dos tipos de objetos. CarritoCompra y Producto
 		///
 		Intent intent= getIntent();
-		CarritoCompra carritoCompra= (CarritoCompra ) intent.getParcelableExtra( "carrito_compra" );
-		Producto producto= ( Producto ) intent.getParcelableExtra( "producto" );
+		m_CarritoCompra= (CarritoCompra ) intent.getParcelableExtra( "carrito_compra" );
+		m_Producto= ( Producto ) intent.getParcelableExtra( "producto" );
 		
 		
-		FrameLayout layout= (FrameLayout) findViewById(R.id.layoutButtonsMaps );
+		FrameLayout layout= (FrameLayout) findViewById( R.id.layoutButtonsMaps );
 		m_GLSeekBarZoom= (VerticalSeekBar) findViewById( R.id.seekBarZoom );
 		m_GLSeekBarZoom.setOnSeekBarChangeListener( this );
 		
 		m_MapSurfaceView= new GLSupermarketMapSurfaceView( this, m_GLSeekBarZoom.getProgress() );
+		m_TextProducto= (TextView) findViewById( R.id.textProductoRecorridoOptimo );
 
-
-
-		if ( carritoCompra != null ) {
+		if ( m_CarritoCompra != null ) {
 			
-			m_MapSurfaceView.setCarritoCompra( carritoCompra );
-		}
-		else if ( producto != null ) {
+			m_MapSurfaceView.setCarritoCompra( m_CarritoCompra );
 			
-			m_MapSurfaceView.setProducto( producto );
+			if ( !m_CarritoCompra.getListaCompra().isEmpty() ) {
+			
+				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( 0 ).getNombreProducto() );
+				m_CurrentProductoCarritoCompra= 0;
+			}
+		}
+		else if ( m_Producto != null ) {
+			
+			m_MapSurfaceView.setProducto( m_Producto );	
+			m_TextProducto.setText( m_Producto.getNombreProducto() );
 		}
 		
-		
-		
+		m_MapSurfaceView.setActivateView2d( true );
 	    m_MapSurfaceView.initialize();
 
 	    layout.addView( m_MapSurfaceView, 0 );
@@ -122,8 +116,8 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 	 */
     public void onClickMap2d( View v ) 
     {
-    	m_MapSurfaceView.setProcessZoom( 7 ); 
-    	m_GLSeekBarZoom.setProgress( 7 );
+    	m_MapSurfaceView.setProcessZoom( 12 ); 
+    	m_GLSeekBarZoom.setProgress( 12 );
     	m_MapSurfaceView.setActivateView2d( true );
     } // onClickMap2d
     
@@ -165,43 +159,71 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 
     
     
-//	/**
-//	 * 
-//	 * @author fjvegaf
-//	 *
-//	 */
-//	class handleButton1 implements OnClickListener 
-//	{
-//	        public void onClick(View v) {
-//	        	//myCustomAlert("Carrito de la compra vacio. Imposible iniciar la compra guiada");
-//		}
-//	}
-//	
-//	
-//	class handleButton2 implements OnClickListener 
-//	{
-//	        public void onClick(View v) {
-//	        	//myCustomAlert("Fin del recorrido de compra. Pague su compra en caja");
-//		}
-//	}
-	
-	public boolean myCustomAlert(String sCadena) {
+    
+    /**
+     * 
+     * @param v
+     */
+    public void onClickNextProducto( View v ) 
+    {
 		
-		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-		alertDialog.setTitle("Titulo");
-		alertDialog.setMessage(sCadena);
-		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel(); //Cierra la ventana
+    	if ( m_CarritoCompra != null ) {
+		
+    		++m_CurrentProductoCarritoCompra;
+			if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+			     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
+			
+				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				
+				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
 			}
-		});
-//		alertDialog.setIcon(R.drawable.icon);
-		alertDialog.show();
+			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
+				
+				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
+			}
+			else if ( m_CurrentProductoCarritoCompra < 0 ) {
+				
+				m_CurrentProductoCarritoCompra= 0;
+			}
+			
+		}
+	    
+    }
+    
+    
+    /**
+     * 
+     * @param v
+     */
+    public void onClickPreviousProducto( View v ) 
+    {
 		
-		return true;
+    	if ( m_CarritoCompra != null ) {
 		
-	}
-
+    		--m_CurrentProductoCarritoCompra;
+    		
+			if (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) && ( m_CurrentProductoCarritoCompra >= 0 ) ){
+			
+				m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				
+				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+				
+			}
+			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
+				
+				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
+			}
+			else if ( m_CurrentProductoCarritoCompra < 0 ) {
+				
+				m_CurrentProductoCarritoCompra= 0;
+			}
+			
+		}
+	    
+    }
+    
+    
+  
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,

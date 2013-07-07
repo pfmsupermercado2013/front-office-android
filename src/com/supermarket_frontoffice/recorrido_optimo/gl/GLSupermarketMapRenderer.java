@@ -11,6 +11,7 @@ import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.ParedEdificio;
 import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.modelo_datos.PuertaEdificio;
+import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLVertice;
 import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLCarritoCompra;
 import com.supermarket_frontoffice.recorrido_optimo.xml.XmlResourceSupermercado;
 
@@ -34,14 +35,22 @@ public class GLSupermarketMapRenderer implements Renderer
 	private GLSupermercado			m_GLSupermercado;				///< Objeto que dibuja todo el supermercado en OpenGL.
 	
 	private CarritoCompra 			m_CarritoCompra;				///< Lista de productos del carrito de la compra que se debe localizar.
+	//private int						m_CurrentProductoCarritoCompra; ///< Producto que se está representando actualmente.
+	
 	private Producto				m_Producto;						///< Datos del producto concreto que se desea localizar.
 		
 	private float 					m_AspectRatio;					///< Ratio de escalado para la represeentación en OpenGL.
 	
 	private float 					m_RotateAngle;
-	private float 					m_XPostInicial;
-	private float 					m_YPostInicial;
-	private float 					m_ZPostInicial;
+	
+	private GLVertice				m_VectorInicial; 
+	private GLVertice				m_vectorInicialProducto; 
+	private float					m_MatrixPosicionInicial[];		///< Matriz donde se almacena la posición inicial del carrito
+	
+	
+//	private float 					m_XPostInicial;
+//	private float 					m_YPostInicial;
+//	private float 					m_ZPostInicial;
 	
 	private boolean 				m_ActivateRotation;
 	private boolean 				m_ActivateView2d;
@@ -64,12 +73,18 @@ public class GLSupermarketMapRenderer implements Renderer
 		m_XmlResoursesSupermercado= new XmlResourceSupermercado( a_Context, R.xml.supermercado_edificio, R.xml.supermercado_mobiliario );
 		
 		m_GLSupermercado= null;
-		
 		m_CarritoCompra= null;
 		m_Producto= null;	
 		
 		m_AspectRatio= 0.f;
 		m_RotateAngle= 0.0f;
+		
+		m_VectorInicial= new GLVertice();
+		m_vectorInicialProducto= null;
+		
+		m_MatrixPosicionInicial= new float[16];  
+		
+		
 		
 		m_ActivateRotation= false;
 		
@@ -106,17 +121,19 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		if ( listaPuertas.isEmpty() ) {
 			
-			m_XPostInicial= -720.0f / 100.f;
-			m_YPostInicial= 0.0f;
-			m_ZPostInicial= -350.0f / 100.f;
+			m_VectorInicial.setX(-720.0f / 100.f ); 
+			m_VectorInicial.setY( 0.0f ); 
+			m_VectorInicial.setZ( -350.0f / 100.f ); 
+			
 		}
 		else {
 			
 			PuertaEdificio puerta= listaPuertas.get( 0 );
 			ParedEdificio paredPuerta= puerta.getPared();
-			m_XPostInicial= -( paredPuerta.getV1().getVertice().getX() + puerta.getXLeft() + ( puerta.getLargo() / 2.f ) )  / 100.f;
-			m_YPostInicial= 0.0f;
-			m_ZPostInicial= -( paredPuerta.getV1().getVertice().getY() + 200.f ) / 100.f;
+
+			m_VectorInicial.setX( -( paredPuerta.getV1().getVertice().getX() + puerta.getXLeft() + ( puerta.getLargo() / 2.f ) )  / 100.f ); 
+			m_VectorInicial.setY( 0.0f ); 
+			m_VectorInicial.setZ( -( paredPuerta.getV1().getVertice().getY() + 200.f ) / 100.f ); 
 
 		}
 		
@@ -145,7 +162,44 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		m_GLSupermercado= new GLSupermercado( m_Context, m_XmlResoursesSupermercado.getSupermercado() );
 
-
+		if ( m_Producto != null ) {
+			
+			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_Producto.getLocalizacion(), true );
+			
+			if ( m_vectorInicialProducto != null ) {
+				
+				Log.d( TAG, "[Producto] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+			}
+			else {
+				
+				Log.d( TAG, "[Producto] Despues de localizarProducto => m_vectorInicialProducto == null" );
+			}
+			
+//			if (coordenadaProducto != null ) {
+//				
+//				m_VectorInicial= coordenadaProducto;
+//			}
+			
+			
+		}
+		
+		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
+			
+			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getLocalizacion(), true );
+			
+			if ( m_vectorInicialProducto != null ) {
+				
+				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+			}
+			else {
+				
+				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => m_vectorInicialProducto == null" );
+			}
+			
+		}
+		
+		
+		
 		return true;
 	} // readXmlResources
 		
@@ -163,12 +217,10 @@ public class GLSupermarketMapRenderer implements Renderer
 	{
 		
 		
-		// Establece el color de fondo (r,g,b,a)		 
-		//a_Gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-		
-		//a_Gl.glClearColor(86.f/255.0f, 141.f/255.0f, 71.f/255.0f, 0.0f);
-		
-		a_Gl.glClearColor(186.f/255.0f, 141.f/255.0f, 71.f/255.0f, 0.0f);
+		// Establece el color de fondo (r,g,b,a)		 		
+		//a_Gl.glClearColor(186.f/255.0f, 141.f/255.0f, 71.f/255.0f, 0.0f);
+		//a_Gl.glClearColor(30.f/255.0f, 43.f/255.0f, 0.f/255.0f, 0.0f);
+		a_Gl.glClearColor(92.f/255.0f, 132.f/255.0f, 0.f/255.0f, 0.0f);
 		 
 		// Habilita el sombreado suave		 
 		a_Gl.glShadeModel( GL10.GL_SMOOTH );
@@ -186,16 +238,6 @@ public class GLSupermarketMapRenderer implements Renderer
 		a_Gl.glHint( GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST );
 		
 		
-		
-		//a_Gl.glDisable( GL10.GL_CULL_FACE | GL10.GL_DEPTH_TEST );
-		
-//		///
-//		/// MODO MALLADO
-//		///
-//		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-//		glDisable( GL_CULL_FACE | GL_DEPTH_TEST );
-//		//glDisable( GL_DEPTH_TEST );
-//		glClear( GL_COLOR_BUFFER_BIT );
 		 
 	} // onSurfaceCreated
 	
@@ -214,25 +256,28 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		//Log.d( "GLSupermarketMapRendered", "Dibujando escenario ... " );
 		
+		if ( m_vectorInicialProducto != null ) {
+			
+			Log.d( TAG, "Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+			
+			m_VectorInicial= m_vectorInicialProducto;
+		}
+		
+		
+		
 		// Limpia la pantalla y el buffer de profundidad		 
 		a_Gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		 
 		 
         // Set GL_MODELVIEW transformation mode
-//		a_Gl.glMatrixMode( GL10.GL_MODELVIEW );
+		a_Gl.glMatrixMode( GL10.GL_MODELVIEW );
 		
-//		// Reemplaza la matriz actual con la matriz identidad		 
+		// Reemplaza la matriz actual con la matriz identidad		 
 		a_Gl.glLoadIdentity();
 
 		
 		if ( m_ActivateView2d ) {
-			
-	        // Set GL_MODELVIEW transformation mode
-			a_Gl.glMatrixMode( GL10.GL_MODELVIEW );
-			
-			// Reemplaza la matriz actual con la matriz identidad		 
-			a_Gl.glLoadIdentity();
-			
+						
 			GLU.gluLookAt( a_Gl, 0.f, -(float) m_ProcessZoom*7.f/10.f, 0.f,
 					 		0.f, 0.f, 0.f,
 							1.f, 0.0f, 0.0f );
@@ -244,17 +289,10 @@ public class GLSupermarketMapRenderer implements Renderer
 		}
 		else  {
 			
-	        // Set GL_MODELVIEW transformation mode
-			a_Gl.glMatrixMode( GL10.GL_MODELVIEW );
-			
-			// Reemplaza la matriz actual con la matriz identidad		 
-			a_Gl.glLoadIdentity();
-			
 			GLU.gluLookAt( a_Gl, 0.f, (float )m_ProcessZoom * 1.f /10.f, 0.8f,
 					 		0.f, 0.9f, 0.f / 100.f,
 							0.f, 1.0f, 0.0f );
 				
-	
 		}
 		
 		
@@ -265,8 +303,8 @@ public class GLSupermarketMapRenderer implements Renderer
 		m_GlCarritoCompra.draw( a_Gl );
 
 		
-		a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial );	
-		
+		//a_Gl.glTranslatef( m_XPostInicial, m_YPostInicial, m_ZPostInicial );	
+		a_Gl.glTranslatef( m_VectorInicial.getX(), m_VectorInicial.getY(), m_VectorInicial.getZ() );	
 		
 		// Traslada 4 unidades en el eje Z		 
 		a_Gl.glRotatef( 2.f, 1, 0, 0 ); //
@@ -311,60 +349,100 @@ public class GLSupermarketMapRenderer implements Renderer
 	} // end onSurfaceChanged
 	
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public GLVertice updateProductoCarritoCompra( int a_CurrentProductoCarritoCompra ) 
+	{
+		
+		if ( ( m_CarritoCompra == null ) || ( a_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) ) {
+			
+			return null;
+		}
+	
+		
+		m_GLSupermercado.getGLMobiliario().deslocalizarTodosProducto();
+		m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( a_CurrentProductoCarritoCompra ).getLocalizacion(), true );
+		
+		
+		if ( m_vectorInicialProducto != null ) {
+			
+			Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+		}
+		else {
+			
+			Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => m_vectorInicialProducto == null" );
+		}	
+		
+		return m_vectorInicialProducto;
+		
+		
+	} // nextProductoCarritoCompra
 
 	
+	/**
+	 * 
+	 * @param a_RotateAngle
+	 */
 	public void rotatePosicionXZ( float a_RotateAngle ) 
 	{
 		m_RotateAngle += a_RotateAngle;
 	}
 	
-	public float getXPostInicial( ) 
-	{
-		return m_XPostInicial;
-	}
-
-	public void setXPostInicial( float a_XPostInicial ) 
-	{
-		m_XPostInicial = a_XPostInicial;
-	}
+	
+	
+//	public float getXPostInicial( ) 
+//	{
+//		return m_XPostInicial;
+//	}
+//
+//	public void setXPostInicial( float a_XPostInicial ) 
+//	{
+//		m_XPostInicial = a_XPostInicial;
+//	}
 	
 	public void movePosicionX( float a_XPosicion ) 
 	{
-		m_XPostInicial += a_XPosicion;
+		//m_XPostInicial += a_XPosicion;
+		this.m_VectorInicial.incrementX( a_XPosicion );
 	}
 
 
-	public float getYPostInicial( ) 
-	{
-		return m_YPostInicial;
-	}
-
-
-	public void setYPostInicial( float a_YPostInicial ) 
-	{
-		m_YPostInicial = a_YPostInicial;
-	}
+//	public float getYPostInicial( ) 
+//	{
+//		return m_YPostInicial;
+//	}
+//
+//
+//	public void setYPostInicial( float a_YPostInicial ) 
+//	{
+//		m_YPostInicial = a_YPostInicial;
+//	}
 	
 	public void movePosicionY( float a_YPosicion ) 
 	{
-		m_YPostInicial += a_YPosicion;
+		//m_YPostInicial += a_YPosicion;
+		this.m_VectorInicial.incrementY( a_YPosicion );
 	}
-
-	
-	public float getZPostInicial( ) 
-	{
-		return m_ZPostInicial;
-	}
-
-	
-	public void setZPostInicial( float a_ZPostInicial ) 
-	{
-		m_ZPostInicial = a_ZPostInicial;
-	}
-	
+//
+//	
+//	public float getZPostInicial( ) 
+//	{
+//		return m_ZPostInicial;
+//	}
+//
+//	
+//	public void setZPostInicial( float a_ZPostInicial ) 
+//	{
+//		m_ZPostInicial = a_ZPostInicial;
+//	}
+//	
 	public void movePosicionZ( float a_ZPosicion ) 
 	{
-		m_ZPostInicial += a_ZPosicion;
+		//m_ZPostInicial += a_ZPosicion;
+		
+		this.m_VectorInicial.incrementZ( a_ZPosicion );
 	}
 	
 	
@@ -407,6 +485,24 @@ public class GLSupermarketMapRenderer implements Renderer
 	
 	
 	/**
+	 * @return the m_GLSupermercado
+	 */
+	public GLSupermercado getGLSupermercado() 
+	{
+		return m_GLSupermercado;
+	}
+
+
+	/**
+	 * @param m_GLSupermercado the m_GLSupermercado to set
+	 */
+	public void setGLSupermercado( GLSupermercado a_GLSupermercado ) 
+	{
+		this.m_GLSupermercado = a_GLSupermercado;
+	}
+	
+	
+	/**
 	 * 
 	 * @param a_CarritoCompra
 	 */
@@ -423,7 +519,12 @@ public class GLSupermarketMapRenderer implements Renderer
 	public void setProducto( Producto a_Producto ) 
 	{
 		m_Producto= a_Producto;
+		
+		//m_GLSupermercado.getGLMobiliario().localizarProducto( m_Producto.getLocalizacion(), true );
 	} // setProducto
+
+
+
 	
 	
 	

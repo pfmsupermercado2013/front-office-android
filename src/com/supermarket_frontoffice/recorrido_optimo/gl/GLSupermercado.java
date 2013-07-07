@@ -89,5 +89,53 @@ public class GLSupermercado extends GLBaseObject
 		}
 		
 	} // draw
+
+	/**
+	 * @return the m_Supermercado
+	 */
+	public Supermercado getSupermercado() 
+	{
+		return m_Supermercado;
+	}
+
+	/**
+	 * @param m_Supermercado the m_Supermercado to set
+	 */
+	public void setSupermercado( Supermercado a_Supermercado ) 
+	{
+		this.m_Supermercado= a_Supermercado;
+	}
+
+	/**
+	 * @return the m_GLEdificio
+	 */
+	public GLEdificio getGLEdificio() 
+	{
+		return m_GLEdificio;
+	}
+
+	/**
+	 * @param m_GLEdificio the m_GLEdificio to set
+	 */
+	public void setGLEdificio( GLEdificio a_GLEdificio ) 
+	{
+		this.m_GLEdificio= a_GLEdificio;
+	}
+
+	/**
+	 * @return the m_GLMobiliario
+	 */
+	public GLMobiliario getGLMobiliario( ) 
+	{
+		return m_GLMobiliario;
+	}
+
+	/**
+	 * @param m_GLMobiliario the m_GLMobiliario to set
+	 */
+	public void setGLMobiliario( GLMobiliario a_GLMobiliario ) 
+	{
+		this.m_GLMobiliario= a_GLMobiliario;
+	}
 	
 } // GLSupermercado

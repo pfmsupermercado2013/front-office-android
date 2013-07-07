@@ -235,6 +235,7 @@ public abstract class GLBaseObject
 		return m_Colores;
 	}
 
+	
 	/**
 	 * @param m_Colores the m_Colores to set
 	 */

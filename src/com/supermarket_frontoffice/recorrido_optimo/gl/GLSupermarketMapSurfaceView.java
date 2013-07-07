@@ -191,6 +191,15 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 		m_MapRenderer.setProducto( a_Producto );
 		
 	} // setProducto
+
+
+	/**
+	 * @return the m_MapRenderer
+	 */
+	public GLSupermarketMapRenderer getMapRenderer() 
+	{
+		return m_MapRenderer;
+	}
 	
 
 } // End Class GLSupermarketMapSurfaceView

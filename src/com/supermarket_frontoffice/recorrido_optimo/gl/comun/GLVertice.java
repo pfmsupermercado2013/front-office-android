@@ -72,6 +72,14 @@ public class GLVertice
 		this.m_X = a_X;
 	}
 
+	
+	/**
+	 * @param m_X the m_X to set
+	 */
+	public void incrementX( float a_X ) 
+	{
+		this.m_X += a_X;
+	}
 
 	/**
 	 * @return the m_Y
@@ -88,6 +96,14 @@ public class GLVertice
 	public void setY( float a_Y ) 
 	{
 		this.m_Y = a_Y;
+	}
+	
+	/**
+	 * @param m_X the m_X to set
+	 */
+	public void incrementY( float a_Y ) 
+	{
+		this.m_Y += a_Y;
 	}
 
 
@@ -108,6 +124,14 @@ public class GLVertice
 		this.m_Z = a_Z;
 	}
 	
+	
+	/**
+	 * @param m_X the m_X to set
+	 */
+	public void incrementZ( float a_Z ) 
+	{
+		this.m_Z += a_Z;
+	}
 	
 	/** Devuelve un String con toda la información de la clase
 	 * 

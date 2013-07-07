@@ -46,13 +46,20 @@ public class GLEstanteriaEstanteBase extends GLEstanteriaEstante
 						1.0000f, 0.0000f, 0.0000f
 				},
 
-				new float[] {	
+				new float[] {				/// Colores
 					0.8f, 0.8f, 0.8f, 1.f,  
 					0.8f, 0.8f, 0.8f, 1.f,
 					0.9f, 0.9f, 0.9f, 1.f,  
 					0.9f, 0.9f, 0.9f, 1.f,
-				}
+				},
 				
+				new float[] {					/// Colores seleccion
+						0.f/255.f, 255.f/255.f, 0.f/255.f, 1.f, 
+						0.f/255.f, 255.f/255.f, 0.f/255.f, 1.f, 
+						0.f/255.f, 255.f/255.f, 0.f/255.f, 1.f, 
+						0.f/255.f, 255.f/255.f, 0.f/255.f, 1.f 
+						
+				}		
 		);
 		
 	} // GLEstanteriaEstanteBase
