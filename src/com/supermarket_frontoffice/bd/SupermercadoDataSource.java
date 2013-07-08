@@ -193,7 +193,7 @@ public class SupermercadoDataSource {
     
     public void marcarProductoRecogido(short idproducto) {
         ContentValues values = new ContentValues();
-        values.put(columnasCARRITO[3], 1);
+        values.put(columnasCARRITO[2], 1);
         db.update("CARRITO", values, "idproducto="+idproducto, null);
     }
 

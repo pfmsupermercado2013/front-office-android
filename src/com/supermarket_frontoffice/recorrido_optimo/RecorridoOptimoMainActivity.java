@@ -1,7 +1,7 @@
 package com.supermarket_frontoffice.recorrido_optimo;
 
-import com.supermarket_frontoffice.MainActivity;
 import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.bd.SupermercadoDataSource;
 import com.supermarket_frontoffice.lista_compra.CarritoCompraActivity;
 import com.supermarket_frontoffice.lista_compra.InformacionProductoActivity;
 import com.supermarket_frontoffice.lista_compra.LeerCodigoBarrasActivity;
@@ -9,7 +9,6 @@ import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
 import com.supermarket_frontoffice.recorrido_optimo.gl.GLSupermarketMapSurfaceView;
-import com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario.GLEstanteria;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -18,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -94,6 +94,15 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( 0 ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
 				m_CurrentProductoCarritoCompra= 0;
 			}
+			
+			///
+			/// Se activa los botones 
+			///
+			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setVisibility( 1 ); 
+			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setVisibility( 1 ); 
+			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setVisibility( 1 );  
+			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setVisibility( 1 ); 
+			
 		}
 		else if ( m_Producto != null ) {
 			
@@ -102,7 +111,24 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 			
 			Log.d( TAG, "Mostrando texto del producto" );
 			m_TextProducto.setText( m_Producto.getNombreProducto() );
-		}
+			
+			///
+			/// Se desactiva los botones 
+			///
+//			ImageButton btnAddProducto= (ImageButton) findViewById( R.id.imgBtnAddProducto );
+//			btnAddProducto.setVisibility( 0 );
+			
+			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setEnabled( false ); 
+			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setEnabled( false ); 
+			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setEnabled( false );   
+			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setEnabled( false ); 
+			
+//			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setVisibility( 0 ); 
+//			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setVisibility( 0 ); 
+//			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setVisibility( 0 );  
+//			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setVisibility( 0 ); 
+			
+		} // end if
 
 		
 		
@@ -212,11 +238,47 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     	if ( m_CarritoCompra != null ) {
     		
     		Log.d( TAG, "Se añadido el producto id " + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getId() + " al carrito de la compra." );
-    	}
-    	else if ( m_Producto != null ) {
     		
-    		Log.d( TAG, "Se añadido el producto id " + m_Producto.getId() + " al carrito de la compra." );
+    		
+    		SupermercadoDataSource bd = new SupermercadoDataSource(this);
+    		bd.open();
+    		bd.marcarProductoRecogido( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getId() );
+    		bd.close();
+    		
+    		m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).setRecogido( 1 );
+    		m_MapSurfaceView.setCarritoCompra( m_CarritoCompra );
+    		
+    		
+    		if  ( m_CarritoCompra.getListaCompra().size() > 0 ) {
+    			
+    			if ( m_CurrentProductoCarritoCompra > 0 ) {
+    				
+        			--m_CurrentProductoCarritoCompra;
+        			ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
+    				
+        			m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
+    				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+        			
+    			}
+    			else {
+    				
+    				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
+    				
+    				ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
+    				
+    	  			m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
+    				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+        			
+    			}
+    		}
+    		else {
+    					
+	  			m_TextProducto.setText( "Carrito de la compra vacío" );
+				//m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+    		} 				
+    		
     	}
+
 
     
     } // onClickMostrarCarrito
@@ -281,14 +343,25 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 		
     	if ( m_CarritoCompra != null ) {
 		
+    		//boolean actualizado= false;
+    		
     		++m_CurrentProductoCarritoCompra;
-			if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
-			     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
-			
+    		while ( ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+   			     ( m_CurrentProductoCarritoCompra >= 0 ) && ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 )) ) {
+    				
+    			++m_CurrentProductoCarritoCompra;
+    		}
+    		
+    		
+    		if  (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+      			 ( m_CurrentProductoCarritoCompra >= 0 ) ) {
+    			
+				ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
+				
 				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
-				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getNombreProducto() );
+				m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
 				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
-			}
+    		}
 			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
 				
 				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
@@ -297,8 +370,40 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 				
 				m_CurrentProductoCarritoCompra= 0;
 			}
-			
-		}
+    		
+    	}
+    		
+//    		++m_CurrentProductoCarritoCompra;
+//			if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+//			     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
+//				
+//				if ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 ) {
+//					
+//					++m_CurrentProductoCarritoCompra;
+//					
+//				}
+//				
+//				if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+//					     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
+//				
+//					ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
+//					
+//					//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+//					m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
+//					m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+//				}
+//			}
+//			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
+//				
+//				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
+//			}
+//			else if ( m_CurrentProductoCarritoCompra < 0 ) {
+//				
+//				m_CurrentProductoCarritoCompra= 0;
+//				
+//			}
+//	
+//    	}
 	    
     }
     
@@ -310,19 +415,28 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     public void onClickPreviousProducto( View v ) 
     {
 		
+    	
     	if ( m_CarritoCompra != null ) {
-		
-    		--m_CurrentProductoCarritoCompra;
     		
-			if (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) && ( m_CurrentProductoCarritoCompra >= 0 ) ){
-			
-
-				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
-				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getNombreProducto() );
-
-				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+    		//boolean actualizado= false;
+    		
+    		--m_CurrentProductoCarritoCompra;
+    		while ( ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+   			     ( m_CurrentProductoCarritoCompra >= 0 ) && ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 )) ) {
+    				
+    			--m_CurrentProductoCarritoCompra;
+    		}
+    		
+    		
+    		if  (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+      			 ( m_CurrentProductoCarritoCompra >= 0 ) ) {
+    			
+				ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
 				
-			}
+				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+				m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
+				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+    		}
 			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
 				
 				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
@@ -331,10 +445,38 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 				
 				m_CurrentProductoCarritoCompra= 0;
 			}
-			
-		}
+    	}
+    	
+//    	if ( m_CarritoCompra != null ) {
+//		
+//    		--m_CurrentProductoCarritoCompra;
+//    		
+//			if (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) && ( m_CurrentProductoCarritoCompra >= 0 ) ){
+//			
+//				if ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 ) {
+//					
+//					--m_CurrentProductoCarritoCompra;
+//					
+//				}
+//
+//				//m_TextProducto.setText( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getNombreProducto() );
+//				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getNombreProducto() );
+//
+//				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+//				
+//			}
+//			else if ( m_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) {
+//				
+//				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
+//			}
+//			else if ( m_CurrentProductoCarritoCompra < 0 ) {
+//				
+//				m_CurrentProductoCarritoCompra= 0;
+//			}
+//			
+//		}
 	    
-    } //
+    } // onClickPreviousProducto
     
     
 
