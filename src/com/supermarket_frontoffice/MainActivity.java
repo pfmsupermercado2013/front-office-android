@@ -65,8 +65,13 @@ public class MainActivity extends Activity
 		Log.d("Supermercado-Main", "Se pulso recorrido optimo");
 		
 		SupermercadoDataSource bd = new SupermercadoDataSource(this);
+		Log.d("Supermercado-Main", "Se abre la base de datos");
 		bd.open();
+		
+		Log.d("Supermercado-Main", "Antes de obtener el carrito de la compra");
 		CarritoCompra carrito = bd.getCarrito(); 
+		
+		Log.d("Supermercado-Main", "Se cierra la base de datos");
 		bd.close();
 		
 		Log.d("Supermercado-Main", "Se mando el siguiente Carrito: "+carrito.toString());

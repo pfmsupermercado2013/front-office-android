@@ -36,7 +36,7 @@ public class SplashActivity extends Activity {
   db.execSQL("DROP TABLE IF EXISTS PAYBOX");
   db.execSQL("DROP TABLE IF EXISTS CATEGORIA");
   db.execSQL("DROP TABLE IF EXISTS PRODUCTO");
-  
+  //db.execSQL("DROP TABLE IF EXISTS CARRITO");
   
   //Tablas que crearemos
   String sqlNFC = "CREATE TABLE NFC (codigo TEXT)";

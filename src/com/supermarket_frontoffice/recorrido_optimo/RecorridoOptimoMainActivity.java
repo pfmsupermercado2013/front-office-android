@@ -57,6 +57,7 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 	protected void onCreate( Bundle savedInstanceState ) 
 	{
 	    
+		Log.d( TAG, "Inicializado recorrido óptimo!");
 		super.onCreate( savedInstanceState );
 		
 		setContentView( R.layout.activity_recorrido_optimo_main );

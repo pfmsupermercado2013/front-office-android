@@ -54,7 +54,7 @@ public class GLMobiliario extends GLBaseObject
 		m_GLEstanterias= new ArrayList< GLEstanteria >();
 				
 		m_GLMuebleCajaSupermercado= new GLMuebleCajaSupermercado( a_Context, new GLVertice( 300.f / 100.f, -40.f / 100.f, 0.f ), 90.f );
-		m_GLFlechaLocalizacionProducto= new GLFlechaLocalizacionProducto( a_Context,  new GLVertice( 350.f / 100.f, -40.f / 100.f, 100.f / 100.f ) );
+		m_GLFlechaLocalizacionProducto= new GLFlechaLocalizacionProducto( a_Context/*,  new GLVertice( 350.f / 100.f, -40.f / 100.f, 100.f / 100.f ) */ );
 		this.createGLObject();
 		
 	} // GLMobiliario
@@ -122,8 +122,11 @@ public class GLMobiliario extends GLBaseObject
 		
 		//a_Gl.glTranslatef( -800.f / 100.f, 0.f, 500.f / 100.f );
 		//a_Gl.glTranslatef( 850.f / 100.f, 100.f / 100.f, -500.f / 100.f );
-		
+		a_Gl.glTranslatef( 350.f / 100.f, 100.f / 100.f, -40.f / 100.f );
+		//new GLVertice( 350.f / 100.f, -40.f / 100.f, 100.f / 100.f )
 		m_GLFlechaLocalizacionProducto.draw( a_Gl );
+		
+		a_Gl.glTranslatef( - ( 350.f / 100.f), -(100.f / 100.f), -(-40.f / 100.f ) );
 		
 		//m_Seccion.draw( a_Gl );
 	} // draw
