@@ -1,6 +1,10 @@
 package com.supermarket_frontoffice.recorrido_optimo;
 
+import com.supermarket_frontoffice.MainActivity;
 import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.lista_compra.CarritoCompraActivity;
+import com.supermarket_frontoffice.lista_compra.InformacionProductoActivity;
+import com.supermarket_frontoffice.lista_compra.LeerCodigoBarrasActivity;
 import com.supermarket_frontoffice.modelo_datos.CarritoCompra;
 import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
@@ -124,8 +128,99 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 		
 		return true;
 	}
-
 	
+	
+	
+    /**
+     * 
+     * @param v
+     */
+    public void onClickInfoProducto( View v ) 
+    {
+		
+		///
+		/// Se pasa el objeto CarritoCompra al activity que se abre.
+		///
+		Intent intent = new Intent( RecorridoOptimoMainActivity.this, InformacionProductoActivity.class );
+
+		
+    	if ( m_CarritoCompra != null ) {
+    		
+			if ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+			     ( m_CurrentProductoCarritoCompra >= 0 ) ) {
+							
+				intent.putExtra("idproducto", m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getId() );	
+			}
+
+			
+		}
+    	else if ( m_Producto != null ) {
+    		
+    		intent.putExtra("idproducto", m_Producto.getId() );	
+    	}
+		
+		startActivity( intent );
+	    
+	    
+	    
+    } // onClickMostrarCarrito
+	
+    /**
+     * 
+     * @param v
+     */
+    public void onClickMostrarCarrito( View v ) 
+    {
+		
+		///
+		/// Se pasa el objeto CarritoCompra al activity que se abre.
+		///
+		Intent intent = new Intent( RecorridoOptimoMainActivity.this, CarritoCompraActivity.class );
+	    startActivity( intent );
+    
+    } // onClickMostrarCarrito
+
+    
+
+    /**
+     * 
+     * @param v
+     */
+    public void onClickCodigoBarras( View v ) 
+    {
+		
+		///
+		/// Se pasa el objeto CarritoCompra al activity que se abre.
+		///
+		Intent intent = new Intent( RecorridoOptimoMainActivity.this, LeerCodigoBarrasActivity.class );
+	    startActivity( intent );
+    
+    } // onClickMostrarCarrito
+	
+    
+    
+    /**
+     * 
+     * @param v
+     */
+    public void onClickProductoAnyadido( View v ) 
+    {
+		
+		///
+		/// Se da por añadido a la carrito de la compra un producto
+		///
+    	if ( m_CarritoCompra != null ) {
+    		
+    		Log.d( TAG, "Se añadido el producto id " + m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getProducto().getId() + " al carrito de la compra." );
+    	}
+    	else if ( m_Producto != null ) {
+    		
+    		Log.d( TAG, "Se añadido el producto id " + m_Producto.getId() + " al carrito de la compra." );
+    	}
+
+    
+    } // onClickMostrarCarrito
+    
 	
 	/**
 	 * 

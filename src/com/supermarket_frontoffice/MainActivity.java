@@ -97,18 +97,18 @@ public class MainActivity extends Activity
 
 		Log.d("Supermercado-Main", "Se pulso recorrido optimo");
 
-		//Ejemplo a fuego
+//		//Ejemplo a fuego
 //		Producto p1 = new Producto((short)1, "Coca-Cola 2L", "Coca-Cola", (short)1, "1222332234","Refresco", 0.44f,new LocalizacionProducto( (short)1,  (short)2,  (short)3 ) );
 //		Producto p2 = new Producto((short)2, "Coca-Cola 33cl", "Pepsi-Cola", (short)1, "567623812","Refresco", .40f, new LocalizacionProducto( (short)3,  (short)9,  (short)2 ));
 //		Producto p3 = new Producto((short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ));
+//		//Producto p3 = new Producto((short)3, "Ron Arehucas", "Arehucas", (short)4, "987746311","Alcohol", 11.4f, new LocalizacionProducto( (short)4,  (short)5,  (short)1 ));
 //
+//		
 //		CarritoCompra carrito= new CarritoCompra( (short)187 );
-//		ProductoCarrito producto1= new ProductoCarrito(p1, (short)1,0 );
-//		ProductoCarrito producto2= new ProductoCarrito(p2, (short)2,0 );
-//		ProductoCarrito producto3= new ProductoCarrito(p3, (short)1,0 );
-//		carrito.addProducto( producto1 );
-//		carrito.addProducto( producto2 );
-//		carrito.addProducto( producto3 );
+//
+//		carrito.addProducto( new ProductoCarrito(p1, (short)1,0 )  );
+//		carrito.addProducto( new ProductoCarrito(p2, (short)2,0 ) );
+//		carrito.addProducto( new ProductoCarrito(p3, (short)1,0 ) );
 
 		SupermercadoDataSource bd = new SupermercadoDataSource(this);
 		bd.open();

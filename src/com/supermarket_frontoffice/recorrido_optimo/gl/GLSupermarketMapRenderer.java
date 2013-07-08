@@ -120,6 +120,8 @@ public class GLSupermarketMapRenderer implements Renderer
 			m_VectorInicial.setY( 0.0f ); 
 			m_VectorInicial.setZ( -350.0f / 100.f ); 
 			
+			m_VectorPosicionCentroPuerta= new GLVertice();
+			
 		}
 		else {
 			
@@ -141,6 +143,41 @@ public class GLSupermarketMapRenderer implements Renderer
 		}
 		
 
+		
+		if ( m_Producto != null ) {
+			
+			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_Producto.getLocalizacion(), true );
+			
+			if ( m_vectorInicialProducto != null ) {
+				
+				Log.d( TAG, "[Producto] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+			}
+			else {
+				
+				Log.d( TAG, "[Producto] Despues de localizarProducto => m_vectorInicialProducto == null" );
+			}
+							
+		}
+		
+		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
+			
+			
+			this.ordenarCarrito();
+			
+			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getLocalizacion(), true );
+			
+			
+			if ( m_vectorInicialProducto != null ) {
+				
+				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+			}
+			else {
+				
+				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => m_vectorInicialProducto == null" );
+			}
+			
+		}
+		
 		
 		
 	} // initialize
@@ -167,40 +204,39 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		m_GLSupermercado= new GLSupermercado( m_Context, m_XmlResoursesSupermercado.getSupermercado() );
 
-		if ( m_Producto != null ) {
-			
-			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_Producto.getLocalizacion(), true );
-			
-			if ( m_vectorInicialProducto != null ) {
-				
-				Log.d( TAG, "[Producto] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
-			}
-			else {
-				
-				Log.d( TAG, "[Producto] Despues de localizarProducto => m_vectorInicialProducto == null" );
-			}
-			
-//			if (coordenadaProducto != null ) {
+//		if ( m_Producto != null ) {
+//			
+//			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_Producto.getLocalizacion(), true );
+//			
+//			if ( m_vectorInicialProducto != null ) {
 //				
-//				m_VectorInicial= coordenadaProducto;
+//				Log.d( TAG, "[Producto] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
 //			}
-					
-		}
-		
-		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
-			
-			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getLocalizacion(), true );
-			
-			if ( m_vectorInicialProducto != null ) {
-				
-				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
-			}
-			else {
-				
-				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => m_vectorInicialProducto == null" );
-			}
-			
-		}
+//			else {
+//				
+//				Log.d( TAG, "[Producto] Despues de localizarProducto => m_vectorInicialProducto == null" );
+//			}
+//							
+//		}
+//		
+//		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
+//			
+//			
+//			this.ordenarCarrito();
+//			
+//			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getLocalizacion(), true );
+//			
+//			
+//			if ( m_vectorInicialProducto != null ) {
+//				
+//				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => Vector inicial del producto =>" + m_vectorInicialProducto.toString() );
+//			}
+//			else {
+//				
+//				Log.d( TAG, "[CarritoCompra] Despues de localizarProducto => m_vectorInicialProducto == null" );
+//			}
+//			
+//		}
 		
 		return true;
 		
@@ -259,7 +295,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		//Log.d( "GLSupermarketMapRendered", "Dibujando escenario ... " );
 		
-		if ( m_vectorInicialProducto != null ) {
+		if ( ( this.m_Producto != null ) && ( m_vectorInicialProducto != null ) ) {
 			
 			//Log.d( TAG, "Vector inicial del producto =>" + m_vectorInicialProducto.toString() );			
 			m_VectorInicial= m_vectorInicialProducto;
@@ -385,47 +421,100 @@ public class GLSupermarketMapRenderer implements Renderer
      * 
      * @param v
      */
-    public boolean ordenarCarrito(   ) 
+    public void ordenarCarrito(   ) 
     {
     	
 		if ( ( m_CarritoCompra == null ) || ( m_CarritoCompra.getListaCompra().isEmpty() ) ) {
 				
-			return false;
+			return;
 		}
+		
+		
 		
 		///
 		/// Calcula la posición inicial. El centro de la puerta
 		///
-		GLVertice posicionInicial= ( m_VectorPosicionCentroPuerta == null )? new GLVertice(): m_VectorPosicionCentroPuerta;
 		
+		Log.d(TAG, "Ordenación del carrito de la compra. ");
 		
 		ArrayList< ProductoCarrito > listaProductos= m_CarritoCompra.getListaCompra();
 		ArrayList< ProductoCarrito > listaOrdenadaProductos= new ArrayList< ProductoCarrito >();
 		 
-		GLVertice posVectorActual= null; 
-		GLVertice posVectorAnterior= null;
+//		GLVertice posVectorActual= null; 
+//		GLVertice posVectorAnterior= null;
 		
-////		for ( ProductoCarrito producto: listaProductos ) {
-////			
-////			posVectorActual= m_GLSupermercado.getGLMobiliario().localizarProducto( producto.getLocalizacion(), false );
-////			
-//			if ( ( posVectorAnterior == null ) || ( ) )  {
-////				
-////				listaOrdenadaProductos.
-////			}
-////		}
+		///
+		/// Se comienza buscando el producto más próximo a la puerta
+		/// 
+		GLVertice posInicial= m_VectorPosicionCentroPuerta;
+		ProductoCarrito  productoProximo= null;
 		
-		
-		
+		while ( !listaProductos.isEmpty() ) {
 			
-		 
-		 
-    	
+			productoProximo= this.buscaProductoProximo( posInicial, listaProductos );
+			
+			if ( productoProximo == null ) {
+			
+				Log.d(TAG, "El producto encontrado es null! ");
+				return;
+			}	
+			
+			listaOrdenadaProductos.add( productoProximo );
+			posInicial= m_GLSupermercado.getGLMobiliario().localizarProducto( productoProximo.getProducto().getLocalizacion(), false );
+			
+			
+		}
 		
+		m_CarritoCompra.setListaCompra( listaOrdenadaProductos );
 		
-    	return true;
     } // ordenarCarrito
 
+    
+    /** BUsca el producto más cercano a la posición especificada a partir de una lista pasada
+     *  Elimina el producto de la lista
+     * 
+     * @param a_Posicion
+     * @param a_ListaProductos
+     * @return Devuelve el producto más cercano. Si la lista esta vacía, devuelve null.
+     */
+    public ProductoCarrito buscaProductoProximo( 	GLVertice 					 a_Posicion,
+    												ArrayList< ProductoCarrito > a_ListaProductos )
+    {
+    	
+    	if ( ( a_ListaProductos == null ) || a_ListaProductos.isEmpty() ) {
+    		
+    		return null;
+    	}
+    	
+    	Log.d(TAG, "buscaProductoProximo => Posicion: " + a_Posicion.toString()  );
+    	
+    	
+    	double moduloActual= 0.f;
+    	double moduloAnterior= 0.f;
+    	int posicionProducto= 0;
+    	int i= 0;
+		for ( ProductoCarrito producto: a_ListaProductos ) {
+			
+			moduloActual= a_Posicion.module( m_GLSupermercado.getGLMobiliario().localizarProducto( producto.getProducto().getLocalizacion(), false ) );
+			
+			Log.d(TAG, "Producto: " + producto.toString() + "==> Modulo: " + moduloActual );
+			
+			if ( ( moduloAnterior == 0.f ) || moduloAnterior > moduloActual ) {
+				
+				moduloAnterior= moduloActual;
+				posicionProducto= i;
+			}
+			
+			++i;
+		}
+		
+		ProductoCarrito producto= a_ListaProductos.remove( posicionProducto );
+		Log.d( TAG, "Producto más proximo al [" + a_Posicion.toString() + "] es " + producto.toString() + "[Modulo:" + moduloAnterior + "]" );
+		
+		return producto;
+    	
+    } // buscaProductoProximo
+    
 	
 	/**
 	 * 
