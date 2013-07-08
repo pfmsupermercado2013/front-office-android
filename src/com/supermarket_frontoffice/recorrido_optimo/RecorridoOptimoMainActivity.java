@@ -118,6 +118,10 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 				m_TextProducto.setText( "(" + m_CarritoCompra.getListaCompra().get( 0 ).getCantidad() + ")" +  m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getNombreProducto() );
 				m_CurrentProductoCarritoCompra= 0;
 			}
+			else {
+				
+				m_TextProducto.setText( "Carrito de la compra vacío" );
+			}
 			
 			///
 			/// Se activa los botones 
