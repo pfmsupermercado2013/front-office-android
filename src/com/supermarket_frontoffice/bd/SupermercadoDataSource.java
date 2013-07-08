@@ -188,7 +188,13 @@ public class SupermercadoDataSource {
     	short total = (short) (cantidad + productocarrito.getCantidad());
         ContentValues values = new ContentValues();
         values.put(columnasCARRITO[1], total);
-        db.update("CARRITO", values, null, null);
+        db.update("CARRITO", values, "idproducto="+idproducto, null);
+    }
+    
+    public void marcarProductoRecogido(short idproducto) {
+        ContentValues values = new ContentValues();
+        values.put(columnasCARRITO[3], 1);
+        db.update("CARRITO", values, "idproducto="+idproducto, null);
     }
 
     private Categoria cursorToCategoria(Cursor cursor) {

@@ -3,6 +3,9 @@ package com.supermarket_frontoffice.lista_compra;
 import java.util.ArrayList;
 
 import com.supermarket_frontoffice.R;
+import com.supermarket_frontoffice.bd.SupermercadoDataSource;
+import com.supermarket_frontoffice.modelo_datos.Categoria;
+import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -103,18 +106,27 @@ public class CarritoCompraActivity extends Activity {
 	 */
 	private ArrayList< CarritoCompraItem > crearItemsCarritoCompra( )
 	{
-		
+		SupermercadoDataSource bd= new SupermercadoDataSource(this);
+		bd.open();
+		ArrayList<ProductoCarrito> productoscarrito = bd.getAllProductosCarrito();
+				
 		ArrayList< CarritoCompraItem > itemsCarritoCompra= new ArrayList< CarritoCompraItem >();
 		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Solán de Cabras (agua) 1L", "Bebidas", 20, (float) 0.53 ) );		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Tropicana (zumo naranja) 1 L", "Bebidas", 2, (float) 1.08 ) );		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Coca-Cola 2L", "Bebidas", 1, (float) 0.79 ) );		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Fanta Naranja 33cl", "Bebidas", 6, (float) 0.43 ) );		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Carbonel(oliva suave) 1L", "Aceites", 2, (float) 3.90 ) );		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Ibarra(Jeréz) 250ml", "Vinages", 1, (float) 3.16 ) );		
-		itemsCarritoCompra.add( new CarritoCompraItem( "Borges(basámilco) 250ml", "Vinages", 1, (float) 1.82 ) );
-		itemsCarritoCompra.add( new CarritoCompraItem( "Alhambra 1925 6x33cl", "Bebidas", 2, (float) 3.59 ) );
-		itemsCarritoCompra.add( new CarritoCompraItem( "Mahou 5 Estrellas (6x25cl", "Bebidas", 2, (float) 2.56 ) );
+		for( int i = 0 ; i < productoscarrito.size() ; i++ ){
+			Categoria categoria = bd.getCategoriaByID(productoscarrito.get(i).getProducto().getCategoriaId());
+			itemsCarritoCompra.add( new CarritoCompraItem( productoscarrito.get(i).getProducto().getNombreProducto(), categoria.getNombreCategoria(), productoscarrito.get(i).getCantidad(), productoscarrito.get(i).getProducto().getPrecio() ) );		
+		}
+		bd.close();
+		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Solán de Cabras (agua) 1L", "Bebidas", 20, (float) 0.53 ) );		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Tropicana (zumo naranja) 1 L", "Bebidas", 2, (float) 1.08 ) );		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Coca-Cola 2L", "Bebidas", 1, (float) 0.79 ) );		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Fanta Naranja 33cl", "Bebidas", 6, (float) 0.43 ) );		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Carbonel(oliva suave) 1L", "Aceites", 2, (float) 3.90 ) );		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Ibarra(Jeréz) 250ml", "Vinages", 1, (float) 3.16 ) );		
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Borges(basámilco) 250ml", "Vinages", 1, (float) 1.82 ) );
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Alhambra 1925 6x33cl", "Bebidas", 2, (float) 3.59 ) );
+//		itemsCarritoCompra.add( new CarritoCompraItem( "Mahou 5 Estrellas (6x25cl", "Bebidas", 2, (float) 2.56 ) );
 	
 		return itemsCarritoCompra;
 		

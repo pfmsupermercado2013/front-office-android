@@ -24,10 +24,11 @@ public class SplashActivity extends Activity {
 
   setContentView(R.layout.splash);
   
+  //AQUI EL HTTPREQUEST
+  
   
   //CREACION DE LA BBDD
-  
-  SupermercadoSQLiteHelper usdbh = new SupermercadoSQLiteHelper(this);
+    SupermercadoSQLiteHelper usdbh = new SupermercadoSQLiteHelper(this);
   SQLiteDatabase db = usdbh.getWritableDatabase();
   
   //Borramos las tablas si ya estan creadas
@@ -90,7 +91,7 @@ public class SplashActivity extends Activity {
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (10,3,'Anacardos',1.3,'Hacendado','8480000340276','Frutos secos - Anacardos',4,1,1)");
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (11,6,'Chivas Regal',20.5,'Chivas Brothers Ltd','5000299212851','Whisky escoces',1,2,1)");
 	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (12,7,'Espuma',1.5,'Garnier','8480000440242','Espuma para el pelo',2,2,1)");
-
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (13,4,'Piña en su jugo',1.2,'Juver','8410707102990','Piña en su jugo en rodajas',5,1,1)");
 
 
 	  Log.e("Supermercado-BD", "Insertado correctamente filas en PRODUCTO");
