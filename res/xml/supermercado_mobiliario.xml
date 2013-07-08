@@ -142,7 +142,7 @@
 		</estanteria> 
 		
 		
-		<estanteria id="4" x="760" y="-300" rotacion_xy="90" tipo="doble"  modelo="" >
+		<estanteria id="4" x="790" y="-300" rotacion_xy="90" tipo="simple"  modelo="" >
 		    <seccion id="1" alto="134." largo="150." ancho="45." >
 		        <estante id="1" alto="25" largo="150." ancho="45." />
 		        <estante id="2" alto="25" largo="150." ancho="45." />
@@ -167,30 +167,7 @@
 		        <estante id="3" alto="25" largo="150." ancho="45." />
 		        <estante id="4" alto="25" largo="150." ancho="45." />
 		    </seccion>      
-		    <seccion id="5" alto="134." largo="150." ancho="45." >
-		        <estante id="1" alto="25" largo="150." ancho="45." />
-		        <estante id="2" alto="25" largo="150." ancho="45." />
-		        <estante id="3" alto="25" largo="150." ancho="45." />
-		        <estante id="4" alto="25" largo="150." ancho="45." />
-		    </seccion>   
-			<seccion id="6" alto="134." largo="150." ancho="45." >
-		        <estante id="1" alto="25" largo="150." ancho="45." />
-		        <estante id="2" alto="25" largo="150." ancho="45." />
-		        <estante id="3" alto="25" largo="150." ancho="45." />
-		        <estante id="4" alto="25" largo="150." ancho="45." />
-		    </seccion>   
-   		    <seccion id="7" alto="134." largo="150." ancho="45." >
-		        <estante id="1" alto="25" largo="150." ancho="45." />
-		        <estante id="2" alto="25" largo="150." ancho="45." />
-		        <estante id="3" alto="25" largo="150." ancho="45." />
-		        <estante id="4" alto="25" largo="150." ancho="45." />
-		    </seccion>   
-			<seccion id="8" alto="134." largo="150." ancho="45." >
-		        <estante id="1" alto="25" largo="150." ancho="45." />
-		        <estante id="2" alto="25" largo="150." ancho="45." />
-		        <estante id="3" alto="25" largo="150." ancho="45." />
-		        <estante id="4" alto="25" largo="150." ancho="45." />
-		    </seccion>   		    
+		   
 		</estanteria> 
 		
 		<!-- estanteria id="2" x="0" y="-500" rotacion_xy="-90" tipo="simple"  modelo="" >
