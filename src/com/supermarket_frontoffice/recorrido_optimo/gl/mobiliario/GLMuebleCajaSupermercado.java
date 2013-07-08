@@ -1,11 +1,14 @@
 package com.supermarket_frontoffice.recorrido_optimo.gl.mobiliario;
 
 
+import javax.microedition.khronos.opengles.GL10;
+
 import android.content.Context;
 import com.supermarket_frontoffice.R;
 import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLColor;
 import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLResourceObject;
 import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLResourcesObjects;
+import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLVertice;
 
 
 /** @GLMuebleCajaSupermercado
@@ -17,12 +20,17 @@ import com.supermarket_frontoffice.recorrido_optimo.gl.comun.GLResourcesObjects;
  */
 public class GLMuebleCajaSupermercado  extends GLResourcesObjects
 {
+	
+	private GLVertice 	m_PosicionMueble;
+	private float 		m_RotacionXYMueble;
 
 	/** Constructor
 	 * 
 	 * @param a_Context
 	 */
-	public GLMuebleCajaSupermercado( Context a_Context )
+	public GLMuebleCajaSupermercado( Context a_Context,
+			GLVertice 	a_PosicionMueble,
+			float 		a_RotacionXYMueble )
 	{
 		
 		///
@@ -33,7 +41,11 @@ public class GLMuebleCajaSupermercado  extends GLResourcesObjects
 				R.array.gl_mueble_caja_borde_amarillo_normales,
 				R.array.gl_mueble_caja_borde_amarillo_caras );
 		
+		
 		super.setDefaultColor( new GLColor( 130.f, 127.f, 0.f, 1.f ) );
+		
+		m_PosicionMueble= a_PosicionMueble;
+		m_RotacionXYMueble= a_RotacionXYMueble;
 		
 		///
 		/// Se añade los componentes restantes de la caja
@@ -127,5 +139,24 @@ public class GLMuebleCajaSupermercado  extends GLResourcesObjects
 	} // addComponent
 	
 
+	
+	/** Método abstracto que debe redefinir las clases que lo hereran
+	 * 
+	 * @param a_Gl
+	 */
+	public void draw( GL10 a_Gl )
+	{
+		
+		
+		a_Gl.glTranslatef( this.m_PosicionMueble.getX(), 0.f, this.m_PosicionMueble.getY() );
+		a_Gl.glRotatef( this.m_RotacionXYMueble, 0, 1, 0 );
+		
+		super.draw( a_Gl );
+		
+		a_Gl.glRotatef( -this.m_RotacionXYMueble, 0, 1, 0 );
+		a_Gl.glTranslatef( -this.m_PosicionMueble.getX(), 0.f, -this.m_PosicionMueble.getY() );
+		
+	
+	} // draw 
 	
 }

@@ -2,46 +2,198 @@
 <supermercado>
     
 	  <mobiliario>
-		<estanteria id="1" x="50" y="0" rotacion_xy="0" tipo="simple"  modelo="" >
-		    <seccion id="1" alto="135.192" largo="64.005" ancho="33.768" >
-		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
+	  
+		<estanteria id="1" x="15" y="-900" rotacion_xy="-90" tipo="simple"  modelo="" >
+		    <seccion id="1" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
 		    </seccion>    
-		    <seccion id="2" alto="135.192" largo="64.005" ancho="33.768" >
-		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
-		    </seccion>    
-		    <seccion id="3" alto="135.192" largo="64.005" ancho="33.768" >
-		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
+		    <seccion id="2" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>        
+		    <seccion id="3" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
 		    </seccion>   
-		    <seccion id="4" alto="135.192" largo="64.005" ancho="33.768" >
-		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
-		    </seccion>    
-		    <seccion id="5" alto="135.192" largo="64.005" ancho="33.768" >
-		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
-		    </seccion>    
-		    <seccion id="6" alto="135.192" largo="64.005" ancho="33.768" >
-		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
-		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
-		    </seccion>    		    		    
+		    <seccion id="4" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>      
+		    <seccion id="5" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+   		    		    
 		</estanteria>  
 		
-		<estanteria id="2" x="0" y="-500" rotacion_xy="-90" tipo="simple"  modelo="" >
+		
+		<estanteria id="2" x="230" y="-300" rotacion_xy="90" tipo="doble"  modelo="" >
+		    <seccion id="1" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>    
+		    <seccion id="2" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>        
+		    <seccion id="3" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+		    <seccion id="4" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>      
+		    <seccion id="5" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+			<seccion id="6" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+   		    <seccion id="7" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+			<seccion id="8" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   		    
+		</estanteria>  
+		
+		
+		<estanteria id="3" x="460" y="-300" rotacion_xy="90" tipo="doble"  modelo="" >
+		    <seccion id="1" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>    
+		    <seccion id="2" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>        
+		    <seccion id="3" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+		    <seccion id="4" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>      
+		    <seccion id="5" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+			<seccion id="6" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+   		    <seccion id="7" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+			<seccion id="8" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   		    
+		</estanteria> 
+		
+		
+		<estanteria id="4" x="760" y="-300" rotacion_xy="90" tipo="doble"  modelo="" >
+		    <seccion id="1" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>    
+		    <seccion id="2" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>        
+		    <seccion id="3" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+		    <seccion id="4" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>      
+		    <seccion id="5" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+			<seccion id="6" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+   		    <seccion id="7" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   
+			<seccion id="8" alto="134." largo="150." ancho="45." >
+		        <estante id="1" alto="25" largo="150." ancho="45." />
+		        <estante id="2" alto="25" largo="150." ancho="45." />
+		        <estante id="3" alto="25" largo="150." ancho="45." />
+		        <estante id="4" alto="25" largo="150." ancho="45." />
+		    </seccion>   		    
+		</estanteria> 
+		
+		<!-- estanteria id="2" x="0" y="-500" rotacion_xy="-90" tipo="simple"  modelo="" >
 		    <seccion id="1" alto="135.192" largo="64.005" ancho="33.768" >
 		        <estante id="1" alto="25" largo="64.005" ancho="33.768" />
 		        <estante id="2" alto="25" largo="64.005" ancho="33.768" />
@@ -275,9 +427,23 @@
 		        <estante id="3" alto="25" largo="64.005" ancho="33.768" />
 		        <estante id="4" alto="25" largo="64.005" ancho="33.768" />
 		    </seccion>   
-		</estanteria>  
+		</estanteria -->  
     
     </mobiliario>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
     <!-- mobiliario>
 		<estanteria id="1" x="50" y="0" rotacion_xy="0" tipo="simple"  modelo="" >

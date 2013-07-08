@@ -82,7 +82,6 @@ public class GLResourcesObjects extends GLResourceObject
 	public void draw( GL10 a_Gl )
 	{
 		
-		
 		super.draw( a_Gl );
 		
 		

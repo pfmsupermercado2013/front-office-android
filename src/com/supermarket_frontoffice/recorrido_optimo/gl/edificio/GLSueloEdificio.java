@@ -41,7 +41,7 @@ public class GLSueloEdificio extends GLBaseObject
 		
 		
 		//this( 0.f, 0.f, 0.f );
-		this( a_ListaParedes, 28000.f, 28000.f, 30.f );
+		this( a_ListaParedes, 28000.f, 28000.f, 40.f );
 		
 		m_ListaBaldosas= new ArrayList< GLBaldosaSueloEdificio >();
 	} // GLSueloEdificio
