@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -96,6 +97,35 @@ public class CarritoCompraActivity extends Activity {
     	}
     	else {
     		layout.setBackgroundColor( res.getColor( R.color.grey2 ) );
+    	}
+    	
+    }
+    
+    
+    @SuppressLint("ResourceAsColor")
+	public void onClickDetallarProducto( View a_View ) 
+    {
+    	 	
+    	ImageView imgView= (ImageView) a_View.findViewById( R.id.imageDetallarProducto );
+    	
+    	//CheckBox ckBoxView= (CheckBox) a_View.findViewById( R.id.checkBoxItem );
+    	LinearLayout layout= (LinearLayout) imgView.getParent().getParent( ); 
+    	
+    	CheckBox ckBoxView= (CheckBox) layout.findViewById( R.id.checkBoxItem );
+
+    	Resources res= getResources();
+    	if ( ckBoxView.isChecked() ) 
+    	{
+    		ckBoxView.setTextColor( res.getColor( R.color.blue ));
+    		//ckBoxView.setText( "(" + ckBoxView.getText() + ")" ); // setBackgroundColor( res.getColor( R.color.blue2 ) );
+    		//layout.setBackgroundColor( res.getColor( R.color.green2 ) );
+    	}
+    	else {
+    		
+    		ckBoxView.setTextColor( res.getColor( R.color.green ));
+    		//ckBoxView.setText( ckBoxView.getText() );
+    		//ckBoxView.setBackgroundColor( res.getColor( R.color.grey2 ) );
+    		//layout.setBackgroundColor( res.getColor( R.color.grey2 ) );
     	}
     	
     }

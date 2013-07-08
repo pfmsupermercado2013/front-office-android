@@ -162,7 +162,7 @@ public class GLSupermarketMapRenderer implements Renderer
 		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
 			
 			
-			this.ordenarCarrito();
+			//this.ordenarCarrito();
 			
 			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getLocalizacion(), true );
 			

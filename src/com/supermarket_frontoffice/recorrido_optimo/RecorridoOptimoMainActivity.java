@@ -118,15 +118,15 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
 //			ImageButton btnAddProducto= (ImageButton) findViewById( R.id.imgBtnAddProducto );
 //			btnAddProducto.setVisibility( 0 );
 			
-			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setEnabled( false ); 
-			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setEnabled( false ); 
-			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setEnabled( false );   
-			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setEnabled( false ); 
+//			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setEnabled( false ); 
+//			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setEnabled( false ); 
+//			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setEnabled( false );   
+//			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setEnabled( false ); 
 			
-//			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setVisibility( 0 ); 
-//			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setVisibility( 0 ); 
-//			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setVisibility( 0 );  
-//			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setVisibility( 0 ); 
+			((ImageButton) findViewById( R.id.imgBtnAddProducto )).setVisibility( 0 ); 
+			((ImageButton) findViewById( R.id.imgDeleteAddProducto )).setVisibility( 0 ); 
+			((ImageButton) findViewById( R.id.imgBtnNextProducto )).setVisibility( 0 );  
+			((ImageButton) findViewById( R.id.imgBtnPreviousProducto )).setVisibility( 0 ); 
 			
 		} // end if
 
@@ -253,28 +253,31 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     			
     			if ( m_CurrentProductoCarritoCompra > 0 ) {
     				
-        			--m_CurrentProductoCarritoCompra;
-        			ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
     				
-        			m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
-    				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+    				this.onClickPreviousProducto( v );
+//        			--m_CurrentProductoCarritoCompra;
+//        			ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
+//    				
+//        			m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
+//    				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
         			
     			}
     			else {
     				
-    				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
-    				
-    				ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
-    				
-    	  			m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
-    				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+    				this.onClickNextProducto( v );
+//    				m_CurrentProductoCarritoCompra= m_CarritoCompra.getListaCompra().size() - 1;
+//    				
+//    				ProductoCarrito productoCarrito=  m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra );
+//    				
+//    	  			m_TextProducto.setText( "(" +productoCarrito.getCantidad() + ")" + productoCarrito.getProducto().getNombreProducto() );
+//    				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
         			
     			}
     		}
     		else {
     					
 	  			m_TextProducto.setText( "Carrito de la compra vacío" );
-				//m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
+				m_MapSurfaceView.getMapRenderer().updateProductoCarritoCompra( m_CurrentProductoCarritoCompra );
     		} 				
     		
     	}
@@ -342,16 +345,15 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     {
 		
     	if ( m_CarritoCompra != null ) {
-		
-    		//boolean actualizado= false;
+			
     		
-    		++m_CurrentProductoCarritoCompra;
-    		while ( ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
-   			     ( m_CurrentProductoCarritoCompra >= 0 ) && ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 )) ) {
-    				
+    		do {
+    			
     			++m_CurrentProductoCarritoCompra;
     		}
-    		
+    		while ( ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+      			     ( m_CurrentProductoCarritoCompra >= 0 ) && ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 )) );
+
     		
     		if  (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
       			 ( m_CurrentProductoCarritoCompra >= 0 ) ) {
@@ -420,14 +422,15 @@ public class RecorridoOptimoMainActivity extends Activity implements OnSeekBarCh
     		
     		//boolean actualizado= false;
     		
-    		--m_CurrentProductoCarritoCompra;
-    		while ( ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
-   			     ( m_CurrentProductoCarritoCompra >= 0 ) && ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 )) ) {
-    				
+    		
+    		do {
+    			
     			--m_CurrentProductoCarritoCompra;
-    		}
+    		} 
+    		while ( ( ( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
+      			     ( m_CurrentProductoCarritoCompra >= 0 ) && ( m_CarritoCompra.getListaCompra().get( m_CurrentProductoCarritoCompra ).getRecogido() == 1 )) );
     		
-    		
+		
     		if  (( m_CurrentProductoCarritoCompra < m_CarritoCompra.getListaCompra().size() ) &&
       			 ( m_CurrentProductoCarritoCompra >= 0 ) ) {
     			
