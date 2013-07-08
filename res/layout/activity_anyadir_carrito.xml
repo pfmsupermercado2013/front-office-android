@@ -46,7 +46,9 @@
    	        <ImageView
    	            android:layout_width="wrap_content"
    	            android:layout_height="wrap_content"
+   	            android:onClick="onClickCarritoCompra"
    	            android:src="@drawable/ic_carrito_compra" />
+
    	    </LinearLayout>
 
    	    <!--   SUB-CABECERA DE LA PÁGINA-->
@@ -76,12 +78,14 @@
    	            android:layout_height="32dp"
    	            android:layout_gravity="right|center_vertical"
    	            android:layout_marginLeft="30dp"
+   	            android:onClick="onClickGeolocalizarProducto"
    	            android:src="@android:drawable/ic_menu_view" />
 
    	        <ImageView
    	            android:layout_width="32dp"
    	            android:layout_height="32dp"
    	            android:layout_marginLeft="0dp"
+   	            android:onClick="onClickDetallarProducto"
    	            android:src="@android:drawable/ic_menu_info_details" />
 
    	    </LinearLayout>

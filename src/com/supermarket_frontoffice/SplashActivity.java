@@ -36,14 +36,14 @@ public class SplashActivity extends Activity {
   db.execSQL("DROP TABLE IF EXISTS PAYBOX");
   db.execSQL("DROP TABLE IF EXISTS CATEGORIA");
   db.execSQL("DROP TABLE IF EXISTS PRODUCTO");
-  db.execSQL("DROP TABLE IF EXISTS CARRITO");
+  
   
   //Tablas que crearemos
   String sqlNFC = "CREATE TABLE NFC (codigo TEXT)";
   String sqlPAYBOX = "CREATE TABLE PAYBOX (codigo TEXT)";
   String sqlCATEGORIA = "CREATE TABLE CATEGORIA (idcategoria INTEGER, NombreCategoria TEXT, Descripcion TEXT)";
   String sqlPRODUCTO = "CREATE TABLE PRODUCTO (idproducto INTEGER, Categoria_Id_Categoria INTEGER, NombreProducto TEXT, Precio DECIMAL, Marca TEXT, CodigoEAN TEXT, Descripcion TEXT, idEstanteria INTEGER, idSeccion INTEGER, idEstante INTEGER)";	  
-  String sqlCARRITO = "CREATE TABLE CARRITO (idproducto INTEGER, cantidad INTEGER, recogido BOOL)";	  
+  String sqlCARRITO = "CREATE TABLE IF NOT EXISTS  CARRITO (idproducto INTEGER, cantidad INTEGER, recogido BOOL)";	  
   
   //Creamos las tablas
   db.execSQL(sqlNFC);
@@ -79,29 +79,13 @@ public class SplashActivity extends Activity {
 	  
 	  Log.e("Supermercado-BD", "Insertado correctamente filas en CATEGORIA");
 	  
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (1,1,'Vino Tempranillo',2.5,'Valdepeñas','12031304134013','Vino de Valdepeñas',1,1,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (8,1,'Vino Peleon',1.5,'Fuentes','12031324134013','Vino barato',1,1,2)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (2,2,'Chorizo',1.5,'Embutidos S.A','3131304134013','Embutido de Calidad',2,1,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (3,3,'Tigreton',2,'Grefusa','55235555','Bollo con Chocolate',3,2,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (4,4,'Tomates',0.4,'La Huerta','5232555','Tomates frescos',3,1,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (5,5,'Batidos',5,'Pascual','3255555','Batido de Chocolate',3,5,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (6,6,'Coca Cola',1,'Coca Cola S.A','13131313','Refrescon con cafeina',3,2,2)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (7,7,'Pasta de Dientes',2.3,'Colgate','34234555','Dentrifico anti-caries',3,3,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (9,7,'Fluor',3.3,'Licor del polo','343234555','Fluo',3,3,2)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (10,3,'Anacardos',1.3,'Hacendado','8480000340276','Frutos secos - Anacardos',4,1,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (11,6,'Chivas Regal',20.5,'Chivas Brothers Ltd','5000299212851','Whisky escoces',1,2,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (12,7,'Espuma',1.5,'Garnier','8480000440242','Espuma para el pelo',2,2,1)");
-	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (13,4,'Piña en su jugo',1.2,'Juver','8410707102990','Piña en su jugo en rodajas',5,1,1)");
-
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (1,5,'Batido al Cacao 200ml',0.75,'Puleva','84117205','Batido de cacao (unidad suelta)',1,1,1)");
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (2,6,'Coca Cola light 330ml',1.0,'Coca Cola','5449000050205','Refresco con cafeina baja en azucar',2,2,2)");
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (3,3,'Chips Ahoy 300g',3.2,'Chips Ahoy','8410000001013','Chips de Chocolate',3,1,2)");
+	  db.execSQL("INSERT INTO PRODUCTO (idproducto,Categoria_Id_Categoria,NombreProducto,Precio,Marca,CodigoEAN,Descripcion,idEstanteria,idSeccion,idEstante) VALUES (4,7,'Champu Stylos ',2.7,'Deliplus','8480000440617','Champu para cabello sensibles',4,3,1)");
 
 	  Log.e("Supermercado-BD", "Insertado correctamente filas en PRODUCTO");
-	  
-	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (3,6,0)");
-	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (2,1,0)");
-	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (1,2,0)");
-	  db.execSQL("INSERT INTO CARRITO (idproducto,cantidad,recogido) VALUES (11,1,0)");
-	  
-	  Log.e("Supermercado-BD", "Insertado correctamente filas en CARRITO");
+
 
   }
   db.close();

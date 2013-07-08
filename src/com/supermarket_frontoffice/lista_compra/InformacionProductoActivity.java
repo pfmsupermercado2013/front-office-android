@@ -79,4 +79,12 @@ public class InformacionProductoActivity extends Activity {
 		intent.putExtra("idproducto", producto.getId());
 		startActivity(intent);
 	}
+	
+	public void onClickCarritoCompra(View v)
+	{
+		Intent intent= new Intent(this, CarritoCompraActivity.class);
+	    startActivity(intent);	
+	}
+	
+	
 }

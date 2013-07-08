@@ -118,7 +118,9 @@
                 android:layout_height="28dp"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginLeft="50dp"
+                android:onClick="onClickBorraDeCarrito"
                 android:src="@android:drawable/ic_menu_delete" />
+
         </LinearLayout>
 
         <ListView

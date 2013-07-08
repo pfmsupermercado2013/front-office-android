@@ -48,7 +48,9 @@
    	        <ImageView
    	            android:layout_width="wrap_content"
    	            android:layout_height="wrap_content"
+   	            android:onClick="onClickCarritoCompra"
    	            android:src="@drawable/ic_carrito_compra" />
+
    	    </LinearLayout>
    	    
    	    <!--   SUB-CABECERA DE LA PÁGINA-->

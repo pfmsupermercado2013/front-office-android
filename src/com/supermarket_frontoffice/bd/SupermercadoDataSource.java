@@ -133,6 +133,25 @@ public class SupermercadoDataSource {
         return listaProductos;
     }
     
+   public Producto getProductoByNombre(String nombre) {
+        
+        Cursor cursor = db.query("PRODUCTO", columnasPRODUCTO, "NombreProducto='"+nombre+"'", null,
+                null, null, null,"1");
+    		
+        Producto productoByNombre;
+        if (cursor.getCount()==0)
+        {
+        	productoByNombre=null;
+        }
+        else
+        {
+        	cursor.moveToFirst();
+            productoByNombre = cursorToProducto(cursor);
+            cursor.close();
+        }
+        return productoByNombre;
+    }
+    
     public ArrayList<ProductoCarrito> getAllProductosCarrito() {
         ArrayList<ProductoCarrito> listaProductosCarrito = new ArrayList<ProductoCarrito>();
  
@@ -217,5 +236,13 @@ public class SupermercadoDataSource {
        }  
        ProductoCarrito productoCarrito = new ProductoCarrito(producto,cursor.getShort(1),recogido);
         return productoCarrito;
+    }
+    
+    public void borrarCarrito() {
+        db.delete("CARRITO", null, null);
+    }
+    
+    public void borrarProductoCarrito(short idproducto) {
+         db.delete("CARRITO", "idproducto = " + idproducto, null);
     }
 }

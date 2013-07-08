@@ -5,13 +5,17 @@ import com.supermarket_frontoffice.bd.SupermercadoDataSource;
 import com.supermarket_frontoffice.modelo_datos.Categoria;
 import com.supermarket_frontoffice.modelo_datos.Producto;
 import com.supermarket_frontoffice.modelo_datos.ProductoCarrito;
+import com.supermarket_frontoffice.recorrido_optimo.RecorridoOptimoMainActivity;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +80,28 @@ public class AnyadirCarritoActivity extends Activity {
 		}
 		bd.close();
 	}
+	
+	public void onClickGeolocalizarProducto(View v)
+	{
+		Log.d("Supermercado-Añadir_producto", "Se pulso geolocalizar");
+		Intent intent = new Intent( this, RecorridoOptimoMainActivity.class );
+		intent.putExtra("producto", producto );
+	    startActivity( intent );	
+	}
+	
+    public void onClickDetallarProducto(View v) {
+    	
+    	Log.d("Supermercado-Añadir_producto", "Se pulso sobre detallar");
+    	Intent intent= new Intent(this, InformacionProductoActivity.class);
+		intent.putExtra("idproducto", producto.getId());
+		startActivity(intent);
+    }
+    
+    public void onClickCarritoCompra(View v) {
+    	
+	    Intent intent= new Intent(this, CarritoCompraActivity.class);
+	    startActivity(intent);	
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -29,6 +29,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -72,24 +73,49 @@ public class CatalogoProductosActivity extends Activity
 	
 	
     public void onClickDetallarProducto(View v) {
-    	Log.d("Supermercado-Lista_Compra","Seleccionado: "+v.toString());
+    	ImageView imgView= (ImageView) v.findViewById( R.id.imageDetallarProducto );
+    	LinearLayout layout= (LinearLayout) imgView.getParent().getParent( ); 
+    	TextView txtView= (TextView) layout.findViewById( R.id.TextViewHijo01 );
+    	
+    	Log.d("Supermercado-Catalogo", "Se pulso sobre detallar "+txtView.getText());
 
-		/*
-    	Intent intent= new Intent(CatalogoProductosActivity.this, InformacionProductoActivity.class);
-	    startActivity(intent);*/	
+    	SupermercadoDataSource bd = new SupermercadoDataSource(this);
+    	bd.open();
+    	Producto producto = bd.getProductoByNombre((String) txtView.getText());
+    	bd.close();
+    	Intent intent= new Intent(this, InformacionProductoActivity.class);
+		intent.putExtra("idproducto", producto.getId());
+		startActivity(intent);
     }
     
     public void onClickAnyadirCarrito(View v) {
-    	Intent intent= new Intent(CatalogoProductosActivity.this, AnyadirCarritoActivity.class);
-	    startActivity(intent);	
+    	
+    	ImageView imgView= (ImageView) v.findViewById( R.id.imageAnyadirCarrito );
+    	LinearLayout layout= (LinearLayout) imgView.getParent().getParent( ); 
+    	TextView txtView= (TextView) layout.findViewById( R.id.TextViewHijo01 );
+    	
+    	Log.d("Supermercado-Catalogo", "Se pulso sobre añadir "+txtView.getText());
+
+    	SupermercadoDataSource bd = new SupermercadoDataSource(this);
+    	bd.open();
+    	Producto producto = bd.getProductoByNombre((String) txtView.getText());
+    	bd.close();
+		Intent intent= new Intent(this, AnyadirCarritoActivity.class);
+		intent.putExtra("idproducto", producto.getId());
+		startActivity(intent);
     }
     
     public void onClickGeolocalizarProducto(View v) {
-    	//EJEMPLO DEL PRIMER PRODUCTO
+    	ImageView imgView= (ImageView) v.findViewById( R.id.imageViewGeolocalizarProducto );
+    	LinearLayout layout= (LinearLayout) imgView.getParent().getParent( ); 
+    	TextView txtView= (TextView) layout.findViewById( R.id.TextViewHijo01 );
+    	
+    	Log.d("Supermercado-Catalogo", "Se pulso sobre geolocalizar "+txtView.getText());
+
     	SupermercadoDataSource bd = new SupermercadoDataSource(this);
     	bd.open();
-    	Producto producto = bd.getProductoByID((short)1);
-    	Log.d("Supermercado-Catalogo_Producto", "Se pulso geolocalizar");
+    	Producto producto = bd.getProductoByNombre((String) txtView.getText());
+    	bd.close();
 		Intent intent = new Intent( this, RecorridoOptimoMainActivity.class );
 		intent.putExtra("producto", producto );
 	    startActivity( intent );
@@ -115,9 +141,6 @@ public class CatalogoProductosActivity extends Activity
     }
 	
 
- 
-
- 
     private void cargarDatos( )
     {
     	
@@ -152,6 +175,12 @@ public class CatalogoProductosActivity extends Activity
     	bd.close();
     	
     }
+    
+    public void onClickCarritoCompra(View v)
+	{
+		Intent intent= new Intent(this, CarritoCompraActivity.class);
+	    startActivity(intent);	
+	}
 
 
 } // end class CatalogoProductosActivity

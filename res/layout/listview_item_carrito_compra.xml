@@ -86,7 +86,9 @@
                     android:id="@+id/imageViewDelete"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:onClick="onClickBorraDeCarritoProducto"
                     android:src="@android:drawable/ic_delete" />
+
             </LinearLayout>
         </LinearLayout>
 
