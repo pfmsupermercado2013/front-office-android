@@ -173,6 +173,8 @@ public class GLSupermarketMapSurfaceView extends GLSurfaceView
 	}
 	
 	
+
+	
 	/**
 	 * 
 	 * @param a_CarritoCompra

@@ -155,11 +155,11 @@
                 <TextView
                     android:id="@+id/textProductoRecorridoOptimo"
                     android:layout_width="168dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill_vertical|center"
                     android:layout_weight="6.50"
                     android:gravity="center"
-                    android:textSize="18dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <ImageButton

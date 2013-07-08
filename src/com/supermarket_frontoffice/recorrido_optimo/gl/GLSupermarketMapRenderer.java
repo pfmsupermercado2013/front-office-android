@@ -102,10 +102,10 @@ public class GLSupermarketMapRenderer implements Renderer
 	{
 
 		
-		m_GLSupermercado= null;
-	
-		m_AspectRatio= 0.f;		
-		m_RotateAngle= 0.0f;
+//		m_GLSupermercado= null;
+//	
+//		m_AspectRatio= 0.f;		
+//		m_RotateAngle= 0.0f;
 		
 		this.readXmlResources();
 		
@@ -161,8 +161,19 @@ public class GLSupermarketMapRenderer implements Renderer
 		
 		if ( ( m_CarritoCompra != null ) && ( !m_CarritoCompra.getListaCompra().isEmpty() ) ) {
 			
+			Log.d( TAG, "Carrito antes de ordenar ***** ");
+			for ( ProductoCarrito producto: m_CarritoCompra.getListaCompra() ) {
+				
+				Log.d( TAG, "Producto => " + producto.toString() );
+			}
 			
-			//this.ordenarCarrito();
+			this.ordenarCarrito();
+			
+			Log.d( TAG, "Carrito después de ordenar ***** ");
+			for ( ProductoCarrito producto: m_CarritoCompra.getListaCompra() ) {
+				
+				Log.d( TAG, "Producto => " + producto.toString() );
+			}
 			
 			m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( 0 ).getProducto().getLocalizacion(), true );
 			
@@ -394,12 +405,16 @@ public class GLSupermarketMapRenderer implements Renderer
 	public GLVertice updateProductoCarritoCompra( int a_CurrentProductoCarritoCompra ) 
 	{
 		
+		
+		m_GLSupermercado.getGLMobiliario().deslocalizarTodosProducto();
+		
 		if ( ( m_CarritoCompra == null ) || ( a_CurrentProductoCarritoCompra >= m_CarritoCompra.getListaCompra().size() ) ) {
+			
 			
 			return null;
 		}
 		
-		m_GLSupermercado.getGLMobiliario().deslocalizarTodosProducto();
+		//m_GLSupermercado.getGLMobiliario().deslocalizarTodosProducto();
 		m_vectorInicialProducto= m_GLSupermercado.getGLMobiliario().localizarProducto( m_CarritoCompra.getListaCompra().get( a_CurrentProductoCarritoCompra ).getProducto().getLocalizacion(), true );
 		
 		
@@ -606,6 +621,16 @@ public class GLSupermarketMapRenderer implements Renderer
 		this.m_GLSupermercado = a_GLSupermercado;
 	}
 	
+	
+	
+	/**
+	 * 
+	 * @param a_CarritoCompra
+	 */
+	public CarritoCompra getCarritoCompra( ) 
+	{
+		return m_CarritoCompra;
+	} // getCarritoCompra
 	
 	/**
 	 * 
